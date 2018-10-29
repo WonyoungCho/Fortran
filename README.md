@@ -1,4 +1,4 @@
-# Compile a fortran file
+# Compile
 
 ``` no-highlight
 $ gfortran -O3 -o a file_name
