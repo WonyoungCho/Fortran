@@ -11,7 +11,7 @@ $ gfortran -O3 -fopenmp -o a file_name
 real :: start, finish
 call cpu_time(start)
 
-      code here!
+   ! code here !
 
 call cpu_time(finish)
 print '("Time = ",f6.3," seconds.")',finish-start
