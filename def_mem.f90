@@ -1,4 +1,4 @@
-Program deg
+Program degeneracy
   implicit none
 
   integer(8)::sum_k(500000000)
@@ -35,5 +35,5 @@ Program deg
 11 enddo
   close(21)
   stop
-end Program deg
+end Program degeneracy
 
