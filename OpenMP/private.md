@@ -2,7 +2,7 @@
 private : shared memmory에서 변수를 각각 선언.
 firstprivate : omp_parallel 이전에 할당된 변 계속 사용.
 ## Example 1
-```
+```bash
 program data_scope_firstprivate
   integer i, tid, omp_get_thread_num
 
@@ -25,7 +25,7 @@ end program data_scope_firstprivate
 ```
 
 ## Exmaple 2
-```
+```bash
 program data_scope_firstprivate
   integer a(0:9), i, tid, omp_get_thread_num
 
@@ -53,7 +53,7 @@ end program data_scope_firstprivate
 ```
 
 ## Example 3
-```
+```bash
 program data_scope_solution
   integer :: a(0:11), i=10, tid, omp_get_thread_num
 
