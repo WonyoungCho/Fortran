@@ -19,6 +19,7 @@ program hello
 
 end program hello
 ```
+get : function, set : subroutine
 ```
  hello           0
  hello           7
