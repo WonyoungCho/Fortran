@@ -16,7 +16,7 @@ program data_scope_firstprivate
   print *, ' tid = ', tid, ' i = ', i
 end program data_scope_firstprivate
 ```
-```
+```bash
   tid =            2  i =           10
   tid =            0  i =           10
   tid =            1  i =           10
