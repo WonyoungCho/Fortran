@@ -26,7 +26,7 @@ end program sync_exercise
 ```
  sum =        5050
 ```
-Each thread sum can be summed with `!$omp do reduction(+: sum)`.
+Each thread local sums can be summed with `!$omp do reduction(+: sum)`.
 
 ```bash
 program sync_atomic
