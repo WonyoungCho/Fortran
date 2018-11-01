@@ -1,4 +1,4 @@
-# Hello.f90
+# Hello
 ``` bash
 program hello
   implicit none
