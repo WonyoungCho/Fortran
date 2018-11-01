@@ -1,6 +1,6 @@
 `!$omp critical` : 한 쓰레드가 계산하고 있으면 다른 쓰레드가 같은 메모리로의 접근을 못 하게한다. 명령어가 여러개 있을 때 사용.
 
-`!$omp atomic` : `!$omp critical`과 같은 원리이지만 한개의 계산에서 쓰인다.
+`!$omp atomic` : `!$omp critical`과 같은 원리이지만 한 개의 계산에서 쓰인다.
 ## Example 1
 ```bash
 program sync_exercise
