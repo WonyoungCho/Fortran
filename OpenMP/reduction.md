@@ -32,7 +32,7 @@ program sync_exercise
   implicit none
   integer, parameter :: N=100
 
-  integer :: i, sum=0, local_sum
+  integer :: i, sum=0
 
   !$omp parallel do reduction(+:sum)
   do i=1, N
