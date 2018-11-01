@@ -1,8 +1,26 @@
 # Parallel loop
-**Fortran**에서 변수를 초기화 해주는 `!$omp workshare` 가 있지만 `!$omp do` 를 이용하여 초기화 하는 방법이 더 빠르다.
+```bash
+!$omp parallel
+!$omp do
+do =1,N
+...
+!$omp end do
+!$omp end parallel
+```
+it can be written as
 ```bash
 !$omp do
-do i=1,N
+do =1,N
+...
+!$omp end parallel do
+```
+***Caution** 
+
+**Fortran**에서 변수를 초기화 해주는 `!$omp workshare` 가 있지만 `!$omp do` 를 이용하여 초기화 하는 방법이 더 빠르다.
+```bash
+integer::a(1000)
+!$omp do
+do i=1,1000
   a(i)=100
 enddo
 !$omp end do
