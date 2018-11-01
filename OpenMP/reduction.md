@@ -27,30 +27,22 @@ end program sync_exercise
  sum =        5050
 ```
 Each thread local sums can be summed with `!$omp do reduction(+: sum)`.
-
 ```bash
-program sync_atomic
-  integer, parameter :: N=200000
+program sync_exercise
+  implicit none
+  integer, parameter :: N=100
 
-  integer :: i, sum=0, omp_get_thread_num
-  integer, dimension(0:N-1) :: A, B
+  integer :: i, sum=0, local_sum
 
-  do i=0, N-1
-     A(i) = i+1
-     B(i) = i+2
+  !$omp parallel do reduction(+:sum)
+  do i=1, N
+     sum = sum + i
   end do
-
-  call omp_set_num_threads(4)
-  !$omp parallel
-  !$omp do reduction(+: sum)
-  do i=0, N-1
-     sum = sum + A(i) * B(i)
-  end do
-  !$omp end parallel
+  !$omp end parallel do
 
   print *, 'sum =', sum
-end program sync_atomic
+end program sync_exercise
 ```
 ```
- sum =   127419264
+ sum =        5050
 ```
