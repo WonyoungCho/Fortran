@@ -1,7 +1,7 @@
 # Private & Shared memory
-**private** : shared memmory에서 변수를 각각 선언.
+**private** : shared memory에서 변수를 각각 선언.
 
-**firstprivate** : omp_parallel 이전에 할당된 변 계속 사용.
+**firstprivate** : omp_parallel 이전에 할당된 변수 계속 사용.
 ## Example 1
 ```bash
 program data_scope_firstprivate
