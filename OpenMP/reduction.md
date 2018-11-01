@@ -51,3 +51,6 @@ program sync_atomic
   print *, 'sum =', sum
 end program sync_atomic
 ```
+```
+ sum =   127419264
+```
