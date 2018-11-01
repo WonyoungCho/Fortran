@@ -78,7 +78,7 @@ end program hello_world
 ```
 # Private
 private : shared memmory에서 변수를 각각 선언.
-firstprivate : omp_parallel 이전에 할당된 값을 계속 사용.
+firstprivate : omp_parallel 이전에 할당된 변 계속 사용.
 ```
 program data_scope_firstprivate
   integer i, tid, omp_get_thread_num
