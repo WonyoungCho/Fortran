@@ -14,6 +14,6 @@ https://computing.llnl.gov/tutorials/openMP/
 http://www.citutor.org
 ```
 
-| dd |
+|  |
 | :--: |
-| ff |
+|  |
