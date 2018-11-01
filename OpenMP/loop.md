@@ -1,6 +1,6 @@
 # Parallel loop
 ## Example 1
-```
+``` bash
 program parallel_for
   integer, parameter :: N=20
   integer :: tid, i, omp_get_thread_num
