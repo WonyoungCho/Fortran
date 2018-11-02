@@ -1,5 +1,7 @@
 # Sections - section
 Thread별로 `!$omp section` 구문 안의 일을 각각 하게 한다.
+
+Section을 지정하여 **I/O** 시간을 줄일 수 있다.
 ```bash
 program sections
   integer i, a(0:9), b(0:19)
