@@ -20,6 +20,11 @@ scp -P 포트 아이디@아이피:/home/디렉토리/ ./
 ## OpenMP Compile Option
 GCC `-fopenmp`, Intel `-qopenmp`, PGI `-mp`
 
+
+## Memory limit
+ulimit -s 512000
+
+
 |  |
 | :--: |
 |  |
