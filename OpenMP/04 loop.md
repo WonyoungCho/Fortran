@@ -16,6 +16,8 @@ do =1,N
 ```
 **Caution!** `!$omp parallel do` 바로 밑에는 do 문이 와야 한다.
 
+Multi-loop 경우에 가장 바깥 do 문만 병렬작업을 하게 된다.
+
 **Fortran**에서 변수를 초기화 해주는 `!$omp workshare` 가 있지만 `!$omp do` 를 이용하여 변수를 초기화 하는 방법이 더 빠르다.
 ```bash
 integer::a(1000)
