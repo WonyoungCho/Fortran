@@ -21,7 +21,7 @@ scp -P 포트 아이디@아이피:/home/디렉토리/ ./
 GCC `-fopenmp`, Intel `-qopenmp`, PGI `-mp`
 
 
-## Memory limit
+## Stack memory size
 ulimit -s 512000
 
 
