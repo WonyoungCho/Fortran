@@ -1,5 +1,5 @@
 # Task
-**Queue** 로 작업을 던지고 thread이 queue에서 작업을 가져오는 방식.
+**Queue** 로 작업을 던지고 threadrk\\ queue에서 작업을 가져오는 방식.
 ```bash
 program task
   use omp_lib
