@@ -15,7 +15,9 @@ http://www.citutor.org
 ```
 
 ## File transfer
+```
 scp -P 포트 아이디@아이피:/home/디렉토리/ ./
+```
 
 ## OpenMP Compile Option
 GCC `-fopenmp`, Intel `-qopenmp`, PGI `-mp`
@@ -27,8 +29,9 @@ ulimit -a
 ```
 
 ## Stack memory size 변경
+```
 ulimit -s 512000
-
+```
 
 |  |
 | :--: |
