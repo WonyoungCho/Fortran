@@ -2,13 +2,15 @@
 Thread별로 `!$omp section` 구문 안의 일을 각각 동시에 처리한다.
 
 Section을 지정하여 **I/O** 시간을 줄일 수 있다.
+
+Section 하나에 thread 한개가 할당된다. `!$omp parallel num_threads(2)`과 같이 section의 수를 고려하여 thread를 생성해야지 쓰지 않는 thread를 지정하지 않아 사용하지 않는 thread를 생성하게 되면 성능 저하가 발생한다.
 ```bash
 program sections
   integer i, a(0:9), b(0:19)
 
-  call omp_set_num_threads(2)
+  call omp_set_num_threads(8)
 
-  !$omp parallel
+  !$omp parallel num_threads(2)
   !$omp sections
   !$omp section
   do i=0, 9
