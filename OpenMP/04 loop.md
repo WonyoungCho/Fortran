@@ -51,9 +51,9 @@ program parallel_for
   !$omp end parallel
 end program parallel_for
 ```
-i는 지정해 주지 않았는데 shared 인가 private 인가?
+변수 i 는 지정해 주지 않았는데 shared 인가 private 인가?
 
-Ans) **Fortran**에서는 loop 변수가 몇 개가 되든 `private` 로 취급한다. **C**의 multi-loop는 2번째 변수부터 `shared` 로 설정된다.
+Answer) **Fortran**에서는 loop 변수가 몇 개가 되든 `private` 로 취급한다. **C**의 multi-loop는 2번째 변수부터 `shared` 로 설정된다.
 ```
  Hello World           0           0
  Hello World           0           1
