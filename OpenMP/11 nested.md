@@ -22,7 +22,7 @@ program nested_parallel
 20 format(T8,A,I4)
 end program nested_parallel
 ```
-`use omp_lib` 에는 nested 관련 함수와 변수를 포함하고 있다 (`integer::omp_get_thread_num`).
+`use omp_lib` 에는 nested 관련 변수를 포함하고 있다 (`integer::omp_get_thread_num`).
 ```
 thread id =   0
 thread id =   2
