@@ -27,8 +27,7 @@ GCC `-fopenmp`, Intel `-qopenmp`, PGI `-mp`
 ```
 ulimit -a
 ```
-
-## Stack memory size 변경
+### Stack memory size 변경
 ```
 ulimit -s 512000
 ```
