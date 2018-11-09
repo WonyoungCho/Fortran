@@ -9,8 +9,8 @@ extra_javascript: [docs.js]
 pages:
     - Home: 'README.md'
     - Fortran:
-        - 'Introduction' : 'specification.md'
+        - 'Introduction' : 'README.md'
     - OpenMP:
-        - 'Introduction' : 'openmp/README.md'
+        - 'Introduction' : 'OpenMP/README.md'
 
 theme: readthedocs
