@@ -1,0 +1,16 @@
+site_name: Fortran programming
+site_url: https://github.com/WonyoungCho/Fortran
+site_description: User's guide to the PTC cluster at IBS-CTPU
+repo_url: https://github.com/WonyoungCho/Fortran/
+site_author: Wonyoung Cho
+
+extra_javascript: [docs.js]
+
+pages:
+    - Home: 'README.md'
+    - Fortran:
+        - 'Introduction' : 'specification.md'
+    - OpenMP:
+        - 'Introduction' : 'openmp/README.md'
+
+theme: readthedocs
