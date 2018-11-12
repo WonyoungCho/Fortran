@@ -1,6 +1,6 @@
 # Hello World!
 
-### Exmaple 1
+`**Exmaple 1**`
 ``` bash
 program hello
   implicit none
