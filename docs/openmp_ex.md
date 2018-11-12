@@ -1,9 +1,7 @@
 # Hello World!
 
 
-[Exmaple 1][ex1] [ex1]: Example 1 
-
-
+[Exmaple 1](#)
 ``` bash
 program hello
   implicit none
