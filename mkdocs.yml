@@ -12,6 +12,6 @@ pages:
         - 'Introduction' : 'README.md'
     - OpenMP:
         - 'Introduction' : 'OpenMP/README.md'
-        - 'OpenMP' : 'OpenMP/openmp.md'
+        - 'OpenMP' : 'OpenMP/code.md'
 
 theme: readthedocs
