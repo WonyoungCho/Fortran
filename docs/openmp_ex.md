@@ -1,8 +1,8 @@
 # Hello World!
 
-**```
+```
 Exmaple 1
-```**
+```
 
 ``` bash
 program hello
