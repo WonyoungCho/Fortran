@@ -2,15 +2,15 @@
 
 - <a href="http://webedu.ksc.re.kr" target="_blank"> http://webedu.ksc.re.kr </a>
 
-- <http://www.openmp.org>{: target="_blank" }
+- <a href="http://www.openmp.org" target="_blank"> http://www.openmp.org </a>
 
-- <http://www.compunity.org>{: target="_blank" }
+- <a href="http://www.compunity.org" target="_blank"> http://www.compunity.org </a>
 
-- <http://openmpcon.org>
+- <a href="http://openmpcon.org" target="_blank"> http://openmpcon.org </a>
 
-- <https://computing.llnl.gov/tutorials/openMP>
+- <a href="https://computing.llnl.gov/tutorials/openMP" target="_blank"> https://computing.llnl.gov/tutorials/openMP </a>
 
-- <http://www.citutor.org>
+- <a href="http://www.citutor.org" target="_blank"> http://www.citutor.org </a>
 
 
 ## File transfer
