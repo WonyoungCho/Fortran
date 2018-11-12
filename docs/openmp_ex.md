@@ -77,7 +77,7 @@ program hello
   !$omp end parallel
 end program hello
 ```
-`use omp_lib`를 사용하면 `omp_get_thread_num`을 따로 *integer*로 지정해 줄 필요가 없고, 기본 `OpenMP` 기본 기능을 사용 가능하다.
+`use omp_lib`를 사용하면 `omp_get_thread_num`을 따로 *integer*로 지정해 줄 필요가 없고, **OpenMP** `subroutine`을 사용할 수 있다.
 ```bash
 $ ./a.out
  hello           0
