@@ -26,7 +26,7 @@ $ ./a.out
 ```
 다음과 같이 코드 내부에서 `thread` 수를 정해주는 방법도 있다.
 
-- {#hello_ex2}**Exmaple 2**
+- <a name="hello_ex2"></a>**Exmaple 2**
 ``` bash
 program hello
   implicit none
