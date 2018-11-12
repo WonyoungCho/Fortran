@@ -4,7 +4,7 @@
 ``` bash
 program hello
   implicit none
-  integer::omp_get_thread_num
+  integer :: omp_get_thread_num
 
   !$omp parallel
   print*,'hello',omp_get_thread_num()
@@ -30,7 +30,7 @@ $ ./a.out
 ``` bash
 program hello
   implicit none
-  integer::omp_get_thread_num
+  integer :: omp_get_thread_num
 
   call omp_set_num_threads(4)
   !$omp parallel
@@ -52,7 +52,7 @@ $ ./a.out
 ``` bash
 program hello
   implicit none
-  integer::omp_get_thread_num
+  integer :: omp_get_thread_num
 
   !$omp parallel num_threads(2)
   print*,'hello',omp_get_thread_num()
@@ -92,7 +92,7 @@ $ ./a.out
 - **Example 1**
 ``` bash
 program thread
-  integer::omp_get_thread_num, omp_get_num_threads
+  integer :: omp_get_thread_num, omp_get_num_threads
 
   print *, 'threads = ', omp_get_num_threads()
 
@@ -107,7 +107,7 @@ program thread
   !$omp end parallel
 
   print *, 'threads = ', omp_get_num_threads()
-end program hello_world
+end program thread
 ```
 ``` bash
 $ ./a.out
@@ -134,8 +134,8 @@ $ ./a.out
 
 - **Example 1**
 ```bash
-program data_scope_firstprivate
-  integer i, tid, omp_get_thread_num
+program firstprivate
+  integer :: i, tid, omp_get_thread_num
 
   i = 10
   call omp_set_num_threads(4)
@@ -145,7 +145,7 @@ program data_scope_firstprivate
   i = 20
   !$omp end parallel
   print *, ' tid = ', tid, ' i = ', i
-end program data_scope_firstprivate
+end program firstprivate
 ```
 ```bash
 $ ./a.out
@@ -158,8 +158,8 @@ $ ./a.out
 
 - **Exmaple 2**
 ```bash
-program data_scope_firstprivate
-  integer a(0:9), i, tid, omp_get_thread_num
+program firstprivate
+  integer :: a(0:9), i, tid, omp_get_thread_num
 
   call omp_set_num_threads(4)
   !$omp parallel shared(a) private(tid)
@@ -171,7 +171,7 @@ program data_scope_firstprivate
   do i=0, 3
      print *, 'a(', i, ') = ', a(i)
   end do
-end program data_scope_firstprivate
+end program firstprivate
 ```
 ```bash
 $ ./a.out
@@ -187,7 +187,7 @@ $ ./a.out
 
 - **Example 3**
 ```bash
-program data_scope_solution
+program private
   integer :: a(0:11), i=10, tid, omp_get_thread_num
 
   call omp_set_num_threads(4)
@@ -212,7 +212,7 @@ program data_scope_solution
   do i=0, 11
      print *, 'a(', i, ') = ', a(i)
   end do
-end program data_scope_solution
+end program private
 ```
 ```
 $ ./a.out
@@ -252,7 +252,7 @@ Multi-loop 경우에 가장 바깥 do 문만 병렬작업을 하게 된다.
 
 - **Example 1**
 ``` bash
-program parallel_for
+program parallel_do
   integer, parameter :: N=20
   integer :: tid, i, omp_get_thread_num
 
@@ -266,7 +266,7 @@ program parallel_for
   end do
   !$omp end do !!! optional
   !$omp end parallel
-end program parallel_for
+end program parallel_do
 ```
 질문) 변수 `i`는 지정해 주지 않았는데 shared 인가 private 인가?
 
