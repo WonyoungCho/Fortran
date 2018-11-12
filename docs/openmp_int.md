@@ -1,10 +1,10 @@
 ## Useful site
 
-- [http://webedu.ksc.re.kr](http://webedu.ksc.re.kr)
+- [http://webedu.ksc.re.kr](http://webedu.ksc.re.kr){: target="_blank" }
 
-- <http://www.openmp.org>
+- <http://www.openmp.org>{: target="_blank" }
 
-- <http://www.compunity.org>
+- <http://www.compunity.org>{: target="_blank" }
 
 - <http://openmpcon.org>
 
