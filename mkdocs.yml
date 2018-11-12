@@ -11,7 +11,7 @@ pages:
     - Fortran:
         - 'Introduction' : 'README.md'
     - OpenMP:
-        - 'Introduction' : 'openmp_int.md'
+        - 'Introduction' : 'openmp_into.md'
         - 'Code' : 'openmp.md'
 
 theme: readthedocs
