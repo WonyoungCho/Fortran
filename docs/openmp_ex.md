@@ -25,7 +25,8 @@ $ ./a.out
  hello           5
 ```
 다음과 같이 코드 내부에서 `thread` 수를 정해주는 방법도 있다.
-- **Exmaple 2**
+
+- {#hello_ex2}**Exmaple 2**
 ``` bash
 program hello
   implicit none
@@ -82,11 +83,12 @@ $ ./a.out
  hello           1
 ```
 
-**Tip!** `get`이 들어가는 구문(`omp_get_thread_num`)은 `function`에 해당하고, `set`이 들어가는 구문(`omp_set_num_threads(4)`)은 `subroutine`에 해당하며 `call`을 동반한다(**Example 2**).
+**Tip!** `get`이 들어가는 구문(`omp_get_thread_num`)은 `function`에 해당하고, `set`이 들어가는 구문(`omp_set_num_threads(4)`)은 `subroutine`에 해당하며 `call`을 동반한다([**Example 2**](#hello_ex2)).
 
 # thread_num & num_threads
 
 `thread_num`은 전체 `thread id`를 나타내며, `num_threads'는 사용된 `thread` 수를 나타낸다.
+
 - **Example 1**
 ``` bash
 program thread
