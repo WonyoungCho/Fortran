@@ -13,5 +13,8 @@ pages:
     - OpenMP:
         - 'Introduction' : 'openmp_int.md'
         - 'Example' : 'openmp_ex.md'
-
+    - MPI:
+        - 'Introduction' : 'mpi_int.md'
+        - 'Example' : 'mpi_ex.md'
+        
 theme: readthedocs
