@@ -252,7 +252,7 @@ Multi-loop 경우에 가장 바깥 do 문만 병렬작업을 하게 된다.
 
 - **Example 1**
 ``` bash
-program parallel_do
+program parallel_loop
   integer, parameter :: N=20
   integer :: tid, i, omp_get_thread_num
 
@@ -266,7 +266,7 @@ program parallel_do
   end do
   !$omp end do !!! optional
   !$omp end parallel
-end program parallel_do
+end program parallel_loop
 ```
 질문) 변수 `i`는 지정해 주지 않았는데 shared 인가 private 인가?
 
@@ -308,3 +308,58 @@ enddo
 a(N)=100
 !$omp end workshare
 ```
+
+# Reduction
+병렬처리 계산한 값을 합쳐서 최종 결과를 도출해야 하는 작업이 있을 경우 `reduction`은 유용하게 사용된다.
+
+- **Example 1**
+```bash
+program sync_exercise
+  implicit none
+  integer, parameter :: N=100
+
+  integer :: i, sum=0, local_sum
+
+  !$omp parallel private(local_sum)
+  local_sum = 0
+  !$omp do
+  do i=1, N
+     local_sum = local_sum + i
+  end do
+
+  !$omp atomic
+  sum = sum + local_sum
+  !$omp end parallel
+
+  print *, 'sum =', sum
+end program sync_exercise
+```
+```
+ sum =        5050
+```
+`!$omp atomic`을 이용하여 각 `thread`에서 계산한 값을 더하여 최종 값을 도출하였다. 이것을 `!$omp parallel do reduction(+:sum)`을 써서 코드를 간단히 하면서 동일한 결과를 얻는다.
+```bash
+program sync_exercise
+  implicit none
+  integer, parameter :: N=100
+
+  integer :: i, sum=0
+
+  !$omp parallel do reduction(+:sum)
+  do i=1, N
+     sum = sum + i
+  end do
+  !$omp end parallel do
+
+  print *, 'sum =', sum
+end program sync_exercise
+```
+```
+ sum =        5050
+```
+
+**Tip!**
+
+`!$omp critical` : 한 쓰레드가 계산하고 있으면 다른 쓰레드가 같은 메모리로의 접근을 못 하게 한다. 명령어가 여러 개 있을 때 사용.
+
+`!$omp atomic` : `!$omp critical`과 같은 원리이지만 단순한 계산에서 쓰인다.
