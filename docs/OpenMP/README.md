@@ -5,7 +5,7 @@ http://webedu.ksc.re.kr
 
 http://www.openmp.org
 
-http//www.compunity.org
+http://www.compunity.org
 
 http://openmpcon.org
 
