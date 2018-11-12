@@ -1,7 +1,7 @@
 # Hello World!
 
 
-[Exmaple 1]: Example 1 [Exmaple 1]
+[Exmaple 1] [Exmaple 1]: Example 1 
 
 
 ``` bash
