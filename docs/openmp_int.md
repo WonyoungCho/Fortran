@@ -1,6 +1,6 @@
 ## Useful site
 
-- [http://webedu.ksc.re.kr](http://webedu.ksc.re.kr){: target="_blank" }
+- ['http://webedu.ksc.re.kr'](http://webedu.ksc.re.kr){: target="_blank" }
 
 - <http://www.openmp.org>{: target="_blank" }
 
