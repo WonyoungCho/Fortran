@@ -314,7 +314,7 @@ a(N)=100
 
 - **Example 1**
 ```bash
-program sync_exercise
+program atomic
   implicit none
   integer, parameter :: N=100
 
@@ -332,14 +332,14 @@ program sync_exercise
   !$omp end parallel
 
   print *, 'sum =', sum
-end program sync_exercise
+end program atomic
 ```
 ```
  sum =        5050
 ```
 `!$omp atomic`을 이용하여 각 `thread`에서 계산한 값을 더하여 최종 값을 도출하였다. 이것을 `!$omp parallel do reduction(+:sum)`을 써서 코드를 간단히 하면서 동일한 결과를 얻는다.
 ```bash
-program sync_exercise
+program reduction
   implicit none
   integer, parameter :: N=100
 
@@ -352,7 +352,7 @@ program sync_exercise
   !$omp end parallel do
 
   print *, 'sum =', sum
-end program sync_exercise
+end program reduction
 ```
 ```
  sum =        5050
