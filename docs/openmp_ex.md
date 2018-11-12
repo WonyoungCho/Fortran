@@ -1,7 +1,7 @@
 # Hello World!
 
-```
-Exmaple 1
+```diff
+Exmaple 1 in green
 ```
 
 ``` bash
