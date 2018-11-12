@@ -25,7 +25,7 @@ $ ./a.out
  hello           5
 ```
 코드 내부에서 `thread` 수를 정해주는 방법도 있다.
-### Exmaple 2
+**`Exmaple 2`**
 ``` bash
 program hello
   implicit none
@@ -46,7 +46,7 @@ $ ./a.out
 
 ```
 또는
-### Exmaple 3
+**`Exmaple 3`**
 ``` bash
 program hello
   implicit none
