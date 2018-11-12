@@ -1,8 +1,8 @@
 # Hello World!
 
-```diff
-Exmaple 1 in green
-```
+
+[Exmaple 1]: Example 1 [Exmaple 1]
+
 
 ``` bash
 program hello
