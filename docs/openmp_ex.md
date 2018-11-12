@@ -10,7 +10,7 @@ program hello
   !$omp end parallel
 end program hello
 ```
-
+`Terminal`에서 정한 `thread` 숫자만큼 병렬화 작업이 된다.
 ```
 $ ./a.out
  hello           0
