@@ -12,6 +12,7 @@ end program hello
 ```
 `Terminal`에서 정한 `thread` 숫자만큼 병렬화 작업이 된다.
 ```
+$ export OMP_NUM_THREADS=4
 $ ./a.out
  hello           0
  hello           7
