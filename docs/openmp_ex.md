@@ -268,9 +268,9 @@ program parallel_for
   !$omp end parallel
 end program parallel_for
 ```
-변수 i 는 지정해 주지 않았는데 shared 인가 private 인가?
+질문) 변수 `i`는 지정해 주지 않았는데 shared 인가 private 인가?
 
-Answer) **Fortran**에서는 loop 변수가 몇 개가 되든 `private` 로 취급한다. **C**의 multi-loop는 2번째 변수부터 `shared` 로 설정된다.
+정답) **Fortran**에서는 loop 변수가 몇 개가 되든 `private`로 취급한다. **C**의 multi-loop는 2번째 변수부터 `shared`로 설정된다.
 ```
  Hello World           0           0
  Hello World           0           1
@@ -293,7 +293,7 @@ Answer) **Fortran**에서는 loop 변수가 몇 개가 되든 `private` 로 취�
  Hello World           2          13
  Hello World           2          14
 ```
-코드를 짜다보면 변수들을 초기화 해주어야 하는 경우가 있다. **Fortran**에서는 변수를 초기화 해주는 `!$omp workshare`가 있지만 `!$omp do`를 이용하여 변수를 초기화 하는 방법이 더 빠르다.
+**Tip!** 코드를 짜다보면 변수들을 초기화 해주어야 하는 경우가 있다. **Fortran**에서는 변수를 초기화 해주는 `!$omp workshare`가 있지만 `!$omp do`를 이용하여 변수를 초기화 하는 방법이 더 빠르다.
 ```bash
 integer::a(1000)
 !$omp do
