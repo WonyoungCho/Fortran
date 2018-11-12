@@ -25,8 +25,7 @@ $ ./a.out
  hello           6
  hello           5
 ```
-코드 내부에서 `thread` 수를 정해주는 방법도 있다.
-
+다음과 같이 코드 내부에서 `thread` 수를 정해주는 방법도 있다.
 - **Exmaple 2**
 ``` bash
 program hello
