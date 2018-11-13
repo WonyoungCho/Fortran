@@ -3,9 +3,12 @@
 
 병렬작업을 이야기할 때 fork와 join을 이야기한다. 작업이 병렬화될 때를 fork라고 하며, 병렬작업이 끝날때를 join이라고 한다. 코드에서 `!$omp parallel` 명령어가 작업을 병렬화해 주는 시점(fork)이 된다. `!$omp end parallel`은 병렬화의 종료되는 지점(join)이다.
 
-
 ## Compile
-**Compile**시에는 `-fopenmp` 옵션을 넣어주어야 한다.
+**Compile**시에는 옵션을 넣어주어야 하며, 제조사별로 옵션명은 다르다.
+
+- GCC `-fopenmp`
+- Intel `-qopenmp`
+- PGI `-mp`
 ```bash
 $ gfortran -fopenmp -o a.out test.f90
 ```
@@ -29,11 +32,6 @@ $ ./a.out
 - <a href="https://computing.llnl.gov/tutorials/openMP" target="_blank"> https://computing.llnl.gov/tutorials/openMP </a>
 
 - <a href="http://www.citutor.org" target="_blank"> http://www.citutor.org </a>
-
-
-## OpenMP Compile Option
-GCC `-fopenmp`, Intel `-qopenmp`, PGI `-mp`
-
 
 ## Memory size 확인
 ```
