@@ -8,6 +8,7 @@ extra_javascript: [docs.js]
 
 pages:
     - Home: 'index.md'
+    - Useful expression: 'useful.md'
     - Fortran:
         - 'Introduction' : 'README.md'
     - OpenMP:
