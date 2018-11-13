@@ -5,4 +5,5 @@
 <a href="https://fortran.readthedocs.io" target="_blank"> https://fortran.readthedocs.io </a>
 
 ### Install fortran
-https://gcc.gnu.org/wiki/GFortranBinaries
+<a href="https://gcc.gnu.org/wiki/GFortranBinaries" target="_blank"> https://gcc.gnu.org/wiki/GFortranBinaries </a>
+
