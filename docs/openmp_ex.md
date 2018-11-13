@@ -552,3 +552,101 @@ end program section_nowait
  L2 tid=           2
  end tid=          2
 ```
+
+# Ordered
+
+아래 예제와 같이 `do` 문은 임의의 thread가 작업하지만 결과는 순차적으로 출력하도록 한다.
+
+- **Example 1**
+```bash
+program ordered
+  integer i, a(0:9)
+
+  call omp_set_num_threads(4)
+  !$omp parallel private(i)
+  !$omp do ordered
+  do i=0, 9
+     a(i) = i * 2
+     !$omp ordered
+     print *, 'a(',i,')=',a(i)
+     !$omp end ordered
+  end do
+  !$omp end parallel
+end program ordered
+```
+```
+$ ./a.out
+ a(           0 )=           0
+ a(           1 )=           2
+ a(           2 )=           4
+ a(           3 )=           6
+ a(           4 )=           8
+ a(           5 )=          10
+ a(           6 )=          12
+ a(           7 )=          14
+ a(           8 )=          16
+ a(           9 )=          18
+```
+
+# Task
+
+**Queue** 로 작업을 던지고 `thread`가 queue에서 작업을 가져오는 방식.
+
+- **Example 1**
+```bash
+program task
+  use omp_lib
+
+  integer::a,b,c,d,e
+  !$omp parallel private(b,d,e)
+  !$omp task private(e)
+    a : shared
+    b : firstprivate
+    c : shared
+    d : firstprivate
+    e : private
+  !$omp end task
+  !$omp end parallel
+  
+end program task
+```
+
+# Nested
+
+- **Example 1**
+```bash
+program nested_parallel
+  use omp_lib
+  integer tid
+
+  call omp_set_nested(.true.)
+  call omp_set_num_threads(4)
+  
+  !$omp parallel private(tid)
+  tid = omp_get_thread_num()
+  print 10, 'thread id =', tid
+  if( tid == 1 ) then
+    !$omp parallel private(tid) num_threads(2)
+    tid = omp_get_thread_num()
+    print 20, 'thread id =', tid
+    !$omp end parallel
+  end if
+  !$omp end parallel
+
+10 format(A,I4)
+20 format(T8,A,I4)
+end program nested_parallel
+```
+`use omp_lib` 에는 nested 관련 수를 포함하고 있다.
+```
+$ ./a.out
+thread id =   0
+thread id =   2
+thread id =   1
+thread id =   3
+       thread id =   0
+       thread id =   2
+       thread id =   3
+       thread id =   1
+       thread id =   4
+```
