@@ -1,3 +1,6 @@
+# Introduction
+`OpenMP`는 병렬처리하고자 하는 작업을 `thread`에 할당해 주는 계산 방법이며, 메모리를 공유하여 작업을 처리한다.
+
 ## Useful site
 
 - <a href="http://webedu.ksc.re.kr" target="_blank"> http://webedu.ksc.re.kr </a>
