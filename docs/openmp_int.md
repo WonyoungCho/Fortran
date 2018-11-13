@@ -36,14 +36,7 @@ $ ./a.out
 
 - <a href="http://www.citutor.org" target="_blank"> http://www.citutor.org </a>
 
-## Memory size 확인
-```
-ulimit -a
-```
-### Stack memory size 변경
-```
-ulimit -s 512000
-```
+
 
 |  |
 | :--: |
