@@ -13,11 +13,6 @@
 - <a href="http://www.citutor.org" target="_blank"> http://www.citutor.org </a>
 
 
-## File transfer
-```
-scp -P 포트 아이디@아이피:/home/디렉토리/ ./
-```
-
 ## OpenMP Compile Option
 GCC `-fopenmp`, Intel `-qopenmp`, PGI `-mp`
 
