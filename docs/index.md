@@ -10,3 +10,7 @@
 <a href="http://www.lapk.org/gfortran/gfortran.php?OS=7" target="_blank">   http://www.lapk.org/gfortran/gfortran.php?OS=7 </a>
 
 <a href="https://github.com/fxcoudert/gfortran-for-macOS/releases" target="_blank">  https://github.com/fxcoudert/gfortran-for-macOS/releases </a>
+
+```bash
+$ brew install gcc --without -multilib
+```
