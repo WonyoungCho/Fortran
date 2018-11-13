@@ -87,7 +87,7 @@ $ ./a.out
 
 # thread_num & num_threads
 
-`thread_num`은 전체 `thread id`를 나타내며, `num_threads'는 사용된 `thread` 수를 나타낸다.
+`thread_num`은 각각의 잡이 할당된 `thread id`를 나타내며, `num_threads`는 사용된 전체 `thread` 수를 나타낸다.
 
 - **Example 1**
 ``` bash
