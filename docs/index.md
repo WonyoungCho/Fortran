@@ -7,4 +7,6 @@
 ### Install fortran
 <a href="https://gcc.gnu.org/wiki/GFortranBinaries" target="_blank"> https://gcc.gnu.org/wiki/GFortranBinaries </a>
 
+<a href="http://www.lapk.org/gfortran/gfortran.php?OS=7" target="_blank">   http://www.lapk.org/gfortran/gfortran.php?OS=7 </a>
+
 <a href="https://github.com/fxcoudert/gfortran-for-macOS/releases" target="_blank">  https://github.com/fxcoudert/gfortran-for-macOS/releases </a>
