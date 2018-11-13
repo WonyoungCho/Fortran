@@ -5,9 +5,13 @@
 
 ## Compile
 **Compile**시에는 옵션을 넣어주어야 하며, 제조사별로 옵션명 다르다.
+
 - GCC `-fopenmp`
+
 - Intel `-qopenmp`
+
 - PGI `-mp`
+
 ```bash
 $ gfortran -fopenmp -o a.out test.f90
 ```
