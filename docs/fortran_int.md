@@ -7,22 +7,37 @@
 # Fortran77 vs Fortran90
 
 - **Fortran77**
-  - 앞 6간을 항상 비워놔야 했다.
+  - 앞 6간을 항상 비워놔야 한다.
 ```bash
 123456program hello
       implicit none
       !!   code   !!
       end program hello
 ```
-
-- **Fortran90** : 첫 칸부터 사용가능하다.
+  - 72열 까지만 허용된다.
+  - 제 6열은 줄 연결 표시이다.
+  - 주석은 첫 열의 **c** 표시로 시작하며, 코드와 같은 줄에 올 수 없다.
+```bash
+c this is a comment.
+      do i=1,10
+      ...
+```
+  - 변수의 길이가 6자로 제한된다.
+  
+- **Fortran90**
+  - 첫 칸부터 사용가능하며 시작 위치의 제한이 없다.
 ```bash
 program hello
 implicit none
 !!   code   !!!
 end program
 ```
-
+  - 132열까지 사용 가능하다.
+  - 한 줄에 분리기호인 **;**을 사용하여 여러 문장이 가능하다.
+```bash
+i=12; j=13
+```
+  - 
 # Compile
 
 ```
