@@ -7,7 +7,7 @@
 # Fortran77 vs Fortran90
 
 - **Fortran77**
-      - 앞 6간을 항상 비워놔야 했다.
+  - 앞 6간을 항상 비워놔야 했다.
 ```bash
 123456program hello
       implicit none
