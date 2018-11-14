@@ -10,7 +10,8 @@ pages:
     - Home: 'index.md'
     - Useful expression: 'useful.md'
     - Fortran:
-        - 'Introduction' : 'README.md'
+        - 'Introduction' : 'fortran_int.md'
+        - 'Example' : 'fortran_ex.md'
     - OpenMP:
         - 'Introduction' : 'openmp_int.md'
         - 'Example' : 'openmp_ex.md'
