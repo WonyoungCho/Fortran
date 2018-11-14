@@ -1,12 +1,12 @@
 # Programming with Fortran.
 
-소개는 **Fortran 90** 을 기준으로 하며, 파일의 확장자는 `.f90`이다. 코드는 소문자 대문자를 가리지 않는다.
+소개는 **Fortran90** 을 기준으로 하며, 파일의 확장자는 `.f90`이다. 코드는 소문자 대문자를 가리지 않는다.
 
-참고로 높은 버전의 **Fortran**은 하위 버전의 기능과 문법을 포함하고 있다. 즉, **Fortran 90**은 **Fortran 77** 문법으로 쓰여진 코드를 인식한다.
+참고로 높은 버전의 **Fortran**은 하위 버전의 기능과 문법을 포함하고 있다. 즉, **Fortran90**은 **Fortran77** 문법으로 쓰여진 코드를 인식한다.
 
-# Fortran 77 vs Fortran 90
+# Fortran77 vs Fortran90
 
-- **Fortran 77** : 앞 6간을 항상 비워놔야 했다.
+- **Fortran77** : 앞 6간을 항상 비워놔야 했다.
 ```bash
 123456program hello
       implicit none
@@ -14,7 +14,7 @@
       end program hello
 ```
 
-- **Fortran 90** : 첫 칸부터 사용가능하다.
+- **Fortran90** : 첫 칸부터 사용가능하다.
 ```bash
 program hello
 implicit none
