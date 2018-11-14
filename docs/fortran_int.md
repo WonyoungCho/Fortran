@@ -1,6 +1,22 @@
 # Programming with Fortran.
 
-**Fortran 90** 을 기준으로 한다.
+**Fortran 90** 을 기준으로 하며, 파일의 확장자는 `.f90`이다. 코드는 소문자 대문자를 가리지 않는다.
+
+- **Fortran 77** : 앞 6간을 항상 비워놔야 했다.
+```
+123456program hello
+      implicit none
+      !!   code   !!
+      end program hello
+```
+
+- **Fortran 90**
+```
+program hello
+implicit none
+!!   code   !!!
+end program
+```
 
 # Compile
 
