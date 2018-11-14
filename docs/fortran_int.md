@@ -1,6 +1,6 @@
 # Programming with Fortran.
 
-**Fortran 90** 을 기준으로 한다..
+**Fortran 90** 을 기준으로 한다.
 
 # Compile
 
