@@ -1,6 +1,6 @@
 # Programming with Fortran.
 
-`Fortran 90`과 **gcc 4.4.6** 을 기준으로 합니다.
+**Fortran 90** 을 기준으로 합니다.
 
 # Compile
 
