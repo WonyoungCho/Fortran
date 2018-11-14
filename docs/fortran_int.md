@@ -7,16 +7,16 @@
 # Fortran77 vs Fortran90
 
 - **Fortran77**
-  - 앞 6간을 항상 비워놔야 한다.
+1. 앞 6간을 항상 비워놔야 한다.
 ```bash
 123456program hello
       implicit none
       !!   code   !!
       end program hello
 ```
-  - 72열 까지만 허용된다.
-  - 제 6열은 줄 연결 표시이다.
-  - 주석은 첫 열의 **c** 표시로 시작하며, 코드와 같은 줄에 올 수 없다.
+2. 72열 까지만 허용된다.
+3. 제 6열은 줄 연결 표시이다.
+4. 주석은 첫 열의 **c** 표시로 시작하며, 코드와 같은 줄에 올 수 없다.
 ```bash
 c this is a comment.
       do i=1,10
