@@ -13,7 +13,7 @@
 - PGI `-mp`
 
 ```bash
-$ gfortran -fopenmp -o a.out test.f90
+$ gfortran -fopenmp -o a.out file_name.f90
 ```
 그리고 몇개의 `thread`로 작업을 할 것인지 실행파일을 실행 전에 정해주어야 한다. 코드내에서도 정할 수 있다.
 ```bash
