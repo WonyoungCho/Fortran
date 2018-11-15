@@ -6,5 +6,4 @@
 program hello
 use mpi_f08'
 ...
-end program hello
 ```
