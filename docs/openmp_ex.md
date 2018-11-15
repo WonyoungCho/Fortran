@@ -12,7 +12,7 @@ program hello
 end program hello
 ```
 `Terminal`에서 정한 `thread` 숫자만큼 병렬화 작업이 된다.
-```shell
+```sh
 $ export OMP_NUM_THREADS=8
 $ ./a.out
  hello           0
@@ -38,7 +38,7 @@ program hello
   !$omp end parallel
 end program hello
 ```
-```bash
+```sh
 $ ./a.out
  hello           3
  hello           0
