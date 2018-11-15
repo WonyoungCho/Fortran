@@ -31,6 +31,7 @@ int main(int argc, char *argv[])
 ```
 
 ```bash
+$ mpicc -np 3 ./a.out
 rank (2) : isend = 3
 rank (1) : isend = 2
 rank (0) : isend = 1
@@ -63,6 +64,6 @@ int main (int argc, char *argv[]){
 }
 ```
 ```bash
+$ mpicc -np 3 ./a.out
  irecv =  1 2 2 3 3 3
  ```
-
