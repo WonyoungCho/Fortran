@@ -1,5 +1,7 @@
 # Send & Recv
 `MPI_Send`와 `MPI_Recv`는 **blocking**통신 방식이다. 즉, 작업이 끝나야 값이 **return**된다.
+
+`MPI_Send`와 `MPI_Recv`의 **tag**는 임의의 값을 사용해도 되지만 통신하는 프로세서 **tag** 값은 반드시 같아야 한다.
 ```c
 #include <stdio.h>
 #include <mpi.h>
