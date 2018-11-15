@@ -10,7 +10,8 @@ PROGRAM hello
   CALL MPI_Finalize(iErr)
 END PROGRAM hello
 ```
-```
+```sh
+$ mpirun -np 4 ./a.out
  Hello World!
  Hello World!
  Hello World!
