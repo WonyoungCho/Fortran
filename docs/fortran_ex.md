@@ -7,7 +7,7 @@ implicit none
 print*, 'Hello World!'
 end program hello
 ```
-```bash
+```sh
 $ ./a.out
 Hello World!
 ```
