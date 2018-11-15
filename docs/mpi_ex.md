@@ -2,7 +2,7 @@
 
 ```fortran
 PROGRAM hello
-  INCLUDE 'mpif.h'
+  use mpi_f08
   INTEGER iErr
   
   CALL MPI_Init(iErr)
