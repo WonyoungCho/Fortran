@@ -1,7 +1,7 @@
 # Hello World!
 
 - **Example 1**
-``` fortran
+``` c
 program hello
   implicit none
   integer :: omp_get_thread_num
