@@ -44,7 +44,6 @@ $ ./a.out
  hello           0
  hello           2
  hello           1
-
 ```
 또는
 
