@@ -1,6 +1,6 @@
 # Hello World!
 
-```bash
+```fortran
 program hello
 implicit none
 
