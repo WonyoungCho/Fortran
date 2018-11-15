@@ -1,5 +1,5 @@
-# Send & Recev
-
+# Send & Recv
+`MPI_Send`와 `MPI_Recv`는 **blocking**통신 방식이다. 즉, 작업이 끝나야 값이 **return**된다.
 ```c
 #include <stdio.h>
 #include <mpi.h>
