@@ -1,7 +1,7 @@
 # Hello World!
 
 - **Example 1**
-``` bash
+``` fortran
 program hello
   implicit none
   integer :: omp_get_thread_num
@@ -27,7 +27,7 @@ $ ./a.out
 다음과 같이 코드 내부에서 `thread` 수를 정해주는 방법도 있다.
 
 - <a name="hello_ex2"></a>**Exmaple 2**
-``` bash
+``` fortran
 program hello
   implicit none
   integer :: omp_get_thread_num
