@@ -1,6 +1,6 @@
 # Hello World!
 
-```bash
+```fortran
 PROGRAM hello
   INCLUDE 'mpif.h'
   INTEGER iErr
