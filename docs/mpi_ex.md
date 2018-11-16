@@ -107,6 +107,7 @@ SUBROUTINE para_range(n1, n2, nprocs, irank, ista, iend)
 END SUBROUTINE para_range
 ```
 ```sh
+$ mpirun -np 4 ./a.out
  myrank =           0 :           1  ~    250000000
  myrank =           2 :   500000001  ~    750000000
  myrank =           1 :   250000001  ~    500000000
