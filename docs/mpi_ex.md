@@ -35,7 +35,7 @@ $ mpirun -np 4 ./a.out
 
 - INTEGER count : 묶을 데이터 갯수
 - INTEGER oldtype : 묶는 데이터들의 타입 (ex. MPI_INTEGER)
-- INTEGER newtype : 묶은 데이터들의 새로운 
+- INTEGER newtype : 묶은 데이터들의 새로운 타입
 ```fortran
 PROGRAM type_contiguous
   INCLUDE 'mpif.h'
