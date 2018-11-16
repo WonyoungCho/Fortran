@@ -32,6 +32,7 @@ $ mpirun -np 4 ./a.out
 연속된 데이터를 묶을 때 사용한다.
 
 `MPI_TYPE_CONTIGUOUS(count, oldtype, newtype, ierr)`
+
 - INTEGER count : 묶을 데이터 갯수
 - INTEGER oldtype : 묶는 데이터들의 타입 (ex. MPI_INTEGER)
 - INTEGER newtype : 묶은 데이터들의 새로운 
