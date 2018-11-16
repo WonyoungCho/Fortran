@@ -27,7 +27,7 @@ $ mpirun -np 4 ./a.out
 
 작업이 끝나면 새로 정의한 변수를 없애준다.
 
-`MPI_TYPE_COMMIT(datatype, ierr)`
+`MPI_TYPE_FREE(datatype, ierr)`
 ## Contiguous
 연속된 데이터를 묶을 때 사용한다.
 
@@ -35,7 +35,6 @@ $ mpirun -np 4 ./a.out
 - INTEGER count : 묶을 데이터 갯수
 - INTEGER oldtype : 묶는 데이터들의 타입 (ex. MPI_INTEGER)
 - INTEGER newtype : 묶은 데이터들의 새로운 
-
 ```fortran
 PROGRAM type_contiguous
   INCLUDE 'mpif.h'
@@ -57,3 +56,5 @@ PROGRAM type_contiguous
   CALL MPI_FINALIZE(ierr)
 END PROGRAM type_contiguous
 ```
+
+## Vector
