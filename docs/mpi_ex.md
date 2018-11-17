@@ -22,27 +22,30 @@ $ mpirun -np 4 ./a.out
 또는
 
 ```fortran
-program  hello                                                                              
-  use mpi_f08                                                                               
-  implicit none                                                                             
-                                                                                            
-  integer :: nRank, nProcs, nameLen, iErr                                                   
-  character*(mpi_max_processor_name) :: name                                              
-                                                                                            
-  call mpi_Init(iErr)                                                                       
-  call mpi_comm_size(mpi_comm_world, nprocs, ierr)                                        
-  call mpi_comm_rank(mpi_comm_world, nrank, ierr)                                           
-                                                                                            
-  call mpi_get_processor_name(name, namelen, ierr)                                          
-                                                                                            
-  print*, 'Hello World. (Process name = ', trim(name), ', nRank = ', nRank, ', nProcs = ',n\
-Procs, ')'                                                                                  
-                                                                                            
-  call  mpi_finalize(ierr)                                                                  
-                                                                                            
+program  hello
+  use mpi_f08
+  implicit none
+  integer :: ierr, nproc, nrank, nameLen
+  character*(mpi_max_processor_name) :: name
+  
+  call mpi_Init(ierr)
+  call mpi_comm_size(mpi_comm_world, nproc, ierr)
+  call mpi_comm_rank(mpi_comm_world, nrank, ierr)
+  
+  call mpi_get_processor_name(name, namelen, ierr)
+  
+  print*, 'Hello World! (Process name = ', trim(name), ', nRank = ', nrank, ', nProcs = ',proc, ')'
+  
+  call mpi_finalize(ierr) 
 end program hello  
 ```
-
+```sh
+$ mpirun -np 4 ./a.out
+ Hello World! (Process name = ycho, nRank =            3 , nProcs =            4 )
+ Hello World! (Process name = ycho, nRank =            1 , nProcs =            4 )
+ Hello World! (Process name = ycho, nRank =            2 , nProcs =            4 )
+ Hello World! (Process name = ycho, nRank =            0 , nProcs =            4 )
+```
 
 
 # 
