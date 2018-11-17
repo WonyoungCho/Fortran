@@ -25,7 +25,7 @@ $ mpirun -np 4 ./a.out
 program  hello
   use mpi_f08
   implicit none
-  integer :: ierr, nproc, nrank, nameLen
+  integer :: ierr, nproc, nrank, namelen
   character*(mpi_max_processor_name) :: name
   
   call mpi_Init(ierr)
@@ -48,7 +48,9 @@ $ mpirun -np 4 ./a.out
 ```
 
 
-# 
+# Send
+
+
 
 
 
