@@ -31,8 +31,10 @@ $ mpirun -np 4 ./a.out
 ## Contiguous
 연속된 데이터를 묶을 때 사용한다.
 
-D1 | D2 | D3
-----|---|---
+1|2|3|4|5|6|7|8|9
+---|---|---|---|---|---|---|---|---
+||D1 | D2 | D3||D4|D5|D6
+
 
 
 `MPI_TYPE_CONTIGUOUS(count, oldtype, newtype, ierr)`
