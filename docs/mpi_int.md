@@ -38,7 +38,10 @@ end program mpi_default_frame
 - `ierr` : 코드가 잘 작동했는지 확인하는 return 값.
 - `nproc` : 몇 개의 process가 참여했는지 return 해 주는 값.
 - `nrank` : process의 **ID**에 해당한다. 예를 들어 n개의 process가 작업에 참여한다면, communitor에 의해 각각의 process는 0부터 n-1까지 ID를 가진다.
-
+- `call mpi_init(ierr)` : 초기화 해주는 명령어이다.
+- `call mpi_comm_size(mpi_comm_world, nproc, ierr)` : `mpi_comm_world` communicator 내에서 `nproc`가 참여함을 나타낸다.
+- `call mpi_comm_rank(mpi_comm_world, nrank, ierr)` : `mpi_comm_world` communicator 내에서 process **ID**를 반환한다.
+- `call mpi_finalize(ierr)` : **MPI**의 종료를 나타낸다.
 
 
 
