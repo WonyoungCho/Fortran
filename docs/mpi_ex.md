@@ -3,6 +3,7 @@
 ```fortran
 program hello
   use mpi_f08
+  implicit none
   integer :: ierr
   
   call mpi_init(ierr)
@@ -17,6 +18,37 @@ $ mpirun -np 4 ./a.out
  Hello World!
  Hello World!
 ```
+
+또는
+
+```fortran
+program hello
+  use mpi_f08
+  implicit none
+  integer :: ierr
+
+	integer :: ierr, nproc, nrank, nnamelen
+	character(10) :: procname
+	integer :: myar(5, 5)
+
+
+  call mpi_init(ierr)
+  call mpi_comm_size(mpi_comm_world, nproc, ierr)
+  call mpi_comm_rank(mpi_comm_world, nrank, ierr)
+
+	CALL  MPI_Get_processor_name(procName, nNameLen, iErr)
+
+	print*, 'Hello World! (Process name = ', procname, ', nRank = ', nrank, ', nProcs = ',nprocs, ')'
+	
+  call mpi_finalize(ierr)
+end program hello
+```
+
+
+
+# 
+
+
 
 # Derived data type
 여러 타입의 변수들을 묶어서 새로운 타입의 변수로 사용할 때 사용된다. **c**의 구조체와 비슷하다.
