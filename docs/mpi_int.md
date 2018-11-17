@@ -6,12 +6,12 @@
 **MPI**의 통신방식에는 [ 점 대 점 p2p] 와 [ 점 대 다수 p2m] 의 두 가지 방식이 있다.
 
 - p2p 방식에서는 기본적으로 2가지만 알면 된다. <br>
-  1. `MPI_SEND` <br>
-  2. `MPI_RECV`
+>  1. `MPI_SEND` <br>
+>  2. `MPI_RECV`
 
 - p2m 방식에서는 여러가지가 있지만, 대표적으로 사용 빈도수가 높은 6가지가 있다. <br>
-  1. `MPI_ISEND` <br>
-  2. `MPI_IRECV` <br>
+> 1. `MPI_ISEND` <br>
+> 2. `MPI_IRECV` <br>
 > 3. `MPI_BCAST` <br>
 > 4. `MPI_SCATTER` <br>
 > 5. `MPI_GATHER` <br>
