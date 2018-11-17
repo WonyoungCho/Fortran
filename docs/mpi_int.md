@@ -17,7 +17,14 @@
 > 5. `MPI_GATHER` <br>
 > 6. `MPI_REDUCE`
 
-**MPI**를 구현하기 위해서는 코드내에 **(Fortran90 & MPI 3.0 이상)** `mpi_f08` 헤더파일을 반드시 포함한다. (**Fortran & MPI 3.0 이하** 에서는 `include 'mpif.h'`가 사용되었다.) 코드는 대부분 다음과 같은 기본 틀 위에 짜여진다.
+**MPI**를 구현하기 위해서는 코드내에  헤더파일을 반드시 포함한다.
+
+- 헤더
+  - **Fortran90 & MPI 3.0 이상** : `use mpi_f08`
+  - **Fortran90 & MPI 3.0 이하** : `use mpi `
+  - **Fortran77 & MPI 3.0 이하** : `include 'mpif.h'`
+
+코드는 대부분 다음과 같은 기본 틀 위에 짜여진다.
 ```fortran
 program mpi_default_frame
 use mpi_f08
