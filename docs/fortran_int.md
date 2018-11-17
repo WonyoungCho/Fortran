@@ -7,6 +7,7 @@
 # Fortran77 vs Fortran90
 
 - **Fortran77**
+
 1. 앞 6간을 항상 비워놔야 한다.
 ```bash
 123456program hello
