@@ -8,10 +8,10 @@
 
 - **Fortran77**
 
-```bash
+```fortran
 123456program hello
       implicit none
-      !!   code   !!
+c       code here
       end program hello
 ```
 1. 앞 6간을 항상 비워놔야 한다.
@@ -30,10 +30,10 @@ c this is a comment.
 
 - **Fortran90**
 1. 첫 칸부터 사용가능하며 시작 위치의 제한이 없다.
-```bash
+```fortran
 program hello
 implicit none
-!!   code   !!!
+! code here
 end program
 ```
 2. 132열까지 사용 가능하다.
