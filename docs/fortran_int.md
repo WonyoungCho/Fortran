@@ -8,13 +8,13 @@
 
 - **Fortran77**
 
-1. 앞 6간을 항상 비워놔야 한다.
 ```bash
 123456program hello
       implicit none
       !!   code   !!
       end program hello
 ```
+1. 앞 6간을 항상 비워놔야 한다.
 2. 72열 까지만 허용된다.
 3. Label은 제 2열부터 시작된다.
 4. 제 6열은 줄 연결 표시(**&**)이다.
