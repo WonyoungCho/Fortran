@@ -8,7 +8,7 @@
 1. `MPI_SEND`
 2. `MPI_RECV`
 
-p2m 방식에서는 여러가지가 있지만, 사용 빈도수가 높은 대표적인 6개의 방식이 있다.
+p2m 방식에서는 여러가지가 있지만, 사용 빈도수가 높은 대표적인 6개가 있다.
 
 1. `MPI_ISEND`
 2. `MPI_IRECV`
@@ -17,14 +17,7 @@ p2m 방식에서는 여러가지가 있지만, 사용 빈도수가 높은 대표
 5. `MPI_GATHER`
 6. `MPI_REDUCE`
 
-**MPI**를 구현하기 위해서는 코드내에 `mpi_f08` 헤더파일을 반드시 포함한다.
-```fortran
-program hello
-use mpi_f08
-...
-```
-
-코드는 대부분 다음과 같은 틀로 짜여진다.
+**MPI**를 구현하기 위해서는 코드내에 `mpi_f08` 헤더파일을 반드시 포함한다. 코드는 대부분 다음과 같은 틀로 짜여진다.
 ```fortran
 program mpi_default_frame
 use mpi_f08
