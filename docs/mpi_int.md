@@ -22,19 +22,37 @@
 - 헤더
 > - **Fortran90 & MPI 3.0 이상** : `use mpi_f08`
 > - **Fortran90 & MPI 3.0 이하** : `use mpi `
-> - **Fortran77** & Any MPI : `include 'mpif.h'`
+> - **Fortran77 & Any MPI** : `include 'mpif.h'`
 
 코드는 대부분 다음과 같은 기본 틀 위에 짜여진다.
+- **Fortran90 & MPI 3.0 이상**
 ```fortran
 program mpi_default_frame
 use mpi_f08
 implicit none
+integer :: nproc, rank
 
-integer :: ierr, nproc, nrank
+call mpi_init
+call mpi_comm_size(mpi_comm_world, nproc)
+call mpi_comm_rank(mpi_comm_world, rank)
+
+!  code here
+
+call mpi_finalize
+end program mpi_default_frame
+```
+
+- **Fortran90 & MPI 3.0 이하** or **Fortran77 & Any MPI**
+```fortran
+program mpi_default_frame
+use mpi    !  MPI 3.0 이하
+include 'mpif.h'   !  Fortran77
+implicit none
+integer :: ierr, nproc, rank
 
 call mpi_init(ierr)
 call mpi_comm_size(mpi_comm_world, nproc, ierr)
-call mpi_comm_rank(mpi_comm_world, nrank, ierr)
+call mpi_comm_rank(mpi_comm_world, rank, ierr)
 
 !  code here
 
@@ -42,7 +60,7 @@ call mpi_finalize(ierr)
 end program mpi_default_frame
 ```
 
-- `ierr` : 코드가 잘 작동했는지 확인하는 return 값. (**MPI 3.0**에서는 `ierr`이 option이 되어 적지 않아도 된다. ex. `call mpi_init()`)
+- `ierr` : 코드가 잘 작동했는지 확인하는 return 값. (**MPI 3.0**에서는 `ierr`이 option이 되어 적지 않아도 된다.)
 - `nproc` : 몇 개의 process가 참여했는지 return 해 주는 값.
 - `nrank` : process의 **ID**에 해당한다. 예를 들어 n개의 process가 작업에 참여한다면, communitor에 의해 각각의 process는 0부터 n-1까지 ID를 가진다.
 - `call mpi_init(ierr)` : 초기화 해주는 명령어이다.
