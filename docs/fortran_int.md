@@ -30,13 +30,13 @@ c this is a comment.
 
 - **Fortran90**
 
-1. 첫 칸부터 사용가능하며 시작 위치의 제한이 없다.
 ```fortran
 program hello
 implicit none
 ! code here
 end program
 ```
+1. 첫 칸부터 사용가능하며 시작 위치의 제한이 없다.
 2. 132열까지 사용 가능하다.
 3. 한 줄에 분리기호인 **;**을 사용하여 여러 문장이 가능하다.
 ```bash
