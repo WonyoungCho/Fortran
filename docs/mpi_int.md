@@ -6,16 +6,16 @@
 **MPI**의 통신방식에는 [ 점 대 점 p2p] 와 [ 점 대 다수 p2m] 의 두가지 방식이 있다.
 
 - p2p 방식에서는 기본적으로 2가지만 알면 된다.
- * `MPI_SEND`
- * `MPI_RECV`
+  * `MPI_SEND`
+  * `MPI_RECV`
 
 - p2m 방식에서는 여러가지가 있지만, 사용 빈도수가 높은 대표적인 6개가 있다.
- * `MPI_ISEND`
- * `MPI_IRECV`
- * `MPI_BCAST`
- * `MPI_SCATTER`
- * `MPI_GATHER`
- * `MPI_REDUCE`
+  * `MPI_ISEND`
+  * `MPI_IRECV`
+  * `MPI_BCAST`
+  * `MPI_SCATTER`
+  * `MPI_GATHER`
+  * `MPI_REDUCE`
 
 **MPI**를 구현하기 위해서는 코드내에 `mpi_f08` 헤더파일을 반드시 포함한다. 코드는 대부분 다음과 같은 틀로 짜여진다.
 ```fortran
