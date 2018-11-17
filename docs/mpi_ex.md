@@ -4,11 +4,10 @@
 program hello
   use mpi_f08
   implicit none
-  integer :: ierr
   
-  call mpi_init(ierr)
+  call mpi_init
   print *, 'Hello World!'
-  call mpi_finalize(ierr)
+  call mpi_finalize
 end program hello
 ```
 ```sh
@@ -25,32 +24,63 @@ $ mpirun -np 4 ./a.out
 program  hello
   use mpi_f08
   implicit none
-  integer :: ierr, nproc, nrank, namelen
+  integer :: nproc, rank, namelen
   character*(mpi_max_processor_name) :: name
   
   call mpi_init(ierr)
-  call mpi_comm_size(mpi_comm_world, nproc, ierr)
-  call mpi_comm_rank(mpi_comm_world, nrank, ierr)
+  call mpi_comm_size(mpi_comm_world, nproc)
+  call mpi_comm_rank(mpi_comm_world, rank)
   
-  call mpi_get_processor_name(name, namelen, ierr)
+  call mpi_get_processor_name(name, namelen)
   
-  print*, 'Hello World! (Process name = ', trim(name), ', nRank = ', nrank, ', nProcs = ',proc, ')'
+  print*, 'Hello World! (Process name = ', trim(name), ', Rank = ', rank, ', nProcs = ',proc, ')'
   
-  call mpi_finalize(ierr) 
+  call mpi_finalize
 end program hello  
 ```
 ```sh
 $ mpirun -np 4 ./a.out
- Hello World! (Process name = ycho, nRank =            3 , nProcs =            4 )
- Hello World! (Process name = ycho, nRank =            1 , nProcs =            4 )
- Hello World! (Process name = ycho, nRank =            2 , nProcs =            4 )
- Hello World! (Process name = ycho, nRank =            0 , nProcs =            4 )
+ Hello World! (Process name = ycho, Rank =            3 , nProcs =            4 )
+ Hello World! (Process name = ycho, Rank =            1 , nProcs =            4 )
+ Hello World! (Process name = ycho, Rank =            2 , nProcs =            4 )
+ Hello World! (Process name = ycho, Rank =            0 , nProcs =            4 )
 ```
 
 
 # Send
+```fortran
+program send
+  use mpi_f08
+  integer :: nproc, rank, count
+  real data(100), value(200)
+  type(mpi_status) :: status
+  
+  call mpi_init
+  call mpi_comm_size(mpi_comm_world,nproc)
+  call mpi_comm_rank(mpi_comm_world,rank)
+  
+  if (rank.eq.0) then
+     data=3.0
+     call mpi_send(data,100,mpi_real,1,55,mpi_comm_world)
+  elseif (rank .eq. 1) then
+     call mpi_recv(value,200,mpi_real,mpi_any_source,55,mpi_comm_world,status)
 
+     print *, "p:",rank," got data from processor ",status%mpi_source
 
+     call mpi_get_count(status,mpi_real,count)
+
+     print *, "p:",rank," got ",count," elements"
+     print *, "p:",rank," value(5)=",value(5)
+  endif
+  call mpi_finalize
+end program send
+```
+```sh
+$ mpirun -np 2 ./a.out
+ p:           1  got data from processor            0
+ p:           1  got          100  elements
+ p:           1  value(5)=   3.00000000 
+```
 
 
 
