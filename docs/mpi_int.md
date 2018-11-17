@@ -43,7 +43,7 @@ end program mpi_default_frame
 - `call mpi_comm_rank(mpi_comm_world, nrank, ierr)` : `mpi_comm_world` communicator 내에서 process **ID**를 return한다.
 - `call mpi_finalize(ierr)` : **MPI**의 종료를 나타낸다.
 
-**MPI**를 통해 병렬처리를 잘 사용하기 위해서는 loop 부분을 여러 개로 나누어서 계산하도록 하면되고, 적절한 기능을 사용해여 data를 잘 취합하면 된다. **OpenMP**는 알아서 작업이 나누어 지지만 **MPI**에서는 하나하나 작업을 지시해 주어야 하기때문에 익혀서 활용하는데 시간이 걸리지만, cluster를 이용하여 대형 계산을 하기 위해서는 꼭 필요하다. **MPI**는 프로세서 별로 메모리를 사용하여 메모리 낭비가 있지만, **OpenMP**의 공유메모리 시스템보다 I/O에서 더 빠르다.
+**MPI**를 통해 병렬처리를 잘 사용하기 위해서는 loop 부분을 여러 개로 나누어서 계산하도록 하면되고, 적절한 기능을 사용해여 data를 잘 취합하면 된다. **OpenMP**는 알아서 작업이 나누어 지지만 **MPI**에서는 하나하나 작업을 지시해 주어야 하기때문에 익혀서 활용하는데 시간이 걸리지만, cluster를 이용하여 대형 계산을 하기 위해서는 꼭 필요하다. **MPI**는 프로세서 별로 메모리를 사용하여 메모리 낭비가 있지만, **OpenMP**의 공유메모리 시스템보다 **I/O**에서 더 빠르다.
 
 
 
