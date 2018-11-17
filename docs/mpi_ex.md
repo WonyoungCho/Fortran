@@ -47,7 +47,7 @@ $ mpirun -np 4 ./a.out
 ```
 
 
-# Send
+# Send & Recv
 ```fortran
 program send
   use mpi_f08
