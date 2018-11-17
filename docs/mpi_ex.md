@@ -28,7 +28,7 @@ program  hello
   integer :: ierr, nproc, nrank, namelen
   character*(mpi_max_processor_name) :: name
   
-  call mpi_Init(ierr)
+  call mpi_init(ierr)
   call mpi_comm_size(mpi_comm_world, nproc, ierr)
   call mpi_comm_rank(mpi_comm_world, nrank, ierr)
   
