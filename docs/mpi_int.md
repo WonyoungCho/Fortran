@@ -35,6 +35,7 @@ call mpi_finalize(ierr)
 end program mpi_default_frame
 ```
 
+`ierr` : 코드가 잘 작동했는지 
 
 
 
