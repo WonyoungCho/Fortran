@@ -131,8 +131,8 @@ program  non_blocking
      print*, 'send1'
      call mpi_recv(b, buf_size, mpi_double_precision, 1, 55, mpi_comm_world, satus)
      print*, 'recv1'
-  elseif (nrank == 1) then
-     call mpi_ㄴend(a, buf_size, mpi_double_precision, 0, 55, mpi_comm_world)
+  elseif (rank == 1) then
+     call mpi_send(a, buf_size, mpi_double_precision, 0, 55, mpi_comm_world)
      print*, 'send2'
      call mpi_recv(b, buf_size, mpi_double_precision, 0, 11, mpi_comm_world, status)
      print*, 'recv2'
@@ -143,7 +143,7 @@ program  non_blocking
   print*, 'finish'
 end program non_blocking
 ```
-
+`rank0`과 `rank0` 둘 다 보내고 있는 상황이다. `mpi_send`는 보내는 작업이 끝나야 다음 작업으로 가게되는데, 받을 준비가 된 프로세서가 없어 **deadlock**에 걸린 상태이다. **Isend**와 **Irecv**를 통해 이를 해결할 수 있다.
 
 ## Isend & Irecv
 **Isend**와 **Irecv**는 **Non-block** 통신으로 잡을 보내놓고 다음 명령을 실행한다. 구성은 앞에 3개의 data 부분과 그 뒤로 3개의 envelope 부분, 1개의 request로 총 3부분으로 나누어 진다.
@@ -190,7 +190,7 @@ program  non_blocking
      print*, 'send1'
      call mpi_irecv(b, buf_size, mpi_double_precision, 1, 55, mpi_comm_world, ireq2)
      print*, 'recv1'
-  elseif (nrank == 1) then
+  elseif (rank == 1) then
      call mpi_isend(a, buf_size, mpi_double_precision, 0, 55, mpi_comm_world, ireq1)
      print*, 'send2'
      call mpi_irecv(b, buf_size, mpi_double_precision, 0, 11, mpi_comm_world, ireq2)
