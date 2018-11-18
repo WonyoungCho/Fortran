@@ -383,6 +383,112 @@ $ mpirun -np 3 ./a.out
  rank           0 recv =           1           2           2           3           3           3
 ```
 
+# Scatter
+한 프로세서의 데이터를 다른 프로세서로 동일한 크기의 데이터를 뿌릴때 사용된다. `gather`과 반대 과정으로 생각하면 되고, 변수 배열도 같다.
+
+`mpi_scatter(sendbuf, sendcount, sendtype, recvbuf, recvcount, displ, recvtype, root, mpi_comm_world)`
+
+### Scatterv
+한 프로세서의 데이터를 다른 프로세서로 다른 크기의 데이터를 뿌릴때 사용된다. `gatherv`와 반대 과정으로 생각하면 된다.
+
+`mpi_scatterv(sendbuf, sendcount, sendtype, recvbuf, recvcount, displ, recvtype, root, mpi_comm_world)`
+
+
+# Reduce
+각 프로세서의 데이터를 연산자를 통하여 계산하여 도출하는 방식이다.
+
+`mpi_reduce(sendbuf, recvbuf, count, datatype, op, root, mpi_comm_world)`
+
+- TYPE(MPI_Op) op : 취합할 때 연산자이다.
+---
+
+- **Example - Reduce**
+```fortran
+program reduce
+  use mpi_f08
+  implicit none
+  integer :: nproc, rank, ista, iend, i
+  real :: a(9), sum, tsum
+
+  call mpi_init
+  call mpi_comm_size(mpi_comm_world, nproc)
+  call mpi_comm_rank(mpi_comm_world, rank)
+
+  ista = rank * nproc
+  iend = (rank + 1) * nproc - 1
+
+  do i=ista, iend
+    a(i) = i
+  enddo
+
+  sum = 0.0
+  do i=ista, iend
+    sum = sum + a(i)
+  enddo
+
+  call mpi_reduce(sum, tsum, 1, mpi_real, mpi_sum, 0, mpi_comm_world)
+
+  if (rank == 0) then
+    print *, 'sum =', tsum
+  endif
+  call mpi_finalize
+end program reduce
+```
+```sh
+$ mpirun -np 4 ./a.out
+ sum =   114.000000
+```
+
+### Allreduce
+각각의 프로세서에서 동일한 갯수만큼 각각의 프로세서에 취합된다. 행렬의 **trace** 비슷하다.
+
+`mpi_allreduce(sendbuf, recvbuf, count, datatype, op, root, mpi_comm_world)`
+
+# AlltoAll
+`Allgather`의 확장버전이다.
+
+`mpi_alltoal(sendbuf, sendcount, sendtype, recvbuf, recvcount, recvtype, mpi_comm_world)`
+
+- **Example - AlltoAll**
+```fortran
+program alltoall
+  use mpi_f08
+  implicit none
+  integer :: nproc, rank, i
+  integer :: send(3), recv(3)
+
+  call mpi_init
+  call mpi_comm_size(mpi_comm_world, nproc)
+  call mpi_comm_rank(mpi_comm_world, rank)
+
+  do i = 1, nproc
+    send(i) = i + nproc * rank
+  enddo
+
+  print *, 'send=', send
+
+  call mpi_alltoall(send, 1, mpi_integer, recv, 1, mpi_integer, mpi_comm_world)
+
+  print *, 'recv=', recv
+
+  call mpi_finalize
+end program alltoall
+```
+```sh
+$ mpirun -np 3 ./.aout
+ send=           4           5           6
+ send=           7           8           9
+ send=           1           2           3
+ recv=           3           6           9
+ recv=           2           5           8
+ recv=           1           4           7
+```
+
+### AlltoAllv
+
+`mpi_alltoal(sendbuf, sendcount, sendtype, recvbuf, recvcount, displ, recvtype, mpi_comm_world)`
+
+
 
 # Derived data type
 여러 타입의 변수들을 묶어서 새로운 타입의 변수로 사용할 때 사용된다. **c**의 구조체와 비슷하다.
