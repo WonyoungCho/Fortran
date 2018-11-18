@@ -400,6 +400,7 @@ $ mpirun -np 3 ./a.out
 `mpi_reduce(sendbuf, recvbuf, count, datatype, op, root, mpi_comm_world)`
 
 - TYPE(MPI_Op) op : 취합할 때 연산자이다.
+
 ---
 
 - **Example - Reduce**
@@ -444,12 +445,12 @@ $ mpirun -np 4 ./a.out
 
 `mpi_allreduce(sendbuf, recvbuf, count, datatype, op, root, mpi_comm_world)`
 
-# AlltoAll
+# Alltoall
 `Allgather`의 확장버전이다.
 
 `mpi_alltoal(sendbuf, sendcount, sendtype, recvbuf, recvcount, recvtype, mpi_comm_world)`
 
-- **Example - AlltoAll**
+- **Example - Alltoall**
 ```fortran
 program alltoall
   use mpi_f08
@@ -484,11 +485,11 @@ $ mpirun -np 3 ./.aout
  recv=           1           4           7
 ```
 
-### AlltoAllv
+### Alltoallv
 
 `mpi_alltoal(sendbuf, sendcount, senddspl, sendtype, recvbuf, recvcount, recvdspl, recvtype, mpi_comm_world)`
 
-- **Example - AlltoAll**
+- **Example - Alltoallv**
 ```fortran
 program alltoallv
   use mpi_f08
@@ -532,8 +533,14 @@ $ mpirun -np 3 ./a.out
  rank           0 :           1           4           7           0           0           0           0           0           0
  rank           1 :           2           2           5           5           8           8           0           0           0
  rank           2 :           3           3           3           6           6           6           9           9           9
- ```
- 
+```
+
+# Barrier
+모든 프로세서가 올 때까지 막는 기능을 한다.
+
+`MPI_BARRIER(MPI_COMM_WORLD)`
+
+
 # Derived data type
 여러 타입의 변수들을 묶어서 새로운 타입의 변수로 사용할 때 사용된다. **c**의 구조체와 비슷하다.
 
