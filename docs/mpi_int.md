@@ -13,8 +13,8 @@
 > 1. `MPI_ISEND` <br>
 > 2. `MPI_IRECV` <br>
 > 3. `MPI_BCAST` <br>
-> 4. `MPI_SCATTER` <br>
-> 5. `MPI_GATHER` <br>
+> 4. `MPI_GATHER` <br>
+> 5. `MPI_SCATTER` <br>
 > 6. `MPI_REDUCE`
 
 **MPI**를 구현하기 위해서는 코드내에  헤더파일을 반드시 포함한다.
