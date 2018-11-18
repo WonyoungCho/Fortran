@@ -76,7 +76,7 @@ mpi_recv(buf, count, datatype, source, tag, comm, status)
 - TYPE(MPI_STATUS) status : 받은 메시지의 정보를 가지고 있다. (MPI_SOURCE, MPI_TAG, MPI_ERROR) 정보가 필요 없으면 `MPI_STATUS_IRNORE`
 ---
 
-- **Example 1**
+- **Example - Send & Recv**
 ```fortran
 program send
   use mpi_f08
@@ -137,6 +137,47 @@ mpi_irecv(buf, count, datatype, source, tag, comm, ireq)
 - TYPE(mpi_request) ireq : 통신 식별에 이용
 ---
 
+- **Example - Isend & Irecv**
+```fortran
+program send
+  use mpi_f08
+  integer :: nproc, rank, count
+  real data(100), value(200)
+  type(mpi_status) :: status
+  
+  call mpi_init
+  call mpi_comm_size(mpi_comm_world,nproc)
+  call mpi_comm_rank(mpi_comm_world,rank)
+  
+  if (rank.eq.0) then
+     data=3.0
+     call mpi_send(data,100,mpi_real,1,55,mpi_comm_world)
+  elseif (rank .eq. 1) then
+     call mpi_recv(value,200,mpi_real,mpi_any_source,55,mpi_comm_world,status)
+
+     print *, "p:",rank," got data from processor ",status%mpi_source
+
+     call mpi_get_count(status,mpi_real,count)
+
+     print *, "p:",rank," got ",count," elements"
+     print *, "p:",rank," value(5)=",value(5)
+  endif
+  call mpi_finalize
+end program send
+```
+```sh
+$ mpirun -np 2 ./a.out
+ send1
+ recv1
+ send2
+ recv1
+ wait1 source =            0 tag =           17
+ wait2 source =            1 tag =           19
+ wait1 source =            1 tag =           19
+ wait2 source =            0 tag =           17
+ finish
+ finish
+```
 
 # Derived data type
 여러 타입의 변수들을 묶어서 새로운 타입의 변수로 사용할 때 사용된다. **c**의 구조체와 비슷하다.
