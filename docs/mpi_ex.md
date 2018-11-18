@@ -52,7 +52,7 @@ $ mpirun -np 4 ./a.out
 
 
 ## Send & Recv
-**Send**와 **Recv**는 편지봉투에 편지를 써서 보내는 것과 같이 생각하면 되고, 구성은 앞에 3개의 data 부분과 그 뒤로 3개의 envelope 부분으로 나누어 진다.
+**Send**와 **Recv**는 편지봉투에 편지를 써서 보내는 것과 같이 생각하면 된다. 구성은 앞에 3개의 data 부분과 그 뒤로 3개의 envelope 부분으로 나누어 진다.
 
 ```fortran
 mpi_send(buf, count, datatype, dest, tag, comm)
@@ -90,9 +90,9 @@ program blocking
   
   if (rank.eq.0) then
      data=3.0
-     call mpi_send(data,100,mpi_real,1,55,mpi_comm_world)
+     call mpi_send(data, 100, mpi_real, 1, 11, mpi_comm_world)
   elseif (rank .eq. 1) then
-     call mpi_recv(value,200,mpi_real,mpi_any_source,55,mpi_comm_world,status)
+     call mpi_recv(value,200, mpi_real, mpi_any_source, 11, mpi_comm_world, status)
 
      print *, "p:",rank," got data from processor ",status%mpi_source
 
@@ -110,6 +110,40 @@ $ mpirun -np 2 ./a.out
  p:           1  got          100  elements
  p:           1  value(5)=   3.00000000 
 ```
+
+- **Example - Deadlock blocking**
+
+다음은 **Deadlock blocking**의 예이다. 
+```fortran
+program  non_blocking
+  use mpi_f08
+  integer :: rank, nprocs, i
+  integer, parameter :: buf_size = 1500
+  double precision , dimension(buf_size) :: a, b
+  type(mpi_status) :: status
+  
+  call mpi_init
+  call mpi_comm_size(mpi_comm_world, nprocs)
+  call mpi_comm_rank(mpi_comm_world, rank)
+
+  if (rank == 0) then
+     call mpi_send(a, buf_size, mpi_double_precision, 1, 11, mpi_comm_world)
+     print*, 'send1'
+     call mpi_recv(b, buf_size, mpi_double_precision, 1, 55, mpi_comm_world, satus)
+     print*, 'recv1'
+  elseif (nrank == 1) then
+     call mpi_ㄴend(a, buf_size, mpi_double_precision, 0, 55, mpi_comm_world)
+     print*, 'send2'
+     call mpi_recv(b, buf_size, mpi_double_precision, 0, 11, mpi_comm_world, status)
+     print*, 'recv1'
+  endif
+
+  print*, 'Source = ', status%mpi_source, 'tag = ', status%mpi_tag
+  call mpi_finalize
+  print*, 'finish'
+end program non_blocking
+```
+
 
 ## Isend & Irecv
 **Isend**와 **Irecv**는 **Non-block** 통신으로 잡을 보내놓고 다음 명령을 실행한다. 구성은 앞에 3개의 data 부분과 그 뒤로 3개의 envelope 부분, 1개의 request로 총 3부분으로 나누어 진다.
@@ -152,14 +186,14 @@ program  non_blocking
   call mpi_comm_rank(mpi_comm_world, rank)
 
   if (rank == 0) then
-     call mpi_isend(a, buf_size, mpi_double_precision, 1, 17, mpi_comm_world, ireq1)
+     call mpi_isend(a, buf_size, mpi_double_precision, 1, 11, mpi_comm_world, ireq1)
      print*, 'send1'
-     call mpi_irecv(b, buf_size, mpi_double_precision, 1, 19, mpi_comm_world, ireq2)
+     call mpi_irecv(b, buf_size, mpi_double_precision, 1, 55, mpi_comm_world, ireq2)
      print*, 'recv1'
   elseif (nrank == 1) then
-     call mpi_isend(a, buf_size, mpi_double_precision, 0, 19, mpi_comm_world, ireq1)
+     call mpi_isend(a, buf_size, mpi_double_precision, 0, 55, mpi_comm_world, ireq1)
      print*, 'send2'
-     call mpi_irecv(b, buf_size, mpi_double_precision, 0, 17, mpi_comm_world, ireq2)
+     call mpi_irecv(b, buf_size, mpi_double_precision, 0, 11, mpi_comm_world, ireq2)
      print*, 'recv1'
   endif
 
@@ -167,7 +201,7 @@ program  non_blocking
   print*, 'wait1 source = ', status%mpi_source, 'tag = ', status%mpi_tag
   call mpi_wait(ireq2, status)
   print*, 'wait2 source = ', status%mpi_source, 'tag = ', status%mpi_tag
-  call mpi_finalize(ierr)
+  call mpi_finalize
   print*, 'finish'
 end program non_blocking
 ```
@@ -184,6 +218,7 @@ $ mpirun -np 2 ./a.out
  finish
  finish
 ```
+
 
 # Derived data type
 여러 타입의 변수들을 묶어서 새로운 타입의 변수로 사용할 때 사용된다. **c**의 구조체와 비슷하다.
