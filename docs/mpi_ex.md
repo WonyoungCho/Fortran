@@ -48,6 +48,8 @@ $ mpirun -np 4 ./a.out
 
 
 # Send & Recv
+**Send**와 **Recv**는 편지봉투에 편지를 써서 보내는 것과 같이 생각하면 되고, 구성은 앞에 3개의 data 부분과 그 뒤로 3개의 envelope 부분으로 나누어 진다.
+
 ```fortran
 mpi_send(buf, count, datatype, dest, tag, comm)
 ```
@@ -67,7 +69,7 @@ mpi_recv(buf, count, datatype, source, tag, comm, status)
 - INTEGER source : 보내진 원소의 프로세스 rank
 - INTEGER tag : 받는 메시지의 tag 번호 (보내는 메시지의 tag 번호와 같아야 한다.)
 - INTEGER comm : **MPI** communicator, MPI_COMM_WORLD
-- INTEGER status : 받은 메시지의 정보를 가지고 있다. (MPI_SOURCE, MPI_TAG, MPI_ERROR) 정보가 필요없으면 `MPI_STATUS_IRNORE`
+- INTEGER status : 받은 메시지의 정보를 가지고 있다. (MPI_SOURCE, MPI_TAG, MPI_ERROR) 정보가 필요 없으면 `MPI_STATUS_IRNORE`
 ---
 
 - **Example**
