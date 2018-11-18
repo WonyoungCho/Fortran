@@ -6,7 +6,9 @@ program hello
   implicit none
   
   call mpi_init
+  
   print *, 'Hello World!'
+  
   call mpi_finalize
 end program hello
 ```
