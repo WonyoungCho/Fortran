@@ -323,8 +323,8 @@ $ mpirun -np 4 ./a.out
  rank =            0  recv :           1           2           3           4
 ```
  
- ## Gatherv
- 취합하려는 각 프로세서의 데이터 갯수가 다를 때 사용된다.
+## Gatherv
+취합하려는 각 프로세서의 데이터 갯수가 다를 때 사용된다.
  
 `mpi_gatherv(sendbuf, sendcount, sendtype, recvbuf, recvcount, displ, recvtype, root, mpi_comm_world)`
 
