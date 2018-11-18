@@ -239,9 +239,10 @@ $ mpirun -np 2 ./a.out
 
 rank0|1|2|3|4|5|6|7|8|9|10|11|12|13|14
 ---|---|---|---|---|---|---|---|---|---|---|---|---|---|---
-rank1|-|-|D|D|D|*D*|*D*|*D*|D|D|D|-|-|-
+rank1|-|-|D|D|D|**D**|**D**|**D**|D|D|D|-|-|-
+: `MPI_TYPE_CONTIGUOUS(3, oldtype, newtype)`
 
-`MPI_TYPE_CONTIGUOUS(count, oldtype, newtype, ierr)`
+`MPI_TYPE_CONTIGUOUS(count, oldtype, newtype)`
 
 - INTEGER count : 묶을 데이터 갯수
 - INTEGER oldtype : 묶는 데이터들의 타입 (ex. MPI_INTEGER)
@@ -289,12 +290,15 @@ $ mpirun -np 2 ./a.out
 
 rank0|1|2|3|4|5|6|7|8|9|10|11|12|13|14
 ---|---|---|---|---|---|---|---|---|---|---|---|---|---|---
-rank1|D|D|D|-|-|D|D|D|-|-|D|D|D|-
+rank1|D|D|D|-|-|**D**|**D**|**D**|-|-|D|D|D|-
 
-`MPI_TYPE_VECTOR(count, blocklength, stride, newtype, ierr)`
+: `MPI_TYPE_VECTOR(3, 3, 5, newtype)`
+
+`MPI_TYPE_VECTOR(count, blocklength, stride, newtype)`
 
 - INTEGER count : 묶을 데이터 갯수
-- INTEGER oldtype : 묶는 데이터들의 타입 (ex. MPI_INTEGER)
+- INTEGER blocklength : 묶을 블럭 갯수
+- INTEGER stride : 한 블럭의 묶을 데이터 갯수
 - TYPE(MPI_datatype) newtype : 묶은 데이터들의 새로운 타입
 ---
 
