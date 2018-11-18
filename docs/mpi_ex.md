@@ -47,10 +47,11 @@ $ mpirun -np 4 ./a.out
  Hello World! (Process name = ycho, Rank =            2 , nProcs =            4 )
  Hello World! (Process name = ycho, Rank =            0 , nProcs =            4 )
 ```
+---
 
-# Block & Non-blocking communication
-- **Blocking** 통신에는 `MPI_SEND`와 `MPI_RECV`가 있으며, 잡이 다 실행될때까지 다음 명령을 실행하지 않는다.
-- **Non-blocking** 통신에는 대표적으로 `MPI_ISEND`와 `MPI_IRECV`가 있으며, 잡을 보내놓고 다음 명령을 실행한다. **Non-blocking** 통신에서 전송이 완료 되었는지 확인 될때까지 기다리는 `MPI_WAIT(ireq, status)` 가 있다.
+- **Block & Non-blocking communication**
+> - **Blocking** 통신에는 `MPI_SEND`와 `MPI_RECV`가 있으며, 잡이 다 실행될때까지 다음 명령을 실행하지 않는다.
+> - **Non-blocking** 통신에는 대표적으로 `MPI_ISEND`와 `MPI_IRECV`가 있으며, 잡을 보내놓고 다음 명령을 실행한다. **Non-blocking** 통신에서 전송이 완료 되었는지 확인 될때까지 기다리는 `MPI_WAIT(ireq, status)` 가 있다.
 
 
 ## Send & Recv
