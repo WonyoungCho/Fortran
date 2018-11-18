@@ -271,7 +271,7 @@ program type_contiguous
   call mpi_type_commit(inewtype)
   call mpi_bcast(ibuf(3), 3, inewtype, 0, mpi_comm_world)
   
-  print *,'ibuf =', ibuf
+  print *, 'rank', rank, 'ibuf =', ibuf
   
   call mpi_type_free(inewtype)
   call mpi_finalize
@@ -280,8 +280,9 @@ end program type_contiguous
 
 ```sh
 $ mpirun -np 2 ./a.out
- ibuf =    1    2    3    4    5    6    7    8    9   10   11   12   13   14   15
- ibuf =    0    0    3    4    5    6    7    8    9   10   11    0    0    0    0
+ rank    0 ibuf =    1    2    3    4    5    6    7    8    9   10   11   12   13   14   15
+ rank    1 ibuf =    0    0    3    4    5    6    7    8    9   10   11    0    0    0    0
+
 ```
 
 ## Vector
