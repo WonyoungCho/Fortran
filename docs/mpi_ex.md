@@ -78,7 +78,7 @@ mpi_recv(buf, count, datatype, source, tag, comm, status)
 
 - **Example - Send & Recv**
 ```fortran
-program send
+program blocking
   use mpi_f08
   integer :: nproc, rank, count
   real data(100), value(200)
@@ -102,7 +102,7 @@ program send
      print *, "p:",rank," value(5)=",value(5)
   endif
   call mpi_finalize
-end program send
+end program blocking
 ```
 ```sh
 $ mpirun -np 2 ./a.out
