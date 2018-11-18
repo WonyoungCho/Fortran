@@ -441,6 +441,7 @@ end program reduce
 $ mpirun -np 4 ./a.out
  sum =   114.000000
 ```
+----
 
 - **Allreduce**
 각각의 프로세서에서 동일한 갯수만큼 각각의 프로세서에 취합된다. 행렬의 **trace** 비슷하다.
