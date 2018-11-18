@@ -68,6 +68,7 @@ mpi_recv(buf, count, datatype, source, tag, comm)
 - INTEGER tag : 받는 메시지의 tag 번호 (보내는 메시지의 tag 번호와 같아야 한다.)
 - INTEGER comm : **MPI** communicator, MPI_COMM_WORLD
 
+
 - **Example**
 ```fortran
 program send
