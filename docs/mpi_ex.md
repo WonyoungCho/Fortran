@@ -61,11 +61,11 @@ mpi_send(buf, count, datatype, dest, tag, comm)
 ```fortran
 mpi_recv(buf, count, datatype, source, tag, comm)
 ```
-- buf : 보낼 버퍼의 시작 주소
-- INTEGER count : 보낼 버퍼의 원소 갯수
-- INTEGER datatype : 보낼 버퍼 원소의 데이터 타입 (ex. MPI_REAL)
-- INTEGER dest : 보내려는 프로세스의 rank
-- INTEGER tag : 보내는 메시지의 tag 번호 (임의의 값을 정해주면 된다.)
+- buf : 받는 버퍼의 시작 주소
+- INTEGER count : 받는 버퍼의 원소 갯수 (보내는 원소 갯수보다 같거나 많아야 한다.)
+- INTEGER datatype : 받는 버퍼 원소의 데이터 타입 (ex. MPI_REAL)
+- INTEGER source : 보내진 원소의 프로세스 rank
+- INTEGER tag : 받는 메시지의 tag 번호 (보내는 메시지의 tag 번호와 같아야 한다.)
 - INTEGER comm : **MPI** communicator, MPI_COMM_WORLD
 
 - **Example**
