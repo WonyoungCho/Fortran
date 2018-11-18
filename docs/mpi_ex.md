@@ -486,10 +486,54 @@ $ mpirun -np 3 ./.aout
 
 ### AlltoAllv
 
-`mpi_alltoal(sendbuf, sendcount, sendtype, recvbuf, recvcount, displ, recvtype, mpi_comm_world)`
+`mpi_alltoal(sendbuf, sendcount, senddspl, sendtype, recvbuf, recvcount, recvdspl, recvtype, mpi_comm_world)`
 
+- **Example - AlltoAll**
+```fortran
+program alltoallv
+  use mpi_f08
+  integer :: nproc, rank, i
+  integer :: send(6), recv(9)
+  integer :: scount(0:2), sdspl(0:2), rcount(0:2), rdspl(0:2)
 
+  data send/1,2,2,3,3,3/
+  data scount/1,2,3/ sdspl/0,1,3/
 
+  call mpi_init
+  call mpi_comm_size(mpi_comm_world, nproc)
+  call mpi_comm_rank(mpi_comm_world, rank)
+
+  recv = 0
+  do i = 1, 6
+    send(i) = send(i) + nproc * rank
+  enddo
+
+  if (rank == 0) then
+    rcount = (/1,1,1/)
+    rdspl = (/0,1,2/)
+  elseif (rank == 1) then
+    rcount = (/2,2,2/)
+    rdspl = (/0,2,4/)
+  elseif (rank == 2) then
+    rcount = (/3,3,3/)
+    rdspl = (/0,3,6/)
+  endif
+
+  call mpi_alltoallv(send, scount, sdspl, mpi_integer, &
+       recv, rcount, rdspl, mpi_integer, mpi_comm_world)
+
+  print *, 'rank:', rank, ':', recv
+
+  call mpi_finalize
+end program alltoallv
+```
+```sh
+$ mpirun -np 3 ./a.out
+ rank           0 :           1           4           7           0           0           0           0           0           0
+ rank           1 :           2           2           5           5           8           8           0           0           0
+ rank           2 :           3           3           3           6           6           6           9           9           9
+ ```
+ 
 # Derived data type
 여러 타입의 변수들을 묶어서 새로운 타입의 변수로 사용할 때 사용된다. **c**의 구조체와 비슷하다.
 
