@@ -115,9 +115,9 @@ $ mpirun -np 2 ./a.out
 
 다음은 **Deadlock blocking**의 예이다. 
 ```fortran
-program  non_blocking
+program  deadlock_blocking
   use mpi_f08
-  integer :: rank, nprocs, i
+  integer :: nprocs, rank, i
   integer, parameter :: buf_size = 1500
   double precision , dimension(buf_size) :: a, b
   type(mpi_status) :: status
@@ -141,7 +141,7 @@ program  non_blocking
   print*, 'Source = ', status%mpi_source, 'tag = ', status%mpi_tag
   call mpi_finalize
   print*, 'finish'
-end program non_blocking
+end program deadlock_blocking
 ```
 `rank0`과 `rank0` 둘 다 보내고 있는 상황이다. `mpi_send`는 보내는 작업이 끝나야 다음 작업으로 가게되는데, 받을 준비가 된 프로세서가 없어 **deadlock**에 걸린 상태이다. **Isend**와 **Irecv**를 통해 이를 해결할 수 있다.
 
@@ -175,7 +175,7 @@ mpi_irecv(buf, count, datatype, source, tag, comm, ireq)
 ```fortran
 program  non_blocking
   use mpi_f08
-  integer :: rank, nprocs, i
+  integer :: nprocs, rank, i
   integer, parameter :: buf_size = 1500
   double precision , dimension(buf_size) :: a, b
   type(mpi_status) :: status
