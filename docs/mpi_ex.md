@@ -206,6 +206,7 @@ program  non_blocking
   print*, 'finish'
 end program non_blocking
 ```
+**if**문을 통해 `rank0`과 `rank1`은 각각 작업을 실행한다. `rank0`과 `rank1`은 `mpi_isend`를 통해 잡을 보내고 `mpi_irecv`를 실행하게 되고 **if**문을 빠져나온다. 이 후 `rank0`과 `rank1`의 `mpi_isend`는 첫 번째 `mpi_wait`를 만나게 되어 기다렸다 작업이 끝나면, `mpi_irecv`는 두 번째 `mpi_wait`를 만나게 되어 작업이 끝나면 전체 작업이 종료된다.
 ```sh
 $ mpirun -np 2 ./a.out
  send1
