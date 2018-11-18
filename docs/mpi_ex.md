@@ -339,7 +339,7 @@ SUBROUTINE para_range(n1, n2, nprocs, irank, ista, iend)
   IF (iwork2 > irank) iend = iend + 1
 END SUBROUTINE para_range
 ```
-`subroutine para_range`는 계산하고자 하는 구간을 나눌때 만히 사용한다.
+`subroutine para_range`는 계산하고자 하는 구간을 나눌때  사용한다.
 ```sh
 $ mpirun -np 4 ./a.out
  myrank =           0 :           1  ~    250000000
