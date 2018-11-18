@@ -237,9 +237,9 @@ $ mpirun -np 2 ./a.out
 ## Contiguous
 연속된 데이터를 묶을 때 사용한다.
 
-1|2|3|4|5|6|7|8|9|10|11
----|---|---|---|---|---|---|---|---|---|---
--|-|R|R|-|R|R|-|R|R|-
+1|2|3|4|5|6|7|8|9|10|11|12|13|14|15
+---|---|---|---|---|---|---|---|---|---|---|---|---|---|---
+-|-|R|R|-|R|R|-|R|R|-|-|-|-|-
 
 
 
@@ -255,7 +255,7 @@ $ mpirun -np 2 ./a.out
 program type_contiguous
   use mpi_f08
   implicit none
-  integer :: rank, ibuf(20), i
+  integer :: rank, ibuf(15), i
   type(mpi_datatype) :: inewtype
   
   ibuf=0
@@ -264,14 +264,14 @@ program type_contiguous
   call mpi_comm_rank(mpi_comm_world, rank)
   
   if (rank == 0) then
-     do i = 1, 20
+     do i = 1, 15
         ibuf(i) = i
      enddo
   endif
   
   call mpi_type_contiguous(3, mpi_integer, inewtype)
   call mpi_type_commit(inewtype)
-  call mpi_bcast(ibuf(4), 3, inewtype, 0, mpi_comm_world)
+  call mpi_bcast(ibuf(3), 3, inewtype, 0, mpi_comm_world)
   
   print *,'ibuf =', ibuf
   
