@@ -292,6 +292,7 @@ $ mpirun -np 4 ./a.out
 ---
 
 - **Allgather**
+
 모든 프로세서에서 각 프로세서의 동일한 크기의 데이터를 취합한다.
 
 `mpi_allgather(sendbuf, sendcount, sendtype, recvbuf, recvcount, recvtype, mpi_comm_world)`
@@ -333,6 +334,7 @@ $ mpirun -np 4 ./a.out
 ---
 
 - **Gatherv**
+
 취합하려는 각 프로세서의 데이터 갯수가 다를 때 사용된다.
  
 `mpi_gatherv(sendbuf, sendcount, sendtype, recvbuf, recvcount, displ, recvtype, root, mpi_comm_world)`
@@ -349,6 +351,7 @@ $ mpirun -np 4 ./a.out
 ---
 
 - **Allgatherv**
+
 모든 프로세서가 각 프로세서에서 취합하려는 데이터 갯수가 다를 때 사용된다.
  
 `mpi_gatherv(sendbuf, sendcount, sendtype, recvbuf, recvcount, displ, recvtype, mpi_comm_world)`
@@ -393,6 +396,7 @@ $ mpirun -np 3 ./a.out
 `mpi_scatter(sendbuf, sendcount, sendtype, recvbuf, recvcount, displ, recvtype, root, mpi_comm_world)`
 
 - **Scatterv**
+
 한 프로세서의 데이터를 다른 프로세서로 다른 크기의 데이터를 뿌릴때 사용된다. `gatherv`와 반대 과정으로 생각하면 된다.
 
 `mpi_scatterv(sendbuf, sendcount, sendtype, recvbuf, recvcount, displ, recvtype, root, mpi_comm_world)`
@@ -446,6 +450,7 @@ $ mpirun -np 4 ./a.out
 ----
 
 - **Allreduce**
+
 각각의 프로세서에서 동일한 갯수만큼 각각의 프로세서에 취합된다. 행렬의 **trace** 비슷하다.
 
 `mpi_allreduce(sendbuf, recvbuf, count, datatype, op, root, mpi_comm_world)`
@@ -557,6 +562,7 @@ $ mpirun -np 3 ./a.out
 작업이 끝나면 새로 정의한 변수를 없애준다.
 
 `MPI_TYPE_FREE(datatype, ierr)`
+
 ## Contiguous
 연속된 데이터를 묶을 때 사용한다.
 
