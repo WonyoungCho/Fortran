@@ -236,12 +236,12 @@ $ mpirun -np 2 ./a.out
 - TYPE(MPI_COMM) comm : **MPI** communicator, MPI_COMM_WORLD
 ---
 
+- **ㄷExample - Broadcast**
 ```fortran
 program bcast
   use mpi_f08
   implicit none
   integer :: nproc, rank, buf(4)
-  integer :: root = 0
 
   data buf/0, 0, 0, 0/
 
@@ -255,7 +255,7 @@ program bcast
 
   print *, 'rank = ', rank, ' before :', buf
 
-  call mpi_bcast(buf, 4, mpi_integer, root, mpi_comm_world)
+  call mpi_bcast(buf, 4, mpi_integer, 0, mpi_comm_world)
 
   print *, 'rank = ', rank, ' after  :', buf
 
@@ -274,6 +274,102 @@ $ mpirun -np 4 ./a.out
  rank =            3  after  :           5           6           7           8
 ```
 
+# Gather
+
+각 프로세서에 있는 동일한 크기의 데이터를 취합할 때 사용한다.
+
+`mpi_gather(sendbuf, sendcount, sendtype, recvbuf, recvcount, recvtype, root, mpi_comm_world)`
+
+- sendbuf : 전송 버퍼 시작 주소
+- INTEGER sendcount : 전송할 버퍼의 원소 갯수
+- TYPE(MPI_DATATYPE) sendtype : 전송 버퍼 원소의 데이터 타입 (ex. MPI_INTEGER)
+- recvbuf : 취합될 버퍼 시작 주소
+- INTEGER recvcount : 취합될 버퍼의 원소 갯수 (sendcount 와 동일한 수)
+- TYPE(MPI_DATATYPE) recvtype : 취합될 버퍼 원소의 데이터 타입 (ex. MPI_INTEGER)
+- INTEGER root : 취합 프로세스 rank
+- TYPE(MPI_COMM) comm : **MPI** communicator, MPI_COMM_WORLD
+---
+
+- **Example - Gather**
+```fortran
+program gather
+  use mpi_f08
+  implicit none
+  integer :: nproc, rank, buf(4)
+  integer :: send, recv(4)
+  
+  call mpi_init
+  call mpi_comm_rank(mpi_comm_world, rank)
+  
+  send = rank + 1
+  
+  print *, 'rank = ', rank, ' send :', send
+  
+  call mpi_gather(send, 1, mpi_integer, recv, 1, mpi_integer, 0, mpi_comm_world)
+  
+  if (rank == 0) then
+    print *, 'rank = ', rank, ' recv :', recv
+  endif
+   
+  call mpi_finalize
+end program gather
+```
+```sh
+$ mpirun -np 4 ./a.out
+ rank =            1  send :           2
+ rank =            3  send :           4
+ rank =            2  send :           3
+ rank =            0  send :           1
+ rank =            0  recv :           1           2           3           4
+ ```
+ 
+ ## Gatherv
+ 취합하려는 각 프로세서의 데이터 갯수가 다를 때 사용된다.
+ 
+`mpi_gatherv(sendbuf, sendcount, sendtype, recvbuf, recvcount, displ, recvtype, root, mpi_comm_world)`
+
+- sendbuf : 전송 버퍼 시작 주소
+- INTEGER sendcount : 전송할 버퍼의 원소 갯수
+- TYPE(MPI_DATATYPE) sendtype : 전송 버퍼 원소의 데이터 타입 (ex. MPI_INTEGER)
+- recvbuf : 취합될 버퍼 시작 주소
+- INTEGER recvcount : 취합될 버퍼의 원소 갯수 (sendcount 와 동일한 수)
+- INTEGER displ : 취합된 데이터가 위치할 버퍼 위치 (배열로 설정)
+- TYPE(MPI_DATATYPE) recvtype : 취합될 버퍼 원소의 데이터 타입 (ex. MPI_INTEGER)
+- INTEGER root : 취합 프로세스 rank
+- TYPE(MPI_COMM) comm : **MPI** communicator, MPI_COMM_WORLD
+---
+
+- **Example - Gatherv**
+```fortran
+program gather
+  use mpi_f08
+  implicit none
+  integer :: nproc, rank, buf(4)
+  integer :: send(3), recv(6)
+  integer :: scount(0:2) displ(0:2)
+  data scount/1, 2, 3/ displ/0, 1, 3/
+  
+  call mpi_init
+  call mpi_comm_rank(mpi_comm_world, rank)
+  
+  do i = 1, rank + 1
+    send(i) = rank + 1
+  enddo
+  scount = rank + 1
+  
+  call mpi_gatherv(send, scount, mpi_integer, recv, rcount, displ, mpi_integer, 0, mpi_comm_world)
+  
+  if (rank == 0) then
+    print *, 'rank = ', rank, ' recv =', recv
+  endif
+   
+  call mpi_finalize
+end program gather
+```
+```sh
+$ mpirun -np 3 ./a.out
+ rank           0 recv =           1           2           2           3           3           3
+```
 
 # Derived data type
 여러 타입의 변수들을 묶어서 새로운 타입의 변수로 사용할 때 사용된다. **c**의 구조체와 비슷하다.
