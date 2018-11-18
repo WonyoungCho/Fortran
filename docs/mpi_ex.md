@@ -110,6 +110,7 @@ $ mpirun -np 2 ./a.out
  p:           1  got          100  elements
  p:           1  value(5)=   3.00000000 
 ```
+---
 
 - **Example - Deadlock blocking**
 
