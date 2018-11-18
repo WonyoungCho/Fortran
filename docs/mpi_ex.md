@@ -122,7 +122,7 @@ mpi_isend(buf, count, datatype, dest, tag, comm, ireq)
 - INTEGER datatype : 보낼 버퍼 원소의 데이터 타입 (ex. MPI_REAL)
 - INTEGER dest : 보내려는 프로세스의 rank
 - INTEGER tag : 보내는 메시지의 tag 번호 (임의의 값을 정해주면 된다.)
-- INTEGER comm : **MPI** communicator, MPI_COMM_WORLD
+- TYPE(MPI_COMM) comm : **MPI** communicator, MPI_COMM_WORLD
 - TYPE(mpi_request) ireq : 통신 식별에 이용
 
 ```fortran
@@ -133,7 +133,7 @@ mpi_irecv(buf, count, datatype, source, tag, comm, ireq)
 - INTEGER datatype : 받는 버퍼 원소의 데이터 타입 (ex. MPI_REAL)
 - INTEGER source : 보내진 원소의 프로세스 rank
 - INTEGER tag : 받는 메시지의 tag 번호 (보내는 메시지의 tag 번호와 같아야 한다.)
-- INTEGER comm : **MPI** communicator, MPI_COMM_WORLD
+- TYPE(MPI_COMM) comm : **MPI** communicator, MPI_COMM_WORLD
 - TYPE(mpi_request) ireq : 통신 식별에 이용
 ---
 
