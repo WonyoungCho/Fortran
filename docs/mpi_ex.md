@@ -139,31 +139,37 @@ mpi_irecv(buf, count, datatype, source, tag, comm, ireq)
 
 - **Example - Isend & Irecv**
 ```fortran
-program send
+program  non_blocking
   use mpi_f08
-  integer :: nproc, rank, count
-  real data(100), value(200)
+  integer :: rank, nprocs, i
+  integer, parameter :: buf_size = 1500
+  double precision , dimension(buf_size) :: a, b
   type(mpi_status) :: status
+  type(mpi_request) :: ireq1, ireq2
   
   call mpi_init
-  call mpi_comm_size(mpi_comm_world,nproc)
-  call mpi_comm_rank(mpi_comm_world,rank)
-  
-  if (rank.eq.0) then
-     data=3.0
-     call mpi_send(data,100,mpi_real,1,55,mpi_comm_world)
-  elseif (rank .eq. 1) then
-     call mpi_recv(value,200,mpi_real,mpi_any_source,55,mpi_comm_world,status)
+  call mpi_comm_size(mpi_comm_world, nprocs)
+  call mpi_comm_rank(mpi_comm_world, rank)
 
-     print *, "p:",rank," got data from processor ",status%mpi_source
-
-     call mpi_get_count(status,mpi_real,count)
-
-     print *, "p:",rank," got ",count," elements"
-     print *, "p:",rank," value(5)=",value(5)
+  if (rank == 0) then
+     call mpi_isend(a, buf_size, mpi_double_precision, 1, 17, mpi_comm_world, ireq1)
+     print*, 'send1'
+     call mpi_irecv(b, buf_size, mpi_double_precision, 1, 19, mpi_comm_world, ireq2)
+     print*, 'recv1'
+  elseif (nrank == 1) then
+     call mpi_isend(a, buf_size, mpi_double_precision, 0, 19, mpi_comm_world, ireq1)
+     print*, 'send2'
+     call mpi_irecv(b, buf_size, mpi_double_precision, 0, 17, mpi_comm_world, ireq2)
+     print*, 'recv1'
   endif
-  call mpi_finalize
-end program send
+
+  call mpi_wait(ireq1, status)
+  print*, 'wait1 source = ', status%mpi_source, 'tag = ', status%mpi_tag
+  call mpi_wait(ireq2, status)
+  print*, 'wait2 source = ', status%mpi_source, 'tag = ', status%mpi_tag
+  call mpi_finalize(ierr)
+  print*, 'finish'
+end program non_blocking
 ```
 ```sh
 $ mpirun -np 2 ./a.out
