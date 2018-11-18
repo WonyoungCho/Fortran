@@ -237,15 +237,15 @@ $ mpirun -np 2 ./a.out
 ## Contiguous
 연속된 데이터를 묶을 때 사용한다.
 
-rank0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15
----|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---
-rank1|-|-|R|R|-|R|R|-|R|R|-|-|-|-|-
+rank0|1|2|3|4|5|6|7|8|9|10|11|12|13|14
+---|---|---|---|---|---|---|---|---|---|---|---|---|---|---
+rank1|-|-|*D|D|D*|D|D|D|*D|D|D*|-|-|-
 
 `MPI_TYPE_CONTIGUOUS(count, oldtype, newtype, ierr)`
 
 - INTEGER count : 묶을 데이터 갯수
 - INTEGER oldtype : 묶는 데이터들의 타입 (ex. MPI_INTEGER)
-- INTEGER newtype : 묶은 데이터들의 새로운 타입
+- TYPE(MPI_datatype) newtype : 묶은 데이터들의 새로운 타입
 ---
 
 - **Example - Contiguous**
@@ -253,8 +253,8 @@ rank1|-|-|R|R|-|R|R|-|R|R|-|-|-|-|-
 program type_contiguous
   use mpi_f08
   implicit none
-  integer :: rank, ibuf(15), i
-  type(mpi_datatype) :: inewtype
+  integer :: rank, ibuf(14), i
+  type(mpi_datatype) :: newtype
   
   ibuf=0
   
@@ -262,37 +262,75 @@ program type_contiguous
   call mpi_comm_rank(mpi_comm_world, rank)
   
   if (rank == 0) then
-     do i = 1, 15
+     do i = 1, 14
         ibuf(i) = i
      enddo
   endif
   
-  call mpi_type_contiguous(3, mpi_integer, inewtype)
-  call mpi_type_commit(inewtype)
-  call mpi_bcast(ibuf(3), 3, inewtype, 0, mpi_comm_world)
+  call mpi_type_contiguous(3, mpi_integer, newtype)
+  call mpi_type_commit(newtype)
+  call mpi_bcast(ibuf(3), 3, newtype, 0, mpi_comm_world)
   
   print *, 'rank', rank, 'ibuf =', ibuf
   
-  call mpi_type_free(inewtype)
+  call mpi_type_free(newtype)
   call mpi_finalize
 end program type_contiguous
 ```
-
 ```sh
 $ mpirun -np 2 ./a.out
- rank    0 ibuf =    1    2    3    4    5    6    7    8    9   10   11   12   13   14   15
- rank    1 ibuf =    0    0    3    4    5    6    7    8    9   10   11    0    0    0    0
-
+ rank    0 ibuf =    1    2    3    4    5    6    7    8    9   10   11   12   13   14
+ rank    1 ibuf =    0    0    3    4    5    6    7    8    9   10   11    0    0    0
 ```
 
 ## Vector
 
-rank0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15
----|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---
-rank1|-|-|R|R|-|R|R|-|R|R|-|-|-|-|-
+데이터를 선택적으로 가져온다.
 
+rank0|1|2|3|4|5|6|7|8|9|10|11|12|13|14
+---|---|---|---|---|---|---|---|---|---|---|---|---|---|---
+rank1|D|D|D|-|-|D|D|D|-|-|D|D|D|-
 
+`MPI_TYPE_VECTOR(count, blocklength, stride, newtype, ierr)`
 
+- INTEGER count : 묶을 데이터 갯수
+- INTEGER oldtype : 묶는 데이터들의 타입 (ex. MPI_INTEGER)
+- TYPE(MPI_datatype) newtype : 묶은 데이터들의 새로운 타입
+---
+
+```fortran
+program type_vector
+  use mpi_f08
+  implicit none
+  integer :: rank, ibuf(14), i
+  type(mpi_datatype) :: newtype
+  
+  ibuf=0
+  
+  call mpi_init
+  call mpi_comm_rank(mpi_comm_world, rank)
+  
+  if (rank == 0) then
+     do i = 1, 14
+        ibuf(i) = i
+     enddo
+  endif
+  
+  call mpi_type_vector(3, 3, 5, mpi_integer, newtype)
+  call mpi_type_commit(newtype)
+  call mpi_bcast(ibuf, 1, newtype, 0, mpi_comm_world)
+  
+  print *, 'rank', rank, 'ibuf =', ibuf
+  
+  call mpi_type_free(newtype)
+  call mpi_finalize
+end program type_vector
+```
+```sh
+$ mpirun -np 2 ./a.out
+ rank    0 ibuf =    1    2    3    4    5    6    7    8    9   10   11   12   13   14
+ rank    1 ibuf =    1    2    3    0    0    6    7    8    0    0   11   12   13    0
+```
 # PI - Numerical Integration
 
 ```fortran
