@@ -35,7 +35,7 @@ program  hello
   
   call mpi_get_processor_name(name, namelen)
   
-  print*, 'Hello World! (Process name = ', trim(name), ', Rank = ', rank, ', nProcs = ',proc, ')'
+  print *, 'Hello World! (Process name = ', trim(name), ', Rank = ', rank, ', nProcs = ',proc, ')'
   
   call mpi_finalize
 end program hello  
@@ -131,19 +131,19 @@ program  deadlock_blocking
 
   if (rank == 0) then
      call mpi_send(a, buf_size, mpi_double_precision, 1, 11, mpi_comm_world)
-     print*, 'send1'
+     print *, 'send1'
      call mpi_recv(b, buf_size, mpi_double_precision, 1, 55, mpi_comm_world, status)
-     print*, 'recv1'
+     print *, 'recv1'
   elseif (rank == 1) then
      call mpi_send(a, buf_size, mpi_double_precision, 0, 55, mpi_comm_world)
-     print*, 'send2'
+     print *, 'send2'
      call mpi_recv(b, buf_size, mpi_double_precision, 0, 11, mpi_comm_world, status)
-     print*, 'recv2'
+     print *, 'recv2'
   endif
 
-  print*, 'Source = ', status%mpi_source, 'tag = ', status%mpi_tag
+  print *, 'Source = ', status%mpi_source, 'tag = ', status%mpi_tag
   call mpi_finalize
-  print*, 'finish'
+  print *, 'finish'
 end program deadlock_blocking
 ```
 `rank0`과 `rank0` 둘 다 보내고 있는 상황이다. `mpi_send`는 보내는 작업이 끝나야 다음 작업을 실행하는데, 받을 준비가 된 프로세서가 없어 **deadlock**에 걸린 상태이다. **Isend**와 **Irecv**를 통해 이를 해결할 수 있다.
@@ -190,22 +190,22 @@ program  non_blocking
 
   if (rank == 0) then
      call mpi_isend(a, buf_size, mpi_double_precision, 1, 11, mpi_comm_world, ireq1)
-     print*, 'send1'
+     print *, 'send1'
      call mpi_irecv(b, buf_size, mpi_double_precision, 1, 55, mpi_comm_world, ireq2)
-     print*, 'recv1'
+     print *, 'recv1'
   elseif (rank == 1) then
      call mpi_isend(a, buf_size, mpi_double_precision, 0, 55, mpi_comm_world, ireq1)
-     print*, 'send2'
+     print *, 'send2'
      call mpi_irecv(b, buf_size, mpi_double_precision, 0, 11, mpi_comm_world, ireq2)
-     print*, 'recv2'
+     print *, 'recv2'
   endif
 
   call mpi_wait(ireq1, status)
-  print*, 'wait1 source = ', status%mpi_source, 'tag = ', status%mpi_tag
+  print *, 'wait1 source = ', status%mpi_source, 'tag = ', status%mpi_tag
   call mpi_wait(ireq2, status)
-  print*, 'wait2 source = ', status%mpi_source, 'tag = ', status%mpi_tag
+  print *, 'wait2 source = ', status%mpi_source, 'tag = ', status%mpi_tag
   call mpi_finalize
-  print*, 'finish'
+  print *, 'finish'
 end program non_blocking
 ```
 **if**문을 통해 `rank0`과 `rank1`은 각각 작업을 실행한다. `rank0`과 `rank1`은 `mpi_isend`를 통해 잡을 보내고 `mpi_irecv`를 실행하게 되고 **if**문을 빠져나온다. 이 후 `rank0`과 `rank1`의 `mpi_isend`는 첫 번째 `mpi_wait`를 만나게 되어 기다렸다 작업이 끝나면, `mpi_irecv`는 두 번째 `mpi_wait`를 만나게 되어 작업이 끝나면 전체 작업이 종료된다.
@@ -248,26 +248,44 @@ $ mpirun -np 2 ./a.out
 - INTEGER count : 묶을 데이터 갯수
 - INTEGER oldtype : 묶는 데이터들의 타입 (ex. MPI_INTEGER)
 - INTEGER newtype : 묶은 데이터들의 새로운 타입
+---
+
+- **Example - Contiguous**
 ```fortran
-PROGRAM type_contiguous
-  INCLUDE 'mpif.h'
-  INTEGER ibuf(20)
-  INTEGER inewtype
+program type_contiguous
+  use mpi_f08
+  implicit none
+  integer :: rank, ibuf(20), i
+  type(mpi_datatype) :: inewtype
+  
   ibuf=0
-  CALL MPI_INIT(ierr)
-  CALL MPI_COMM_RANK(MPI_COMM_WORLD, myrank, ierr)
-  IF (myrank==0) THEN
-     DO i=1,20
+  
+  call mpi_init
+  call mpi_comm_rank(mpi_comm_world, rank)
+  
+  if (rank == 0) then
+     do i = 1, 20
         ibuf(i) = i
-     ENDDO
-  ENDIF
-  CALL MPI_TYPE_CONTIGUOUS(3, MPI_INTEGER, inewtype, ierr)
-  CALL MPI_TYPE_COMMIT(inewtype, ierr)
-  CALL MPI_BCAST(ibuf, 3, inewtype, 0, MPI_COMM_WORLD, ierr)
-  PRINT *,'ibuf =',ibuf
-  CALL MPI_TYPE_FREE(inewtype,ierr);
-  CALL MPI_FINALIZE(ierr)
-END PROGRAM type_contiguous
+     enddo
+  endif
+  
+  call mpi_type_contiguous(3, mpi_integer, inewtype)
+  call mpi_type_commit(inewtype)
+  call mpi_bcast(ibuf(4), 3, inewtype, 0, mpi_comm_world)
+  
+  print *,'ibuf =', ibuf
+  
+  call mpi_type_free(inewtype)
+  call mpi_finalize
+end program type_contiguous
+```
+
+```sh
+$ mpirun -np 4 ./a.out
+ ibuf =    1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20
+ ibuf =    0    0    0    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20
+ ibuf =    0    0    0    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20
+ ibuf =    0    0    0    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20
 ```
 
 ## Vector
