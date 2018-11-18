@@ -288,6 +288,11 @@ $ mpirun -np 4 ./a.out
 - TYPE(MPI_DATATYPE) recvtype : 취합될 버퍼 원소의 데이터 타입 (ex. MPI_INTEGER)
 - INTEGER root : 취합 프로세스 rank
 - TYPE(MPI_COMM) comm : **MPI** communicator, MPI_COMM_WORLD
+
+## Allgather
+모든 프로세서에서 각 프로세서의 동일한 크기의 데이터를 취합한다.
+
+`mpi_allgather(sendbuf, sendcount, sendtype, recvbuf, recvcount, recvtype, mpi_comm_world)`
 ---
 
 - **Example - Gather**
@@ -337,6 +342,11 @@ $ mpirun -np 4 ./a.out
 - TYPE(MPI_DATATYPE) recvtype : 취합될 버퍼 원소의 데이터 타입 (ex. MPI_INTEGER)
 - INTEGER root : 취합 프로세스 rank
 - TYPE(MPI_COMM) comm : **MPI** communicator, MPI_COMM_WORLD
+
+## Allgatherv
+모든 프로세서가 각 프로세서에서 취합하려는 데이터 갯수가 다를 때 사용된다.
+ 
+`mpi_gatherv(sendbuf, sendcount, sendtype, recvbuf, recvcount, displ, recvtype, mpi_comm_world)`
 ---
 
 - **Example - Gatherv**
@@ -370,6 +380,7 @@ end program gatherv
 $ mpirun -np 3 ./a.out
  rank           0 recv =           1           2           2           3           3           3
 ```
+
 
 # Derived data type
 여러 타입의 변수들을 묶어서 새로운 타입의 변수로 사용할 때 사용된다. **c**의 구조체와 비슷하다.
