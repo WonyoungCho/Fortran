@@ -49,6 +49,27 @@ $ mpirun -np 4 ./a.out
 
 # Send & Recv
 ```fortran
+mpi_send(buf, count, datatype, dest, tag, comm)
+```
+- buf : 보낼 버퍼의 시작 주소
+- INTEGER count : 보낼 버퍼의 원소 갯수
+- INTEGER datatype : 보낼 버퍼 원소의 데이터 타입 (ex. MPI_REAL)
+- INTEGER dest : 보내려는 프로세스의 rank
+- INTEGER tag : 보내는 메시지의 tag 번호 (임의의 값을 정해주면 된다.)
+- INTEGER comm : **MPI** communicator, MPI_COMM_WORLD
+
+```fortran
+mpi_recv(buf, count, datatype, source, tag, comm)
+```
+- buf : 보낼 버퍼의 시작 주소
+- INTEGER count : 보낼 버퍼의 원소 갯수
+- INTEGER datatype : 보낼 버퍼 원소의 데이터 타입 (ex. MPI_REAL)
+- INTEGER dest : 보내려는 프로세스의 rank
+- INTEGER tag : 보내는 메시지의 tag 번호 (임의의 값을 정해주면 된다.)
+- INTEGER comm : **MPI** communicator, MPI_COMM_WORLD
+
+- **Example**
+```fortran
 program send
   use mpi_f08
   integer :: nproc, rank, count
