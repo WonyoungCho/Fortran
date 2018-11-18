@@ -223,6 +223,57 @@ $ mpirun -np 2 ./a.out
  finish
 ```
 
+# Broadcast
+
+한 프로세서의 데이터를 다른 프로세서에 모두 전달하는 방식이다.
+
+`mpi_bcast(buf, count, datatype, root, mpi_comm_world)`
+
+- buf : 전송 버퍼 시작 주소
+- INTEGER count : 전송할 버퍼의 원소 갯수
+- TYPE(MPI_DATATYPE) datatype : 받는 버퍼 원소의 데이터 타입 (ex. MPI_INTEGER)
+- INTEGER root : 전송할 데이터가 있는 프로세스 rank
+- TYPE(MPI_COMM) comm : **MPI** communicator, MPI_COMM_WORLD
+---
+
+```fortran
+program bcast
+  use mpi_f08
+  implicit none
+  integer :: nproc, rank, buf(4)
+  integer :: root = 0
+
+  data buf/0, 0, 0, 0/
+
+  call mpi_init
+  call mpi_comm_size(mpi_comm_world, nproc)
+  call mpi_comm_rank(mpi_comm_world, rank)
+
+  if (rank == root) then
+    buf(1) = 5; buf(2) = 6; buf(3) = 7; buf(4) = 8
+  endif
+
+  print *, 'rank = ', rank, ' before :', buf
+
+  call mpi_bcast(buf, 4, mpi_integer, root, mpi_comm_world)
+
+  print *, 'rank = ', rank, ' after  :', buf
+
+  call mpi_finalize
+end program bcast
+```
+```sh
+$ mpirun -np 4 ./a.out
+ rank =            0  before :           5           6           7           8
+ rank =            3  before :           0           0           0           0
+ rank =            2  before :           0           0           0           0
+ rank =            1  before :           0           0           0           0
+ rank =            2  after  :           5           6           7           8
+ rank =            0  after  :           5           6           7           8
+ rank =            1  after  :           5           6           7           8
+ rank =            3  after  :           5           6           7           8
+```
+
 
 # Derived data type
 여러 타입의 변수들을 묶어서 새로운 타입의 변수로 사용할 때 사용된다. **c**의 구조체와 비슷하다.
