@@ -46,8 +46,13 @@ $ mpirun -np 4 ./a.out
  Hello World! (Process name = ycho, Rank =            0 , nProcs =            4 )
 ```
 
+# Block & Non-blocking communication
+- **Blocking** 통신에는 `MPI_SEND`와 `MPI_RECV`가 있으며, 잡이 다 실행될때까지 다음 명령을 실행하지 않는다.
+- **Non-blocking** 통신에는 대표적으로 `MPI_ISEND`와 `MPI_IRECV`가 있으며, 잡을 보내놓고 다음 명령을 실행한다.
 
-# Send & Recv
+
+
+## Send & Recv
 **Send**와 **Recv**는 편지봉투에 편지를 써서 보내는 것과 같이 생각하면 되고, 구성은 앞에 3개의 data 부분과 그 뒤로 3개의 envelope 부분으로 나누어 진다.
 
 ```fortran
@@ -72,7 +77,7 @@ mpi_recv(buf, count, datatype, source, tag, comm, status)
 - INTEGER status : 받은 메시지의 정보를 가지고 있다. (MPI_SOURCE, MPI_TAG, MPI_ERROR) 정보가 필요 없으면 `MPI_STATUS_IRNORE`
 ---
 
-- **Example**
+- **Example 1**
 ```fortran
 program send
   use mpi_f08
