@@ -144,7 +144,7 @@ program  deadlock_blocking
   print*, 'finish'
 end program deadlock_blocking
 ```
-`rank0`과 `rank0` 둘 다 보내고 있는 상황이다. `mpi_send`는 보내는 작업이 끝나야 다음 작업으로 실행하는데, 받을 준비가 된 프로세서가 없어 **deadlock**에 걸린 상태이다. **Isend**와 **Irecv**를 통해 이를 해결할 수 있다.
+`rank0`과 `rank0` 둘 다 보내고 있는 상황이다. `mpi_send`는 보내는 작업이 끝나야 다음 작업을 실행하는데, 받을 준비가 된 프로세서가 없어 **deadlock**에 걸린 상태이다. **Isend**와 **Irecv**를 통해 이를 해결할 수 있다.
 
 ## Isend & Irecv
 **Isend**와 **Irecv**는 **Non-block** 통신으로 잡을 보내놓고 다음 명령을 실행한다. 구성은 앞에 3개의 data 부분과 그 뒤로 3개의 envelope 부분, 1개의 request로 총 3부분으로 나누어 진다.
