@@ -48,8 +48,7 @@ $ mpirun -np 4 ./a.out
 
 # Block & Non-blocking communication
 - **Blocking** 통신에는 `MPI_SEND`와 `MPI_RECV`가 있으며, 잡이 다 실행될때까지 다음 명령을 실행하지 않는다.
-- **Non-blocking** 통신에는 대표적으로 `MPI_ISEND`와 `MPI_IRECV`가 있으며, 잡을 보내놓고 다음 명령을 실행한다.
-
+- **Non-blocking** 통신에는 대표적으로 `MPI_ISEND`와 `MPI_IRECV`가 있으며, 잡을 보내놓고 다음 명령을 실행한다. **Non-blocking** 통신에서 전송이 완료 되었는지 확인 될때까지 기다리는 `MPI_WAIT(ireq, status)` 가 있다.
 
 
 ## Send & Recv
@@ -112,6 +111,31 @@ $ mpirun -np 2 ./a.out
  p:           1  value(5)=   3.00000000 
 ```
 
+## Isend & Irecv
+**Isend**와 **Irecv**는 **Non-block** 통신으로 잡을 보내놓고 다음 명령을 실행한다. 구성은 앞에 3개의 data 부분과 그 뒤로 3개의 envelope 부분, 1개의 request로 총 3부분으로 나누어 진다.
+
+```fortran
+mpi_isend(buf, count, datatype, dest, tag, comm, ireq)
+```
+- buf : 보낼 버퍼의 시작 주소
+- INTEGER count : 보낼 버퍼의 원소 갯수
+- INTEGER datatype : 보낼 버퍼 원소의 데이터 타입 (ex. MPI_REAL)
+- INTEGER dest : 보내려는 프로세스의 rank
+- INTEGER tag : 보내는 메시지의 tag 번호 (임의의 값을 정해주면 된다.)
+- INTEGER comm : **MPI** communicator, MPI_COMM_WORLD
+- TYPE(mpi_request) ireq : 통신 식별에 이용
+
+```fortran
+mpi_irecv(buf, count, datatype, source, tag, comm, ireq)
+```
+- buf : 받는 버퍼의 시작 주소
+- INTEGER count : 받는 버퍼의 원소 갯수 (보내는 원소 갯수보다 같거나 많아야 한다.)
+- INTEGER datatype : 받는 버퍼 원소의 데이터 타입 (ex. MPI_REAL)
+- INTEGER source : 보내진 원소의 프로세스 rank
+- INTEGER tag : 받는 메시지의 tag 번호 (보내는 메시지의 tag 번호와 같아야 한다.)
+- INTEGER comm : **MPI** communicator, MPI_COMM_WORLD
+- TYPE(mpi_request) ireq : 통신 식별에 이용
+---
 
 
 # Derived data type
