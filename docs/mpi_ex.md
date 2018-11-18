@@ -135,7 +135,7 @@ program  non_blocking
      call mpi_ㄴend(a, buf_size, mpi_double_precision, 0, 55, mpi_comm_world)
      print*, 'send2'
      call mpi_recv(b, buf_size, mpi_double_precision, 0, 11, mpi_comm_world, status)
-     print*, 'recv1'
+     print*, 'recv2'
   endif
 
   print*, 'Source = ', status%mpi_source, 'tag = ', status%mpi_tag
@@ -194,7 +194,7 @@ program  non_blocking
      call mpi_isend(a, buf_size, mpi_double_precision, 0, 55, mpi_comm_world, ireq1)
      print*, 'send2'
      call mpi_irecv(b, buf_size, mpi_double_precision, 0, 11, mpi_comm_world, ireq2)
-     print*, 'recv1'
+     print*, 'recv2'
   endif
 
   call mpi_wait(ireq1, status)
@@ -209,10 +209,10 @@ end program non_blocking
 $ mpirun -np 2 ./a.out
  send1
  recv1
- send2
- recv1
  wait1 source =            0 tag =           17
  wait2 source =            1 tag =           19
+ send2
+ recv2
  wait1 source =            1 tag =           19
  wait2 source =            0 tag =           17
  finish
