@@ -236,7 +236,7 @@ $ mpirun -np 2 ./a.out
 - TYPE(MPI_COMM) comm : **MPI** communicator, MPI_COMM_WORLD
 ---
 
-- **ㄷExample - Broadcast**
+- **Example - Broadcast**
 ```fortran
 program bcast
   use mpi_f08
@@ -341,7 +341,7 @@ $ mpirun -np 4 ./a.out
 
 - **Example - Gatherv**
 ```fortran
-program gather
+program gatherv
   use mpi_f08
   implicit none
   integer :: nproc, rank, buf(4)
@@ -364,7 +364,7 @@ program gather
   endif
    
   call mpi_finalize
-end program gather
+end program gatherv
 ```
 ```sh
 $ mpirun -np 3 ./a.out
