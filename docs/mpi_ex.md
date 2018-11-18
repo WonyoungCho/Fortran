@@ -73,7 +73,7 @@ mpi_recv(buf, count, datatype, source, tag, comm, status)
 - INTEGER source : 보내진 원소의 프로세스 rank
 - INTEGER tag : 받는 메시지의 tag 번호 (보내는 메시지의 tag 번호와 같아야 한다.)
 - INTEGER comm : **MPI** communicator, MPI_COMM_WORLD
-- INTEGER status : 받은 메시지의 정보를 가지고 있다. (MPI_SOURCE, MPI_TAG, MPI_ERROR) 정보가 필요 없으면 `MPI_STATUS_IRNORE`
+- TYPE(MPI_STATUS) status : 받은 메시지의 정보를 가지고 있다. (MPI_SOURCE, MPI_TAG, MPI_ERROR) 정보가 필요 없으면 `MPI_STATUS_IRNORE`
 ---
 
 - **Example 1**
