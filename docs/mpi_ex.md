@@ -130,7 +130,7 @@ program  deadlock_blocking
   if (rank == 0) then
      call mpi_send(a, buf_size, mpi_double_precision, 1, 11, mpi_comm_world)
      print*, 'send1'
-     call mpi_recv(b, buf_size, mpi_double_precision, 1, 55, mpi_comm_world, satus)
+     call mpi_recv(b, buf_size, mpi_double_precision, 1, 55, mpi_comm_world, status)
      print*, 'recv1'
   elseif (rank == 1) then
      call mpi_send(a, buf_size, mpi_double_precision, 0, 55, mpi_comm_world)
