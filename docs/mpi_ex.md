@@ -487,6 +487,7 @@ $ mpirun -np 3 ./.aout
  recv=           2           5           8
  recv=           1           4           7
 ```
+---
 
 - **Alltoallv**
 
