@@ -9,7 +9,7 @@
 - **Fortran77**
 
 ```fortran
-123456program hello
+0123455program hello
       implicit none
 c       code here
       end program hello
