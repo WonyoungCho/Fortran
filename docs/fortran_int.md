@@ -15,7 +15,7 @@
 c       code here
       end program hello
 ```
-> - 앞 6간을 항상 비워놔야 한다.
+> - 앞 6열은 항상 비워놔야 한다.
 > - 72열 까지만 허용된다.
 > - Label은 제 2열부터 시작된다.
 > - 제 6열은 줄 연결 표시(**&**)이다.
@@ -37,7 +37,7 @@ implicit none
 ! code here
 end program
 ```
-> - 첫 칸부터 사용가능하며 시작 위치의 제한이 없다.
+> - 첫 열부터 사용가능하며 시작 위치의 제한이 없다.
 > - 132열까지 사용 가능하다.
 > - 한 줄에 분리기호인 ; 을 사용하여 여러 문장이 가능하다.
 ```bash
@@ -67,3 +67,7 @@ $ gfortran -o a file_name.f90
 $ gfortran file_name.f90
 ```
 다음과 같이 **compile**을 할 경우 default 값인 `a.out`이 실행파일로 생성된다.
+
+```
+$ ./a.out
+```
