@@ -8,7 +8,7 @@
 
 - **Fortran77**
 
-```fortran
+```
 012345program hello
       implicit none
 c       code here
