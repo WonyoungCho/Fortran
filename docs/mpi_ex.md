@@ -451,7 +451,7 @@ $ mpirun -np 4 ./a.out
 
 - **Allreduce**
 
-각각의 프로세서에서 동일한 갯수만큼 각각의 프로세서에 취합된다. 행렬의 **trace** 비슷하다.
+각각의 프로세서에서 동일한 갯수만큼 각각의 프로세서에 취합된다. 행렬의 **transpose** 비슷하다.
 
 `mpi_allreduce(sendbuf, recvbuf, count, datatype, op, root, mpi_comm_world)`
 
