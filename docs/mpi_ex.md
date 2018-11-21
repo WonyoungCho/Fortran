@@ -411,12 +411,18 @@ $ mpirun -np 3 ./a.out
 
 Operation | Data Type
 ---|---
-MPI_SUM (sum) | MPI_INTEGER, MPI_REAL,
-MPI_PROD (product) | MPI_DOUBLE_PRECISION, MPI_COMPLEX
----|---
-MPI_MAX (maximum) | MPI_INTEGER, MPI_REAL,
-MPI_MIN (minimum) | MPI_DOUBLE_PRECISION
-
+MPI_SUM (sum) | MPI_INTEGER, MPI_REAL, MPI_DOUBLE_PRECISION, MPI_COMPLEX
+MPI_PROD (product) | "
+MPI_MAX (maximum) | MPI_INTEGER, MPI_REAL, MPI_DOUBLE_PRECISION
+MPI_MIN (minimum) | "
+MPI_MAXLOC (max value and location) | MPI_2INTEGER, MPI_2REAL, MPI_2DOUBLE_PRECISION
+MPI_MINLOC (min value and location) | "
+MPI_LAND (logical AND) | MPI_LOGICAL
+MPI_LOR (logical OR) | "
+MPI_LXOR (logical XOR) | "
+MPI_BAND (bitwise AND) | MPI_INTEGER, MPI_BYTE
+MPI_BOR (bitwise OR) | "
+MPI_BXOR (bitwise XOR) | "
 
 ---
 
