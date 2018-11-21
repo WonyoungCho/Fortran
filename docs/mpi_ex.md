@@ -408,14 +408,18 @@ $ mpirun -np 3 ./a.out
 `mpi_reduce(sendbuf, recvbuf, count, datatype, op, root, mpi_comm_world)`
 
 - TYPE(MPI_Op) op : 취합할 때 연산자이다.
-
-Operation | Data Type
----|---
-MPI_SUM (sum) <br> MPI_PROD (product) | MPI_INTEGER, MPI_REAL, <br> MPI_DOUBLE_PRECISION, MPI_COMPLEX
-MPI_MAX (maximum) <br> MPI_MIN (minimum) | MPI_INTEGER, MPI_REAL, <br> MPI_DOUBLE_PRECISION
-MPI_MAXLOC <br> (max value and location) <br> MPI_MINLOC <br> (min value and location) | MPI_2INTEGER, MPI_2REAL, <br> MPI_2DOUBLE_PRECISION
-MPI_LAND (logical AND) <br> MPI_LOR (logical OR) <br> MPI_LXOR (logical XOR) | MPI_LOGICAL
-MPI_BAND (bitwise AND) <br> MPI_BOR (bitwise OR) <br> MPI_BXOR (bitwise XOR) | MPI_INTEGER, MPI_BYTE
+> - MPI_SUM (sum)
+> - MPI_PROD (product)
+> - MPI_MAX (maximum)
+> - MPI_MIN (minimum)
+> - MPI_MAXLOC (max value and location)
+> - MPI_MINLOC (min value and location)
+> - MPI_LAND (logical AND)
+> - MPI_LOR (logical OR)
+> - MPI_LXOR (logical XOR)
+> - MPI_BAND (bitwise AND)
+> - MPI_BOR (bitwise OR)
+> - MPI_BXOR (bitwise XOR)
 
 ---
 
