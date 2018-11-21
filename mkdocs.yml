@@ -8,7 +8,6 @@ extra_javascript: [docs.js]
 
 pages:
     - Home: 'index.md'
-    - Useful expression: 'useful.md'
     - Fortran:
         - 'Introduction' : 'fortran_int.md'
         - 'Example' : 'fortran_ex.md'
