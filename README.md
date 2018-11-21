@@ -6,6 +6,6 @@ Welcome to [Fortran tutorial homepage](https://fortran.readthedocs.io/).
 
 I introduce simple and practical examples.
 
-Parallel computing techniques, **OpenMP** and **MPI**, are also intoroduced.
+Parallel computing techniques, **OpenMP** and **MPI**, are listed either.
 
 Enjoy!
