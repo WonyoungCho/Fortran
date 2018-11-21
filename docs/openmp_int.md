@@ -3,6 +3,11 @@
 
 병렬작업을 이야기할 때 **fork**와 **join**을 이야기한다. 작업이 병렬화될 때를 **fork**라고 하며, 병렬작업이 끝날때를 **join**이라고 한다. 코드에서 `!$omp parallel` 명령어가 작업을 병렬화해 주는 시점(**fork**)이 된다. `!$omp end parallel`은 병렬화가 종료되는 지점(**join**)이다.
 
+## Install
+```sh
+$ sudo pacman -S gcc
+```
+
 ## Compile
 **Compile**시에는 옵션을 넣어주어야 하며, 제조사별로 옵션명 다르다.
 
