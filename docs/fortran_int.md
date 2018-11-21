@@ -56,9 +56,13 @@ Fortran77 : .lt., .le., .eq., .ne., .ge., .gt.
 Fortran90 :   < ,  <= ,  == ,  /= ,  >= ,  > 
 ```
 
-# Compile
-
+# Install
+```sh
+$ sudo pacman -S gcc-fortran
 ```
+
+# Compile
+```sh
 $ gfortran -o a file_name.f90
 ```
 `-o` 옵션을 사용하여 실행파일의 이름을 정해줄 수가 있다. 위 **compile** 명령어에서는 `a`라는 이름으로 실행파일을 만들었다.
