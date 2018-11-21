@@ -4,8 +4,8 @@ Welcome to [Fortran tutorial homepage](https://fortran.readthedocs.io/).
 
 **Fortran90** is a main language in here.
 
-I introduce simple and practical examples.
+Simple and practical examples are introduced.
 
-Parallel computing techniques, **OpenMP** and **MPI**, are listed either.
+Parallel computing techniques, **OpenMP** and **MPI**, are also listed.
 
 Enjoy!
