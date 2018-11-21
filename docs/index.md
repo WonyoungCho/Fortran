@@ -5,6 +5,10 @@
 <a href="https://fortran.readthedocs.io" target="_blank"> https://fortran.readthedocs.io </a>
 
 ### Install fortran
+```sh
+$ sudo pacman -S gcc-fortran
+```
+
 <a href="https://gcc.gnu.org/wiki/GFortranBinaries" target="_blank"> https://gcc.gnu.org/wiki/GFortranBinaries </a>
 
 <a href="http://www.lapk.org/gfortran/gfortran.php?OS=7" target="_blank">   http://www.lapk.org/gfortran/gfortran.php?OS=7 </a>
