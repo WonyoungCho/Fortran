@@ -4,10 +4,23 @@
 
 <a href="https://fortran.readthedocs.io" target="_blank"> https://fortran.readthedocs.io </a>
 
-### Fortran installation
+## Install
+- **gFortran**
 ```sh
 $ sudo pacman -S gcc-fortran
 ```
+
+- **OpenMP**
+```sh
+$ sudo pacman -S gcc
+```
+
+- **MPI**
+```sh
+$ sudo pacman -S openmpi
+```
+
+## etc
 
 <a href="https://gcc.gnu.org/wiki/GFortranBinaries" target="_blank"> https://gcc.gnu.org/wiki/GFortranBinaries </a>
 
