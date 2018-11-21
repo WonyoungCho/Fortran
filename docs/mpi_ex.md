@@ -411,7 +411,7 @@ $ mpirun -np 3 ./a.out
 
 Operation | Data Type
 ---|---
-MPI_SUM (sum) | MPI_INTEGER, MPI_REAL, MPI_DOUBLE_PRECISION, MPI_COMPLEX
+MPI_SUM (sum) <br> MPI_PROD (product) | MPI_INTEGER, MPI_REAL, MPI_DOUBLE_PRECISION, MPI_COMPLEX
 MPI_PROD (product) | "
 MPI_MAX (maximum) | MPI_INTEGER, MPI_REAL, MPI_DOUBLE_PRECISION
 MPI_MIN (minimum) | "
