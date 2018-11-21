@@ -2,26 +2,10 @@ Welcome to [Fortran tutorial homepage](https://fortran.readthedocs.io/).
 
 <https://fortran.readthedocs.io>
 
-# Compile
+**Fortran90** is a main language in here.
 
-``` no-highlight
-$ gfortran -o a file_name
-      
-$ gfortran -fopenmp -o a file_name
-```
+I introduce simple and practical examples.
 
-# CPU TIME
-``` bash
-real :: start, finish
-call cpu_time(start)
+Parallel computing techniques, **OpenMP** and **MPI**, are intoroduced.
 
-   ! code here !
-
-call cpu_time(finish)
-print '("Time = ",f6.3," seconds.")',finish-start
-```
-or
-
-```bash
-$ time ./a.out
-```
+Enjoy!
