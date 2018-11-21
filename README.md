@@ -1,4 +1,4 @@
-Welcome to visit [Fortran homepage](https://fortran.readthedocs.io/).
+Welcome to [Fortran tutorial homepage](https://fortran.readthedocs.io/).
 
 <https://fortran.readthedocs.io>
 
