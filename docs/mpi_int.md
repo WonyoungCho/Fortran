@@ -70,6 +70,11 @@ end program mpi_default_frame
 
 **MPI**를 통해 병렬처리를 잘 사용하기 위해서는 loop 부분을 여러 개로 나누어서 계산하도록 하면되고, 적절한 기능을 사용해여 data를 잘 취합하면 된다. **OpenMP**는 알아서 작업을 나누어 처리하지만, **MPI**에서는 하나하나 작업을 지시해 주어야 하기 때문에 익혀서 코드를 짜는데 시간이 걸린다. 하지만 cluster를 이용하여 대형 계산을 하기 위해서는 꼭 필요하다. **MPI**는 프로세서 별로 메모리를 잡아서 사용하여 메모리 낭비가 있지만, **OpenMP**의 공유 메모리 시스템보다 **I/O**에서 더 빠르다.
 
+# Install
+```sh
+$ sudo pacman -S openmpi
+```
+
 # Compile
 ```bash
 $ mpif90 -o a.out file_name.f90
