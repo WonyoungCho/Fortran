@@ -409,6 +409,15 @@ $ mpirun -np 3 ./a.out
 
 - TYPE(MPI_Op) op : 취합할 때 연산자이다.
 
+Operation | Data Type
+---|---
+MPI_SUM (sum) | MPI_INTEGER, MPI_REAL,
+MPI_PROD (product) | MPI_DOUBLE_PRECISION, MPI_COMPLEX
+---|---
+MPI_MAX (maximum) | MPI_INTEGER, MPI_REAL,
+MPI_MIN (minimum) | MPI_DOUBLE_PRECISION
+
+
 ---
 
 - **Example - Reduce**
