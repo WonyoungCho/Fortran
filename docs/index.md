@@ -4,7 +4,7 @@
 
 <a href="https://fortran.readthedocs.io" target="_blank"> https://fortran.readthedocs.io </a>
 
-### Install fortran
+### Fortran installation
 ```sh
 $ sudo pacman -S gcc-fortran
 ```
