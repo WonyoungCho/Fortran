@@ -1,6 +1,6 @@
 # MPI + OpenMP
 
-```
+```bash
 program hybrid
   use mpi_f08
   implicit none
