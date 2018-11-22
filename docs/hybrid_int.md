@@ -66,7 +66,7 @@ sbatch: error: Batch job submission failed: Requested node configuration is not 
 $ sbatch hybrid.sh
 Fri Nov 23 03:41:00 2018
              JOBID PARTITION     NAME     USER    STATE       TIME TIME_LIMI  NODES NODELIST(REASON)
-             48811 microcent     loop     ycho  RUNNING       0:01   1:00:00      3 compute-0-[21-23]
+             48811 microcent   hybrid     ycho  RUNNING       0:01   1:00:00      3 compute-0-[21-23]
 ```
 
 작업이 끝나고 log 파일을 확인하면 다음과 같이 3개의 Node를 사용하고, 100개의 core를 사용했다고 나온다.
