@@ -7,7 +7,6 @@ program hybrid
   integer :: nproc, rank
   integer(8) :: istat, iend, n, sum=0
   integer(8) :: i,j,k
-  integer :: omp_get_thread_num
 
   call mpi_init
   call mpi_comm_size(mpi_comm_world, nproc)
