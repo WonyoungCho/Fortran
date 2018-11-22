@@ -271,7 +271,7 @@ end program parallel_loop
 
 정답) **Fortran**에서는 loop 변수가 몇 개가 되든 `private`로 취급한다. **C**의 multi-loop는 2번째 변수부터 `shared`로 설정된다.
 ```
-& ./a.out
+$ ./a.out
  Hello World           0           0
  Hello World           0           1
  Hello World           0           2
@@ -335,7 +335,7 @@ program atomic
 end program atomic
 ```
 ```
-& ./a.out
+$ ./a.out
  sum =        5050
 ```
 `!$omp atomic`을 이용하여 각 `thread`에서 계산한 값을 더하여 최종 값을 도출하였다. 이것을 `!$omp parallel do reduction(+:sum)`을 써서 코드를 간단히 하면서 동일한 결과를 얻는다.
@@ -356,7 +356,7 @@ program reduction
 end program reduction
 ```
 ```
-& ./a.out
+$ ./a.out
  sum =        5050
 ```
 
@@ -397,7 +397,7 @@ program sections
 end program sections
 ```
 ```
-& ./a.out
+$ ./a.out
    5  15  25  35  45  55  65  75  85  95
   10  15  20  25  30  35  40  45  50  55  60  65  70  75  80  85  90  95 100 105
 ```
@@ -426,7 +426,7 @@ program single
 end program single
 ```
 ```
-& ./a.out
+$ ./a.out
  Hello World
  tid=           0
  tid=           1
@@ -450,7 +450,7 @@ program master
 end program master
 ```
 ```
-& ./a.out
+$ ./a.out
  tid=           2
  tid=           3
  tid=           1
@@ -485,7 +485,7 @@ program do_nowait
 end program do_nowait
 ```
 ```bash
-& ./a.out
+$ ./a.out
  a(          10 )=          10  tid=           2
  a(          11 )=          11  tid=           2
  a(          12 )=          12  tid=           2
@@ -537,7 +537,7 @@ program section_nowait
 end program section_nowait
 ```
 ```bash
-& ./a.out
+$ ./a.out
  L1 tid=           0
  L1 tid=           0
  L1 tid=           0
