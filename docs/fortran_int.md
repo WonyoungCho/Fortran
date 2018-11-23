@@ -4,7 +4,7 @@
 
 참고로, 높은 버전의 **Fortran**은 하위 버전의 기능과 문법을 포함하고 있다. 즉, **Fortran90**은 **Fortran77** 문법으로 쓰여진 코드를 인식한다.
 
-# Fortran77 vs Fortran90
+## Fortran77 vs Fortran90
 
 - **Fortran77**
 
