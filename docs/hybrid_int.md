@@ -138,3 +138,38 @@ $ cat output.txt
  Result :           14     5810002000000000                    0
  Result :           16     6610002000000000                    0
 ```
+
+# Time check
+
+위 예제 code에서 `n=1000000`와 `j=1,1000000`로 바꾸어 테스트 하었다.
+
+```sh
+$ time srun -p microcentury -n 400 -c 1 --mpi=pmix ./a
+real    0m9.912s
+user    0m0.023s
+sys     0m0.030s
+```
+```sh
+$ time srun -p microcentury -n 200 -c 2 --mpi=pmix ./a
+real    0m9.690s
+user    0m0.023s
+sys     0m0.025s
+```
+```sh
+$ time srun -p microcentury -n 100 -c 4 --mpi=pmix ./a
+real    0m9.718s
+user    0m0.019s
+sys     0m0.023s
+```
+```sh
+$ time srun -p microcentury -n 40 -c 10 --mpi=pmix ./a
+real    0m10.065s
+user    0m0.024s
+sys     0m0.016s
+```
+```sh
+$ time srun -p microcentury -n 10 -c 40 --mpi=pmix ./a
+real    0m13.189s
+user    0m0.014s
+sys     0m0.023s
+```
