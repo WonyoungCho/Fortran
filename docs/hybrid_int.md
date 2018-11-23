@@ -18,12 +18,11 @@ program hybrid
   istat = rank*n/nproc + 1 ; iend=(rank+1)*n/nproc
   k=0
   do i= istat,iend
-  !$omp parallel
-  !$omp do reduction(+:k)
+  !$omp parallel do reduction(+:k)
   do j = 1,10000
         k = k + i + j
      enddo
-  !$omp end parallel
+  !$omp end parallel do
   enddo
 
   call mpi_reduce(k, sum, 1, mpi_integer8, mpi_sum, 0, mpi_comm_world)
