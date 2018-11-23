@@ -53,3 +53,26 @@ $ ./.a.out
  i is zero
  i is positive
 ```
+
+# Select case
+`if`의 순차적인 선택과 다르게 병렬적 선택이며, `if`문 보다 간결하다.
+```fortran
+program select_case
+  implicit none
+  integer :: n, k
+  
+  print *, 'Enter the value ='
+  read *, n
+  
+  select case (n)
+    case (:0)
+      k = -k
+    case (10:20)
+      k = n + 10
+    case default
+      k = n
+  end select
+  
+  print *, 'k =', k
+end program select_case
+```
