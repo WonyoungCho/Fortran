@@ -36,7 +36,7 @@ end program hybrid
 ---
 
 ### Batch file
-작업을 **Queue**에 넘겨주기 위해서는 배치파일을 만들어야 한다.
+작업을 **Queue**에 넘겨주기 위해서는 배치파일을 만들면 편하다.
 
 배치 파일 이름을 `hybrid.sh` 로 만들었다고 하자.
 ```sh
