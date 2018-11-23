@@ -35,12 +35,12 @@ end program hybrid
 ---
 
 ### Running
-1. 직접 명령어를 쳐서 실행시킨다.
+- 직접 명령어를 쳐서 실행시킨다.
 ```sh
 $ srun -p microcentury -n 50 -c 2 --mpi=pmix ./a
 ```
 
-2. **Batch file**
+- **Batch file**
 작업을 **queue**에 넘겨주기 위해 배치파일을 만들면 편하다.
 
 배치 파일 이름을 `hybrid.sh` 로 만들었다고 하자.
