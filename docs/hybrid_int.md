@@ -1,7 +1,7 @@
 # MPI + OpenMP
 
 - **Example 1**
-```bash
+```fortran
 program hybrid
   use mpi_f08
   implicit none
