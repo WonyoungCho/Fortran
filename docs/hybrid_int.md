@@ -33,8 +33,7 @@ program hybrid
 end program hybrid
 ```
 
-한 대의 PC에서 잡을 돌릴 때 **OpenMP**를 사용하면 편리하다. 하지만 여러 PC를 묶어 놓은 **cluster**에서는 MPI를 사용할 수 밖에 없다.
-
+한 대의 PC에서 잡을 돌릴 때 **OpenMP**를 사용하면 편리하다. 하지만 여러 PC를 묶어 놓은 **cluster**에서는 MPI를 사용할 수 밖에 없다. 
 구성은 **MPI** 처리할 loop를 바깥 넣고, 안쪽은 **OpenMP**로 병렬처리 하는 것이다.
 
 ---
