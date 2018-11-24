@@ -200,7 +200,7 @@ $ ./a.out
 
 - **Example - pointer array**
 
-행렬의 값을 **point**해서 가져간다.
+행렬의 값을 **point**해서 보여준다.
 ```fortran
 program pointer
   implicit none
@@ -232,6 +232,7 @@ program pointer
   print *, v
 end program pointer
 ```
+아래 결과에서 행렬처럼 적어 두었지만, 사실 결과값은 하나의 열이다.
 ```sh
 $ ./a.out
 1.00000000       1.00000000       1.00000000       1.00000000       1.00000000       1.00000000
@@ -256,3 +257,19 @@ $ ./a.out
  ---------
 9.00000000       9.00000000       9.00000000
 ```
+
+## Memory address structure
+
+**Fortran**과 **C**는 메모리 주소의 구조가 다르다.
+
+- **Column-major order (Fortran)**
+
+a(0,0)|a(0,1)|a(0,2)
+a(2,0)|a(1,1)|a(1,2)
+a(2,0)|a(1,1)|a(1,2)
+
+- **Column-major order (C)**
+
+a(0,0)|a(0,1)|a(0,2)
+a(2,0)|a(1,1)|a(1,2)
+a(2,0)|a(1,1)|a(1,2)
