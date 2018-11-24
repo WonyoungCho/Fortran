@@ -146,7 +146,7 @@ $ ./a.out
  j =          10
  ```
  
- # Array
+# Array
 
 - **Example - static**
 ```fortran
@@ -194,3 +194,12 @@ $ ./a.out
           10          10          10          10          10
 ```
 
+- **Example - pointer**
+```fortran
+real, target :: b(100,100)
+real, pointer :: u(:,:), v(:), w(:,:)
+
+u => b(i:i+2, j:j+2)
+allocate(w(m,n))
+v => b(:,j)
+```
