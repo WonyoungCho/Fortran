@@ -76,3 +76,75 @@ program select_case
   print *, 'k =', k
 end program select_case
 ```
+
+# Goto
+유용하게 사용하는 기능 중 하나이다. 단순히 `goto 10` 으로 사용할 수도 있고 다음처럼 조건에 따른 사용도 가능하다.
+
+`GOTO(label 1, label 2, ..., label n) inter 'n'th-label`
+```fortran
+program merge
+  implicit none
+  integer :: i
+  read *, i
+  
+  goto(10, 20, 30, 40) mod(i,4)
+
+10 print *, '1'
+  goto 50
+20 print *, '2'
+  goto 50
+30 print *, '3'
+  goto 50
+40 print *, '4'
+
+  print *, 'otherwise'
+50 continue
+end program merge
+```
+```sh
+$ ./a
+3
+ 3
+```
+
+# Do loop
+
+```fortran
+program do_loop
+  implicit none
+  integer :: i=0, j=0
+
+  do
+     i = i + 1
+     if(mod(i,2)==0)cycle
+     if(i > 10)exit
+     print *, 'i =', i
+  end do
+
+  print *, ''
+
+  do while(j <= 10)
+     j = j + 1
+     if(mod(j,2)==1)cycle
+     print *, 'j =', j
+  end do
+
+end program do_loop
+```
+```sh
+$ ./a.out
+ i =           1
+ i =           3
+ i =           5
+ i =           7
+ i =           9
+ 
+ j =           2
+ j =           4
+ j =           6
+ j =           8
+ j =          10
+ ```
+ 
+ # Array
+ 
