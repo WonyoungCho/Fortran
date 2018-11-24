@@ -78,7 +78,7 @@ end program select_case
 ```
 
 # Goto
-유용하게 사용하는 기능 중 하나이다. 단순히 `goto 10` 으로 사용할 수도 있고 다음처럼 조건에 따른 사용도 가능하다.
+유용하게 사용하는 기능 중 하나이다. 단순히 `goto 10` 처럼 사용할 수도 있고 다음처럼 조건에 따른 사용도 가능하다.
 
 `GOTO(label 1, label 2, ..., label n) inter 'n'th-label`
 ```fortran
@@ -147,4 +147,49 @@ $ ./a.out
  ```
  
  # Array
- 
+
+- **Example - static**
+```fortran
+real a, b, c
+dimension a(100), b(10,10), c(2,3,4)
+
+or
+
+real, dimension(100) :: a      ! 1D
+real, dimension(10,10) :: b    ! 2D
+real, dimension(2,3,4) :: c    ! 3D
+
+or
+
+real a(100), b(10,10), c(2,3,4)
+
+or
+
+real a(1:100), b(3:12,2:11), c(1:2,4:6,3:6)
+```
+
+- **Example - dynamic**
+```fortran
+integer, dimension(:), allocatable :: ages   ! 1D
+```
+```fortran
+program allocate
+  implicit none
+  integer, allocatable :: a(:), b(:)
+  integer :: istat
+  character(80) :: string='Success'
+
+  allocate(a(5), source=1, stat=istat, errmsg=string)
+  allocate(b,source=a*10)
+
+  print *, 'State =', istat, 'ErrMSG = ', trim(string)
+  print *, a
+  print *, b
+end program allocate
+```
+```sh
+$ ./a.out
+ State =           0 ErrMSG = Success
+           1           1           1           1           1
+          10          10          10          10          10
+```
