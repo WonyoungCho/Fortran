@@ -170,7 +170,7 @@ real a(1:100), b(3:12,2:11), c(1:2,4:6,3:6)
 
 - **Example - dynamic**
 ```fortran
-integer, dimension(:), allocatable :: ages   ! 1D
+integer, dimension(:), allocatable :: string   ! 1D
 ```
 ```fortran
 program allocate
@@ -193,3 +193,4 @@ $ ./a.out
            1           1           1           1           1
           10          10          10          10          10
 ```
+
