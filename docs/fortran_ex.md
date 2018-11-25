@@ -258,7 +258,7 @@ $ ./a.out
 9.00000000       9.00000000       9.00000000
 ```
 
-## Array structure
+## -Array structure
 
 **Fortran**과 **C**는 메모리 주소의 구조가 다르다. 주소를 채우는 방식을 알고 있어야 데이터를 다룰 때 올바로 다룰 수 있다. `loop`문을 다룰 때도 배열의 이해가 요구된다.
 
@@ -289,7 +289,7 @@ for(i=0;i<3;i++)
 a(0,0)|a(0,1)|a(0,2)|*a(1,0)*|*a(1,1)*|*a(1,2)*|a(2,0)|a(2,1)|a(2,2)
 -|-|-|-|-|-|-|-|-
 
-## Array function
+## -Array function
 ```fortran
 program array_function
   implicit none
@@ -328,7 +328,7 @@ $ ./a.out
            3
 ```
 
-## Array expression
+## -Array expression
 ```fortran
 program array_expression
   implicit none
@@ -432,7 +432,7 @@ $ ./a.out
            4           0           0
 ```
 
-## Array mask
+## -Array mask
 `where(mask)`에서 `mask`가 **true**일 때만 배열 원소 값을 할당. 
 ```
 program array_mask
@@ -471,7 +471,7 @@ $ ./a.out
            4           4
 ```
 
-## Array forall
+## -Array forall
 ```fortran
 program array_forall
   implicit none
