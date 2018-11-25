@@ -376,3 +376,60 @@ $ ./a.out
    5.30000019       6.30000019       7.30000019    
    8.30000019       9.30000019       10.3000002
 ```
+
+## Array reshape
+```fortran
+reshape(array_data, shape, pad, order)
+```
+> - array_data : reshape하고자 하는 array.
+> - shape : 바꾸려는 shape
+> - pad : reshape한 array가 더 클경우 비어있는 위치의 채울 값
+> - order : 정렬하고자 하는 차원 (행이 첫 번째 차원, 열이 두 번째 차원)
+
+```fortran
+program array_reshape
+  implicit none
+  integer :: i, j
+  integer, parameter, dimension(4,4) :: ident4 = reshape((/(1,(0, i=1,4), j=1,3),1/),(/4,4/))
+  integer, dimension(2,2) :: a = reshape((/1,2,3,4/),(/2,2/)), b
+  integer :: c(2,3)
+  
+  do i=1,4
+     print *, ident4(i,:)
+  end do
+
+  print *, '------------'
+  do i=1,2
+     print *, a(i,:)
+  end do
+
+  print *, '------------'
+  b = reshape(a,(/2,2/),order=(/2,1/))
+  do i=1,2
+     print *, b(i,:)
+  end do
+
+  print *, '------------'
+  c = reshape(a,(/2,3/),pad=(/0/),order=(/2,1/))
+  do i=1,2
+     print *, c(i,:)
+  end do
+  
+end program array_reshape
+```
+```sh
+$ ./a.out
+           1           0           0           0
+           0           1           0           0
+           0           0           1           0
+           0           0           0           1
+ ------------
+           1           3
+           2           4
+ ------------
+           1           2
+           3           4
+ ------------
+           1           2           3
+           4           0           0
+```
