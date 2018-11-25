@@ -364,9 +364,9 @@ program gatherv
   use mpi_f08
   implicit none
   integer :: nproc, rank, buf(4)
-  integer :: send(3), recv(6)
-  integer :: scount(0:2) displ(0:2)
-  data scount/1, 2, 3/ displ/0, 1, 3/
+  integer :: send(3), recv(6), scnt
+  integer :: rcnt(0:2) displ(0:2)
+  data rcount/1, 2, 3/ displ/0, 1, 3/
   
   call mpi_init
   call mpi_comm_rank(mpi_comm_world, rank)
@@ -374,9 +374,9 @@ program gatherv
   do i = 1, rank + 1
     send(i) = rank + 1
   enddo
-  scount = rank + 1
+  scnt = rank + 1
   
-  call mpi_gatherv(send, scount, mpi_integer, recv, rcount, displ, mpi_integer, 0, mpi_comm_world)
+  call mpi_gatherv(send, scnt, mpi_integer, recv, rcnt, displ, mpi_integer, 0, mpi_comm_world)
   
   if (rank == 0) then
     print *, 'rank = ', rank, ' recv =', recv
@@ -518,10 +518,10 @@ program alltoallv
   use mpi_f08
   integer :: nproc, rank, i
   integer :: send(6), recv(9)
-  integer :: scount(0:2), sdspl(0:2), rcount(0:2), rdspl(0:2)
+  integer :: scnt(0:2), sdspl(0:2), rcnt(0:2), rdspl(0:2)
 
   data send/1,2,2,3,3,3/
-  data scount/1,2,3/ sdspl/0,1,3/
+  data scnt/1,2,3/ sdspl/0,1,3/
 
   call mpi_init
   call mpi_comm_size(mpi_comm_world, nproc)
@@ -543,8 +543,8 @@ program alltoallv
     rdspl = (/0,3,6/)
   endif
 
-  call mpi_alltoallv(send, scount, sdspl, mpi_integer, &
-       recv, rcount, rdspl, mpi_integer, mpi_comm_world)
+  call mpi_alltoallv(send, scnt, sdspl, mpi_integer, &
+       recv, rcnt, rdspl, mpi_integer, mpi_comm_world)
 
   print *, 'rank:', rank, ':', recv
 
