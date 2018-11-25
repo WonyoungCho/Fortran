@@ -288,3 +288,43 @@ for(i=0;i<3;i++)
 
 a(0,0)|a(0,1)|a(0,2)|*a(1,0)*|*a(1,1)*|*a(1,2)*|a(2,0)|a(2,1)|a(2,2)
 -|-|-|-|-|-|-|-|-
+
+## Array function
+```fortran
+program array_function
+  implicit none
+  integer, dimension(-10:10, 23, 14:28) :: a
+  integer :: d(3)
+
+  print *, lbound(a)
+  print *, lbound(a,1)
+
+  print *, ubound(a)
+  print *, ubound(a,1)
+
+  print *, shape(a)
+  print *, size(a)
+  print *, size(a,1)
+
+  d = shape(a)
+
+  print *, d
+  print *, size(d)
+  print *, shape(d)
+  
+end program array_function
+```
+```sh
+$ ./a.out
+         -10           1          14
+         -10
+          10          23          28
+          10
+          21          23          15
+        7245
+          21
+          21          23          15
+           3
+           3
+```
+
