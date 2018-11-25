@@ -405,15 +405,13 @@ program array_reshape
 
   print *, '------------'
   b = reshape(a,(/2,2/),order=(/2,1/))
-  do i=1,2
-     print *, b(i,:)
-  end do
+  print *, b(1,:)
+  print *, b(2,:)
 
   print *, '------------'
   c = reshape(a,(/2,3/),pad=(/0/),order=(/2,1/))
-  do i=1,2
-     print *, c(i,:)
-  end do
+  print *, c(1,:)
+  print *, c(2,:)
   
 end program array_reshape
 ```
