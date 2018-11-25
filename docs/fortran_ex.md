@@ -471,7 +471,7 @@ $ ./a.out
            4           4
 ```
 
-## -Array forall
+## - forall
 ```fortran
 program array_forall
   implicit none
