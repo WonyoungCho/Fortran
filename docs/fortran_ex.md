@@ -330,7 +330,7 @@ $ ./a.out
 
 ## Array expression
 ```fortran
-program array
+program array_expression
   implicit none
   integer :: i, j, k
   real, dimension(3,3) :: a, c
@@ -358,7 +358,7 @@ program array
   do i=1,3
      print *, c(i,:)
   end do
-end program array
+end program array_expression
 ```
 ```sh
 $ ./a.out
