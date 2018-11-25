@@ -472,6 +472,7 @@ $ ./a.out
 ```
 
 ## - forall
+`where(mask)`의 확장형이다.
 ```fortran
 program array_forall
   implicit none
