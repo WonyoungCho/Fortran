@@ -431,3 +431,71 @@ $ ./a.out
            1           2           3
            4           0           0
 ```
+
+## Array mask
+`where(mask)`에서 `mask`가 **true**일 때만 배열 원소 값을 할당. 
+```
+program array_mask
+  implicit none
+  integer :: i, j
+  integer, dimension(2,2) :: a, b = reshape((/2,4,6,8/),(/2,2/)), &
+       c = reshape((/2,0,0,2/),(/2,2/))
+
+  where(c /= 0)
+     a = b/c
+  else where
+     a = b
+  end where
+
+  print *, b(1,:)
+  print *, b(2,:)
+  print *, '------------'
+  print *, c(1,:)
+  print *, c(2,:)
+  print *, '------------'
+  print *, a(1,:)
+  print *, a(2,:)
+
+  
+end program array_mask
+```
+```sh
+$ ./a.out
+           2           6
+           4           8
+ ------------
+           2           0
+           0           2
+ ------------
+           1           6
+           4           4
+```
+
+## Array forall
+```fortran
+program array_forall
+  implicit none
+  integer :: i, j
+  integer, dimension(3,3) :: a = reshape((/(i, i=1,9)/),(/3,3/))
+
+  print *, a(1,:)
+  print *, a(2,:)
+  print *, a(3,:)
+  
+  forall(i=1:3,j=1:3,j>i) a(i,j) = 0
+  print *, '----------'
+  print *, a(1,:)
+  print *, a(2,:)
+  print *, a(3,:)
+
+end program array_forall
+```
+```sh
+           1           4           7
+           2           5           8
+           3           6           9
+ ----------
+           1           0           0
+           2           5           0
+           3           6           9
+```
