@@ -672,7 +672,7 @@ Error: Dummy argument ‘a’ with INTENT(IN) in variable definition context (as
 ```
 
 # Pure property
-- `pure subroutine`의 모든 **argument**는 `intent` 속성을 가져야 한다.(선언해 주어야 한다.)
+- `pure subroutine`의 모든 **argument**는 `intent` 속성을 가져야 한다.
 - `pure function`의 모든 **argument**는 `intent(in)` 속성을 가져야 한다.
 ```fortran
 program pure_property
@@ -706,3 +706,47 @@ $ ./a.out
            3
 ```
 
+# Elemental property
+- `Elemental`로 정의되면 **argument**가 scalar면 결과도 scalar이여야 하고, 배열이면 결과도 배열이여야 한다.
+```fortran
+program elemental_property
+  implicit none
+  integer, dimension(10) :: x, y
+  integer :: a=100, b, k
+
+  x = (/(k,k=1,10)/)
+  y = func(x)
+
+  print *, y
+  print *, func(a)
+
+  call routine(x,y)
+  print *, y
+
+  call routine(a,b)
+  print *, b
+
+contains
+  elemental integer function func(x)
+    implicit none
+    integer, intent(in) :: x
+
+    func = x + 1
+  end function func
+
+  elemental subroutine routine(x,y)
+    implicit none
+    integer, intent(in) :: x
+    integer, intent(out) :: y
+
+    y = x + 1
+  end subroutine routine
+end program elemental_property
+```
+```sh
+$ ./a.out
+           2           3           4           5           6           7           8           9          10          11
+         101
+           2           3           4           5           6           7           8           9          10          11
+         101
+```
