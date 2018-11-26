@@ -523,7 +523,7 @@ program statement_function
   b = plus_one(a)
   print *, a, b
 
-  m= 1d-3
+  m = 1d-3
   print *, e(m)
     
 end program statement_function
@@ -533,3 +533,63 @@ $ ./a.out
           10          11
    89875517873681.766
 ```
+
+# Interface block
+
+- ** Example - implicit interface**
+```fortran
+program implicit
+  implicit none
+  real :: i=3d0, j=25d0
+  real :: ratio
+
+  print *, ratio(i,j)
+
+end program implicit
+
+real function ratio(x,y)
+  real :: x, y
+    
+  ratio = x/y
+end function ratio
+```
+- ** Example - explicit interface**
+```fortran
+program explicit
+  implicit none
+  interface
+     real function ratio(x,y)
+       real :: x, y
+     end function ratio
+  end interface
+  real :: i=3d0, j=25d0
+
+  print *, ratio(i,j)
+
+end program explicit
+
+real function ratio(x,y)
+  real :: x, y
+    
+  ratio = x/y
+end function ratio
+```
+
+- ** Example - internal procedure**
+```fortran
+program internal
+  implicit none
+  real :: i=3d0, j=25d0
+
+  print *, ratio(i,j)
+
+contains
+  real function ratio(x,y)
+    real :: x, y
+    
+    ratio = x/y
+  end function ratio
+
+end program internal
+```
+
