@@ -617,7 +617,7 @@ END Subroutine subroutine_name
 ```
 
 > - `call subroutine_name(variables)`
-> - `[property]` = `pure` or `elemental` or `recursive`
+> - `[property]` = `pure`, `elemental`, `recursive`
 
 
 # Function
