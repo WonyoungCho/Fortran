@@ -553,6 +553,11 @@ real function ratio(x,y)
   ratio = x/y
 end function ratio
 ```
+```sh
+$ ./a.out
+  0.119999997
+```
+
 - ** Example - explicit interface**
 ```fortran
 program explicit
@@ -574,6 +579,10 @@ real function ratio(x,y)
   ratio = x/y
 end function ratio
 ```
+```sh
+$ ./a.out
+  0.119999997
+```
 
 - ** Example - internal procedure**
 ```fortran
@@ -592,4 +601,36 @@ contains
 
 end program internal
 ```
+```sh
+$ ./a.out
+  0.119999997
+```
 
+# Subroutine
+```fortran
+[property] Subroutine subroutine_name(dummy_arg)
+  [USE 문]
+  [선언문]
+  [실행문]
+  [내부 프로시저]
+END Subroutine subroutine_name
+```
+
+> - `call subroutine_name(variables)`
+> - `[property]` = `pure` or `elemental` or `recursive`
+
+
+# Function
+```fortran
+[property][type] Function function_name(dummy_arg) [result (result_name)]
+  [USE 문]
+  [선언문]
+  [실행문]
+  [내부 프로시저]
+END Funtion function_name
+```
+
+> - `variable = function_name(variables)`
+> - `[property]` = `pure`, `elemental`, `recursive`
+> - `[type]` = `integer`, `real`, `complex`, `character`, `logical`
+> - `[result (result_name)]` : 함수의 값을 함수 이름으로 받을 것인지, 결과 이름을 정해서 받을 것인지이다.
