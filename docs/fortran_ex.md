@@ -635,7 +635,7 @@ END Funtion function_name
 > - `[type]` = `integer`, `real`, `complex`, `character`, `logical`
 > - `[result (result_name)]` : 함수의 값을 함수 이름으로 받을 것인지, 결과 이름을 정해서 받을 것인지이다.
 
-# Intent
+# Intent attribute
 - intent(in) : 들어와서 나갈 때까지 값의 변화가 없는 인수
 - intent(out) : 값을 새로 할당 받을 때까지 사용되지 않는 인수
 - intent(inout) : 프로시저에 들어와 사용되고 값을 새로 할당 받아 그 결과를 호출 프로그램에 되돌려 주는 인수
@@ -798,4 +798,39 @@ $ ./a.out
 6
          720
          720
+```
+
+# Value attribute
+```fortran
+program value
+  implicit none
+  real :: x=1.1
+  call call_by_value(x)
+  print *, x
+
+  call call_by_reference(x)
+  print *, x
+
+contains
+  subroutine call_by_value(d)
+    implicit none
+    real, value :: d
+    d = 2*d
+    print *, d
+  end subroutine call_by_value
+
+  subroutine call_by_reference(d)
+    implicit none
+    real :: d
+    d = 2*d
+    print *, d
+  end subroutine call_by_reference
+end program value
+```
+```sh
+$ ./a.out
+   2.20000005    
+   1.10000002    
+   2.20000005    
+   2.20000005
 ```
