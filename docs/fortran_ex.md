@@ -500,3 +500,36 @@ end program array_forall
            2           5           0
            3           6           9
 ```
+
+# Statement function
+간단한 함수를 1개의 문장으로 정의해 사용한다.
+```fortrans
+statment_function(v1,v2,..., vn) = expression
+...
+variable = statment_function(a1,a2,..., an)
+```
+```fortran
+program statement_function
+  implicit none
+  integer :: a, b
+  integer :: plus_one
+  real(8) :: e, m
+  real(8), parameter :: c=299792458d0
+
+  plus_one(a) = a + 1
+  e(m) = m*c**2
+
+  a = 10
+  b = plus_one(a)
+  print *, a, b
+
+  m= 1d-3
+  print *, e(m)
+    
+end program statement_function
+```
+```sh
+$ ./a.out
+          10          11
+   89875517873681.766
+```
