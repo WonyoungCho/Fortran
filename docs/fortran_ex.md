@@ -750,3 +750,52 @@ $ ./a.out
            2           3           4           5           6           7           8           9          10          11
          101
 ```
+
+# Recursive property
+- 자기 자신을 호출하는 **subprogram**이다.
+- 재귀 호출 함수는 **result**로 선언된 변수를 통해 리턴된다.
+```fortran
+program recursive_property
+  implicit none
+  integer :: n, res
+
+  print *, 'Input positive integer'
+  read *, n
+
+  res = factorial(n)
+  print *, res
+
+  call fac_routine(n,res)
+  print *, res
+
+contains
+  recursive integer function factorial(n) result(fact)
+    implicit none
+    integer, intent(in) :: n
+    if (n == 0) then
+       fact = 1
+    else
+       fact = n*factorial(n-1)
+    end if
+  end function factorial
+
+  recursive subroutine fac_routine(n,fact)
+    implicit none
+    integer, intent(in) :: n
+    integer, intent(out) :: fact
+    if (n == 0) then
+       fact = 1
+    else
+       call fac_routine(n-1,fact)
+       fact = n * fact
+    end if
+  end subroutine fac_routine
+end program recursive_property
+```
+```sh
+$ ./a.out
+ Input positive integer
+6
+         720
+         720
+```
