@@ -31,3 +31,6 @@ $ sudo pacman -S openmpi
 ```bash
 $ brew install gcc --without -multilib
 ```
+
+**Wonyoung Cho** <bourbaki10@gmail.com>
+
