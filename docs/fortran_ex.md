@@ -801,6 +801,7 @@ $ ./a.out
 ```
 
 # Value attribute
+**subprogram**에서의 값은 변경될 수 있지만, 실제 **argument** 값은 변하지 않는다.
 ```fortran
 program value
   implicit none
