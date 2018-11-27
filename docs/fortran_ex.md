@@ -888,7 +888,7 @@ $ ./a.out
 - `Optional`로 선언된 인수는 생략이 가능하다.
 - 생랼된 인수는 **keyword**로 넣어주어야 한다.
 - 명시적 인터페이스에서 사용 가능하다.
-- `present(arg_name)` : `optional` 인수의 상태를 확인한다.
+- `present(arg_name)` : `optional` 인수가 있는지 확인한다.
 
 ```fortran
 program optional_arg
