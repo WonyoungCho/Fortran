@@ -837,7 +837,7 @@ $ ./a.out
 ```
 
 # Keyword argument
-- `Subroutine` 이나 `function`의 **argument** 이름을 **keyword**로 사용하여 값을 넣어 줄 수 있다. 단, `interface block`을 해주었을 때 사용 가능하다.
+- `Subroutine` 이나 `function`의 **argument** 이름을 **keyword**로 사용하여 값을 넣어 줄 수 있다. 단, `interface block`이나 `contains`처럼 명시적 인터페이스에서 사용 가능하다.
 
 ```fortran
 program keyword_arg
@@ -884,3 +884,64 @@ $ ./a.out
  i=          10
 ```
 
+# Optional argument
+- `Optional`로 선언된 인수는 생략이 가능하다.
+- 생랼된 인수는 **keyword**로 넣어주어야 한다.
+- 명시적 인터페이스에서 사용 가능하다.
+- `present(arg_name)` : `optional` 인수의 상태를 확인한다.
+
+```fortran
+program optional_arg
+  implicit none
+  integer :: ierr
+
+  call opt_rtn()
+  call opt_rtn(a=2.0)
+  call opt_rtn(b=3)
+  call opt_rtn(b=3,a=2.0)
+  print *, '------------'
+  ierr = opt_func()
+  ierr = opt_func(a=2.0)
+  ierr = opt_func(b=3)
+  ierr = opt_func(b=3,a=2.0)
+
+contains
+  subroutine opt_rtn(a,b)
+    implicit none
+    real, intent(in), optional :: a
+    integer, intent(in), optional :: b
+    real :: ay
+    integer :: bee
+
+    ay=1.0; bee=1
+    if(present(a)) ay=a
+    if(present(b)) bee=b
+    print *, 'ay=',ay,'bee=',bee
+  end subroutine opt_rtn
+  
+  integer function opt_func(a,b)
+    implicit none
+    real, intent(in), optional :: a
+    integer, intent(in), optional :: b
+    real :: ay
+    integer :: bee
+
+    ay=1.0; bee=1
+    if(present(a)) ay=a
+    if(present(b)) bee=b
+    print *, 'ay=',ay,'bee=',bee
+  end function opt_func
+end program optional_arg
+```
+```sh
+$ ./a.out
+ ay=   1.00000000     bee=           1
+ ay=   2.00000000     bee=           1
+ ay=   1.00000000     bee=           3
+ ay=   2.00000000     bee=           3
+ ------------
+ ay=   1.00000000     bee=           1
+ ay=   2.00000000     bee=           1
+ ay=   1.00000000     bee=           3
+ ay=   2.00000000     bee=           3
+```
