@@ -1,4 +1,32 @@
 # MPI_REDUCE with over 200 cores.
+```fortran
+program reduce_test
+  use mpi_f08
+  implicit none
+  integer :: nproc, rank
+  integer(8) :: istat, iend, n
+  integer(8) :: i,j, k=0
+  integer(8) :: tsum=0
+
+  call mpi_init
+  call mpi_comm_size(mpi_comm_world, nproc)
+  call mpi_comm_rank(mpi_comm_world, rank)
+
+  n=10000
+
+  istat = rank*n/nproc + 1 ; iend=(rank+1)*n/nproc
+
+  do i= istat,iend
+     k = 1
+  enddo
+
+  call mpi_reduce(k, tsum, 1, mpi_integer8, mpi_sum, 0, mpi_comm_world)
+  call mpi_finalize
+
+  print *, 'Result :', rank, k, tsum
+
+end program reduce_test
+```
 ```sh
 [compute-0-18:183218] *** An error occurred in MPI_Reduce
 [compute-0-18:183218] *** reported by process [1013006671,200]
