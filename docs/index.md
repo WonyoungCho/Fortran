@@ -4,7 +4,7 @@
 
 <a href="https://fortran.readthedocs.io" target="_blank"> https://fortran.readthedocs.io </a>
 
-예제는 KISTI 교육자료를 참고 하였습니다. <a href="http://webedu.ksc.re.kr" target="_blank">http://webedu.ksc.re.kr/ </a>
+예제는 KISTI 교육자료를 참고 하였습니다. (<a href="http://webedu.ksc.re.kr" target="_blank">http://webedu.ksc.re.kr/ </a>)
 
 ---
 
