@@ -31,6 +31,8 @@ $ sudo pacman -S openmpi
 
 ## etc
 
+<a href="http://lsi.ugr.es/jmantas/pdp/ayuda/datos/instalaciones/Install_OpenMPI_en.pdf" target="_blank"> OpenMPI Installation </a>
+
 <a href="https://gcc.gnu.org/wiki/GFortranBinaries" target="_blank"> https://gcc.gnu.org/wiki/GFortranBinaries </a>
 
 <a href="http://www.lapk.org/gfortran/gfortran.php?OS=7" target="_blank">   http://www.lapk.org/gfortran/gfortran.php?OS=7 </a>
