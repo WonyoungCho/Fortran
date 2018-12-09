@@ -60,7 +60,7 @@ call mpi_finalize(ierr)
 end program mpi_default_frame
 ```
 
-- `ierr` : 코드가 잘 작동했는지 확인하는 return 값. (**MPI 3.0**에서는 `ierr`이 option이 되어 적지 않아도 된다.)
+- `ierr` : 코드가 잘 작동했는지 확인하는 return 값. (**MPI 3.0**에서는 `ierr`가 option이 되어 적지 않아도 된다.)
 - `nproc` : 몇 개의 process가 참여했는지 return 해 주는 값.
 - `nrank` : process의 **ID**에 해당한다. 예를 들어 n개의 process가 작업에 참여한다면, communitor에 의해 각각의 process는 0부터 n-1까지 ID를 가진다.
 - `call mpi_init(ierr)` : 초기화 해주는 명령어이다.
