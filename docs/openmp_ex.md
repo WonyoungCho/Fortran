@@ -613,6 +613,7 @@ end program task
 # Nested
 
 `Thread` 내에서 또 다시 `thread` 병렬화를 할 때 사용한다.
+
 - **Example 1**
 ```bash
 program nested_parallel
