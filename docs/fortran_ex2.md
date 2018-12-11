@@ -37,7 +37,7 @@ subroutine sub(ra,rb,rc,j,k)
   print*,'rc=',rc(j,k)
 end subroutine sub
 ```
-`Subroutine`에 dummy 배열 사용이 가능하다. 단, **차원**과 **형식**이 **일치**해야 하며 `program`에 명시해 주어야 한다. 배열의 크기를 `j`값처럼 **argument**로 받아와 사용할 수 있고, `*`을 사용하여 배열의 **마지막 index**를 지정하지 않고도 사용이 가능하다.
+`Subroutine`에 dummy 배열 사용이 가능하다. 단, **차원**과 **형식**이 **일치**해야 하며 `program`에 명시해 주어야 한다. 배열의 크기를 `j`값처럼 **argument**로 받아와 사용할 수 있고, `*`을 사용하여 배열의 **마지막 index**를 지정하지 않고도 사용이 가능하다. shape 또한 `rc(j,:*)` 처럼 `*`의 사용이 가능하다.
 
 ```sh
 $ ./a
