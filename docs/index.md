@@ -148,7 +148,7 @@ alias mp='mpif90 -fopenmp -o a'
 ```
 
 ## Terminal program for Windows
-<a href='https://mobaxterm.mobatek.net/' target'_blank'> MobaXterm </a>
+<a href='https://mobaxterm.mobatek.net/' target='_blank'> MobaXterm </a>
 
 ## etc
 
