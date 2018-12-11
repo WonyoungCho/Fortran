@@ -36,6 +36,8 @@ alias fp='gfortran -fopenmp -o d'
 alias m='mpif90 -o a'
 alias mp='mpif90 -fopenmp -o a'
 ```
+## Editor
+<a href='https://www.gnu.org/software/emacs/' target='_blank'> https://www.gnu.org/software/emacs/ </a>
 
 ## ~/.emacs
 ```emacs
