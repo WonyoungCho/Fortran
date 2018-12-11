@@ -29,6 +29,14 @@ $ sudo pacman -S gcc
 $ sudo pacman -S openmpi
 ```
 
+## alias
+```sh
+alias f='gfortran -o a'
+alias fp='gfortran -fopenmp -o d'
+alias m='mpif90 -o a'
+alias mp='mpif90 -fopenmp -o a'
+```
+
 ## etc
 
 <a href="http://lsi.ugr.es/jmantas/pdp/ayuda/datos/instalaciones/Install_OpenMPI_en.pdf" target="_blank"> OpenMPI Installation </a>
