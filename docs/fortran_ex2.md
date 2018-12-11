@@ -48,3 +48,48 @@ $ ./a
  rb=           1           2           3           4
  rc=           1           2           3           4           5           6           7           8
 ```
+
+- **Example 2**
+```fortran
+module test
+contains
+  subroutine test_alloc(array)
+    implicit none
+    real, dimension(:), allocatable, intent(inout):: array
+
+    if(allocated(array)) deallocate(array)
+    allocate(array(5), source=1.0)
+    print*, array
+  end subroutine test_alloc
+
+  function test_alloc_func(n)
+    implicit none
+    integer, intent(in):: n
+    real, allocatable, dimension(:):: test_alloc_func
+    integer:: i
+    allocate(test_alloc_func(n))
+    do i=1,n
+       test_alloc_func(i)=i
+    end do
+  end function test_alloc_func
+end module test
+
+program allocate
+  use test
+  implicit none
+  real, dimension(:), allocatable:: arr
+
+  call test_alloc(arr)
+  print*, arr*10
+  if(allocated(arr)) deallocate(arr)
+
+  print*, test_alloc_func(5)
+end program allocate
+```
+
+```sh
+$ ./a
+   1.00000000       1.00000000       1.00000000       1.00000000       1.00000000    
+   10.0000000       10.0000000       10.0000000       10.0000000       10.0000000    
+   1.00000000       2.00000000       3.00000000       4.00000000       5.00000000
+```
