@@ -10,7 +10,8 @@ pages:
     - Home: 'index.md'
     - Fortran:
         - 'Introduction' : 'fortran_int.md'
-        - 'Example' : 'fortran_ex.md'
+        - 'Example 1' : 'fortran_ex1.md'
+        - 'Example 2' : 'fortran_ex2.md'
     - OpenMP:
         - 'Introduction' : 'openmp_int.md'
         - 'Example' : 'openmp_ex.md'
