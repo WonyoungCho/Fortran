@@ -86,7 +86,7 @@ program allocate
   print*, test_alloc_func(5)
 end program allocate
 ```
-
+`Procedure - Subroutine`에서 `allocatable array`를 사용하면 `procedure`내에서 배열의 크기가 결정된다. 
 ```sh
 $ ./a
    1.00000000       1.00000000       1.00000000       1.00000000       1.00000000    
