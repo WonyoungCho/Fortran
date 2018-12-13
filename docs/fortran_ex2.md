@@ -82,14 +82,15 @@ program allocate
   call test_alloc(arr)
   print*, arr*10
   if(allocated(arr)) deallocate(arr)
-
+  print*, '-----------'
   print*, test_alloc_func(5)
 end program allocate
 ```
-`Procedure - Subroutine`에서 `allocatable array`를 사용하면 `procedure`내에서 배열의 크기가 결정된다. 
+`Procedure - Subroutine`에서 `allocatable array`를 사용하면 `procedure`내에서 배열의 크기가 결정된다. `Function`에서는 함수 결과가 `allocatable` 속성을 갖는 것이 가능하며, 함수가 반환되기 전에 반드시 할당되고 값을 포함해야 한다.
 ```sh
 $ ./a
    1.00000000       1.00000000       1.00000000       1.00000000       1.00000000    
    10.0000000       10.0000000       10.0000000       10.0000000       10.0000000    
+-----------
    1.00000000       2.00000000       3.00000000       4.00000000       5.00000000
 ```
