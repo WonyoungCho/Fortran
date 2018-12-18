@@ -94,3 +94,28 @@ $ ./a
 -----------
    1.00000000       2.00000000       3.00000000       4.00000000       5.00000000
 ```
+
+# Derived Type
+
+- **Example**
+```fortran
+program derivedtype
+  implicit none
+  type coord_3d
+     real::x,y,z
+  end type coord_3d
+  type(coord_3d)::pt1, pt2=coord_3d(2.0,2.0,2.0), pt3
+
+  pt1%x=1.0; pt1%y=1.0; pt1%z=1.0
+  pt3=coord_3d(3.0,3.0,3.0)
+  print*, pt1
+  print*, pt2
+  print*, pt3
+end program derivedtype
+```
+```bash
+$ ./a.out
+   1.00000000       1.00000000       1.00000000    
+   2.00000000       2.00000000       2.00000000    
+   3.00000000       3.00000000       3.00000000
+```
