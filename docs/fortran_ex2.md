@@ -96,6 +96,9 @@ $ ./a
 ```
 
 # Derived Type
+> - 유도타입(derived type)은 parameter 성질을 가질 수 업다. 
+> - 아래 예제와 같이 이미 정의된 유도 타입을 이용해 새로운 유도 타입을 정의할 수 있다. 
+> - 
 
 - **Example**
 ```fortran
@@ -104,18 +107,31 @@ program derivedtype
   type coord_3d
      real::x,y,z
   end type coord_3d
-  type(coord_3d)::pt1, pt2=coord_3d(2.0,2.0,2.0), pt3
+  type sphere
+     type(coord_3d) :: center
+     real :: radius
+  end type sphere
 
+  type(coord_3d)::pt1, pt2=coord_3d(2.0,2.0,2.0), pt3
+  type(sphere)::ball
+
+  ball=sphere(center=pt2,radius=3.0)
+  or
+  ball%center%x=2.0; ball%center%y=2.0; ball%center%z=2.0; ball%radius=3.0; 
+  
   pt1%x=1.0; pt1%y=1.0; pt1%z=1.0
   pt3=coord_3d(3.0,3.0,3.0)
   print*, pt1
   print*, pt2
   print*, pt3
+  print*, ball
 end program derivedtype
 ```
+`sphere`는 `coord_3d`의 **supertype**이다. 
 ```bash
 $ ./a.out
    1.00000000       1.00000000       1.00000000    
    2.00000000       2.00000000       2.00000000    
    3.00000000       3.00000000       3.00000000
+   2.00000000       2.00000000       2.00000000       3.00000000
 ```
