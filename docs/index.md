@@ -104,7 +104,7 @@ alias mp='mpif90 -fopenmp -o a'
 
 (setq smart-compile-alist
       '(("\\.py\\'"."python %n.py")
-	("\\.for\\'"."ifort -ffixed-line-length-none %f -o %n.exe")
+        ("\\.for\\'"."ifort -ffixed-line-length-none %f -o %n.exe")
         ("\\.f90\\'"."gfortran -fopenmp %f -o a && ./a")
         ("\\.tex\\'"."pdflatex %f %n")))
 (setq compilation-read-command nil)
