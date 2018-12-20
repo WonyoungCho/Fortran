@@ -85,7 +85,7 @@ alias mp='mpif90 -fopenmp -o a'
 (global-set-key (kbd "\C-c C-g") 'gnuplot-mode)
 (global-set-key (kbd "\C-c C-a") 'my-macro)
 (global-set-key (kbd "\C-x C-a") 'other-window)
-(global-set-key (kbd "\C-a") 'clipboard-yank)
+;(global-set-key (kbd "\C-a") 'clipboard-yank)
 (global-set-key (kbd "\C-z") 'undo)
 (global-set-key (kbd "<f2>") 'call-last-kbd-macro)
 (global-set-key (kbd "<f4>") 'split-window-right)
@@ -102,6 +102,7 @@ alias mp='mpif90 -fopenmp -o a'
 ;(global-set-key (kbd "\C-c C-d") 'kill-this-buffer)
 ;(global-set-key (kbd "\C-c C-a") 'switch-to-previous-buffer)
 
+(require 'smart-compile)
 (setq smart-compile-alist
       '(("\\.py\\'"."python %n.py")
         ("\\.for\\'"."ifort -ffixed-line-length-none %f -o %n.exe")
@@ -141,6 +142,11 @@ alias mp='mpif90 -fopenmp -o a'
   (interactive)
   (defvar name-only (file-name-sans-extension (buffer-name)))
   (shell-command (format "python  \"%s.py\"" name-only (buffer-name))))
+
+(defun fortran-run ()
+  (interactive)
+  (defvar name-only (file-name-sans-extension (buffer-name)))
+  (shell-command (format "gfortran -o a \"%s.f90\" && ./a" name-only (buffer-name))))
 
 (defun switch-to-previous-buffer ()
   (interactive)
