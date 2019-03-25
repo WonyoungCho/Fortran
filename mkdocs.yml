@@ -18,6 +18,7 @@ pages:
     - MPI:
         - 'Introduction' : 'mpi_int.md'
         - 'Example' : 'mpi_ex.md'
+        - 'Optimization' : 'mpi_opt.md'
     - MPI + OpenMP : 'hybrid_int.md'
     
 theme: readthedocs
