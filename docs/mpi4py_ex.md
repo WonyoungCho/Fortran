@@ -58,3 +58,25 @@ elif rank == 1:
 $ mpiexec -n 4 python sendrecv.py
  [  0.   4.   8.  12.]
 ```
+
+# Broadcast
+
+```
+from mpi4py import MPI
+import numpy as np
+
+comm = MPI.COMM_WORLD
+size = comm.Get_size()
+rank = comm.Get_rank()
+
+data = None
+
+if rank == 0:
+    data = [5,6,7,8]
+
+print *, 'rank = ', rank, ' before :', data
+
+comm.Bcast(data, root=0)
+
+print *, 'rank = ', rank, ' after :', data
+```
