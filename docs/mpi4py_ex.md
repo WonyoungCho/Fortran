@@ -16,7 +16,7 @@ $ mpiexec -n 4 python hello.py
 
 # Send & Recv
 
-```
+```{.python}
 from mpi4py import MPI
 
 comm = MPI.COMM_WORLD
