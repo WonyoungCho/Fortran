@@ -123,6 +123,7 @@ print 'rank = ', rank, ' after :', rdata
 ```
 
 ```sh
+$ mpiexec -n 4 python scatter.py
 rank =  3  before : None
 rank =  2  before : None
 rank =  1  before : None
@@ -133,3 +134,46 @@ rank =  1  after : [6]
 rank =  3  after : [8]
 ```
 
+# Gather
+
+```
+from mpi4py import MPI
+import numpy as np
+
+comm = MPI.COMM_WORLD
+size = comm.Get_size()
+rank = comm.Get_rank()
+
+data = None
+
+if rank == 0:
+    data = np.array([5,6,7,8])
+    
+print 'rank = ', rank, ' before :', data
+
+rdata = np.array([0])
+
+comm.Scatter(data, rdata, root=0)
+
+print 'rank = ', rank, ' after :', rdata
+
+gdata = np.array([0,0,0,0])
+
+comm.Gather(rdata, gdata, root=0)
+
+if rank == 0:
+    print 'rank = ', rank, ' gathered :', gdata
+```
+
+```sh
+$ mpiexec -n 4 python gather.py
+rank =  3  before : None
+rank =  2  before : None
+rank =  1  before : None
+rank =  0  before : [5 6 7 8]
+rank =  0  after : [5]
+rank =  1  after : [6]
+rank =  3  after : [8]
+rank =  2  after : [7]
+rank =  0  gathered : [5 6 7 8]
+```
