@@ -1,6 +1,6 @@
 # Hello World!
 
-```python
+```
 from mpi4py import MPI
 
 print 'Hello World!'
@@ -16,7 +16,7 @@ $ mpiexec -n 4 python hello.py
 
 # Send & Recv
 
-```{.python}
+```
 from mpi4py import MPI
 
 comm = MPI.COMM_WORLD
@@ -37,7 +37,7 @@ $ mpiexec -n 4 python sendrecv.py
 
 Array에서는 명령어가 다르다. (`comm.Send`, `comm.Recv`)
 
-```{.python}
+```
 from mpi4py import MPI
 import numpy as np
 
