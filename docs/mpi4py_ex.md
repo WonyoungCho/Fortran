@@ -3,15 +3,18 @@
 ```
 from mpi4py import MPI
 
-print 'Hello World!'
+comm = MPI.COMM_WORLD
+rank = comm.Get_rank()
+
+print rank, 'Hello World!'
 ```
 
 ```sh
 $ mpiexec -n 4 python hello.py
- Hello World!
- Hello World!
- Hello World!
- Hello World!
+0 Hello World!
+1 Hello World!
+2 Hello World!
+3 Hello World!
 ```
 
 # Send & Recv
