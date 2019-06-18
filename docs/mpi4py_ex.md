@@ -79,11 +79,11 @@ if rank == 0:
 else:
     data = np.array([0,0,0,0])
     
-print *, 'rank = ', rank, ' before :', data
+print 'rank = ', rank, ' before :', data
 
 comm.Bcast(data, root=0)
 
-print *, 'rank = ', rank, ' after :', data
+print 'rank = ', rank, ' after :', data
 ```
 
 ```sh
@@ -96,4 +96,29 @@ rank =  0  after : [5 6 7 8]
 rank =  1  after : [5 6 7 8]
 rank =  2  after : [5 6 7 8]
 rank =  3  after : [5 6 7 8]
+```
+
+# Scatter
+
+```
+from mpi4py import MPI
+import numpy as np
+
+comm = MPI.COMM_WORLD
+size = comm.Get_size()
+rank = comm.Get_rank()
+
+data = None
+
+if rank == 0:
+    data = np.array([5,6,7,8])
+else:
+    data = np.array([0,0,0,0])
+    
+print 'rank = ', rank, ' before :', data
+
+comm.scatter(data, root=0)
+
+print 'rank = ', rank, ' after :', data
+```
 ```
