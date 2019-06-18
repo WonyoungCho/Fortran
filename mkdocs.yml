@@ -20,5 +20,8 @@ pages:
         - 'Example' : 'mpi_ex.md'
         - 'Optimization' : 'mpi_opt.md'
     - MPI + OpenMP : 'hybrid_int.md'
+    - MPI4PY:
+        - 'Introduction' : 'mpi4py_int.md'
+        - 'Example' : 'mpi4py_ex.md'
     
 theme: readthedocs
