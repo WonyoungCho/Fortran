@@ -37,7 +37,7 @@ $ mpiexec -n 4 python sendrecv.py
 
 Array에서는 명령어가 다르다. (`comm.Send`, `comm.Recv`)
 
-```python
+```{.python}
 from mpi4py import MPI
 import numpy as np
 
