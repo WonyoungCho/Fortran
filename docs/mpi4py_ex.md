@@ -112,13 +112,24 @@ data = None
 
 if rank == 0:
     data = np.array([5,6,7,8])
-else:
-    data = np.array([0,0,0,0])
     
 print 'rank = ', rank, ' before :', data
 
-comm.scatter(data, root=0)
+rdata = np.array([0])
 
-print 'rank = ', rank, ' after :', data
+comm.Scatter(data, rdata, root=0)
+
+print 'rank = ', rank, ' after :', rdata
 ```
+
+```sh
+rank =  3  before : None
+rank =  2  before : None
+rank =  1  before : None
+rank =  0  before : [5 6 7 8]
+rank =  0  after : [5]
+rank =  2  after : [7]
+rank =  1  after : [6]
+rank =  3  after : [8]
 ```
+
