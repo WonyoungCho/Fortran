@@ -23,11 +23,11 @@ comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
 
 if rank == 0:
- data = 3.0
- comm.send(data, dest=1)
+    data = 3.0
+    comm.send(data, dest=1)
 elif rank == 1:
- data = comm.recv(source=0)
- print rank, data
+    data = comm.recv(source=0)
+    print rank, data
 ```
 
 ```sh
@@ -49,8 +49,8 @@ if rank == 0:
     data = np.linspace(0,12,size)
     comm.Send(data, dest=1)
 elif rank == 1:
-    data = np.empty(size,dtype='d')
-    comm.Recv(data,source=0)
+    data = np.empty(size, dtype='d')
+    comm.Recv(data, source=0)
     print data
 ```
 
