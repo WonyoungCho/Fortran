@@ -72,11 +72,25 @@ rank = comm.Get_rank()
 data = None
 
 if rank == 0:
-    data = [5,6,7,8]
-
+    data = np.array([5,6,7,8])
+else:
+    data = np.array([0,0,0,0])
+    
 print *, 'rank = ', rank, ' before :', data
 
 comm.Bcast(data, root=0)
 
 print *, 'rank = ', rank, ' after :', data
+```
+
+```sh
+$ mpiexec -n 4 python bcast.py
+rank =  2  before : [0 0 0 0]
+rank =  1  before : [0 0 0 0]
+rank =  3  before : [0 0 0 0]
+rank =  0  before : [5 6 7 8]
+rank =  0  after : [5 6 7 8]
+rank =  1  after : [5 6 7 8]
+rank =  2  after : [5 6 7 8]
+rank =  3  after : [5 6 7 8]
 ```
