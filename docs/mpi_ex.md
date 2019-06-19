@@ -429,7 +429,7 @@ program reduce
   use mpi_f08
   implicit none
   integer :: nproc, rank, ista, iend, i
-  real :: a(16), sum, tsum
+  integer :: a(16), sum, tsum
 
   call mpi_init
   call mpi_comm_size(mpi_comm_world, nproc)
@@ -442,7 +442,7 @@ program reduce
     a(i) = i
   enddo
 
-  sum = 0.0
+  sum = 0
   do i=ista, iend
     sum = sum + a(i)
   enddo
@@ -457,7 +457,7 @@ end program reduce
 ```
 ```sh
 $ mpirun -np 4 ./a.out
- sum =   120.000000
+ sum =   120
 ```
 ----
 
