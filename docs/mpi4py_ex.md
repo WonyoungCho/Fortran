@@ -177,3 +177,31 @@ rank =  3  after : [8]
 rank =  2  after : [7]
 rank =  0  gathered : [5 6 7 8]
 ```
+
+# Reduce
+
+```
+from mpi4py import MPI
+import numpy as np
+
+comm = MPI.COMM_WORLD
+size = comm.Get_size()
+rank = comm.Get_rank()
+
+ista = rank * size
+iend = (rank + 1) * size
+
+rsum = np.zeros(1)
+
+for i in range(ista,iend):
+    rsum = rsum + i
+
+print rank, 'sum =', rsum
+
+tsum = np.zeros(1)
+
+comm.Reduce(rsum, tsum, op=MPI.SUM, root=0)
+
+if rank == 0:
+    print 'sum =', tsum
+```
