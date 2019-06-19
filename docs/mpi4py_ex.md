@@ -205,3 +205,12 @@ comm.Reduce(rsum, tsum, op=MPI.SUM, root=0)
 if rank == 0:
     print 'sum =', tsum
 ```
+
+```
+$ mpiexec -n 4 python reduce.py
+1 sum = [ 22.]
+3 sum = [ 54.]
+2 sum = [ 38.]
+0 sum = [ 6.]
+Total sum = [ 120.]
+```
