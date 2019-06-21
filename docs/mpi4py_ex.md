@@ -196,21 +196,21 @@ rsum = np.zeros(1)
 for i in range(ista,iend):
     rsum = rsum + i
 
-print rank, 'sum =', rsum
+print rank, 'sum =', rsum[0]
 
 tsum = np.zeros(1)
 
 comm.Reduce(rsum, tsum, op=MPI.SUM, root=0)
 
 if rank == 0:
-    print 'sum =', tsum
+    print 'sum =', tsum[0]
 ```
 
 ```
 $ mpiexec -n 4 python reduce.py
-1 sum = [ 22.]
-3 sum = [ 54.]
-2 sum = [ 38.]
-0 sum = [ 6.]
-Total sum = [ 120.]
+1 sum = 22.0
+3 sum = 54.0
+2 sum = 38.0
+0 sum = 6.0
+Total sum = 120.0
 ```
