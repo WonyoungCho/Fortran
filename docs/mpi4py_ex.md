@@ -206,7 +206,7 @@ if rank == 0:
     print 'sum =', tsum[0]
 ```
 
-```
+```sh
 $ mpiexec -n 4 python reduce.py
 1 sum = 22.0
 3 sum = 54.0
