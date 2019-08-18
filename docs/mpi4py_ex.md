@@ -1,3 +1,10 @@
+# Installation
+
+```
+$ sudo apt-get install openmpi-bin openmpi-doc libopenmpi-dev
+$ sudo pip install mpi4py
+```
+
 # Hello World!
 
 ```
