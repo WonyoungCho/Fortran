@@ -68,6 +68,16 @@ elif rank == 1:
 $ mpiexec -n 4 python sendrecv.py
  [  0.   4.   8.  12.]
 ```
+# blocking
+
+각 rank에서 계산이 끝나길 기다리려야 할 경우 Barrier를 사용하면 된다.
+
+```
+... computation region for each rank ...
+
+comm.Barrier()
+
+```
 
 # Broadcast
 
